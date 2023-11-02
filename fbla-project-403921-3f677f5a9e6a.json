@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "fbla-project-403921",
+  "private_key_id": "3f677f5a9e6a35d0a12443610004383fb9d7582f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJWLs/iLAcnnY/\najzSsQ2LGkPwpmiiNyIVErqLMVNwM3YyCq4LhmGLUlTKs6+gVgSG1bpYjo8920QM\n2O1QgoytX35+JXwEzCb1eGM5lVFDiQgvOSaY7F1e/+TvMrYKepJ875mbjNnTwLuF\n1p9XPjxtYRZ9ejkvsyATCnaBaKqh98Jl7rAyOC+ZPfLB0zd+IuT5gRoCZFoRExtu\ndXoO3l2EI/XLuXMKCRDDqSZBhuAWyrCVV7LlEQxEgeF5jTNlISfHR7tQ2sPg+5Rt\n7Ywqg9s3ejiPTJEe2OOOp6+JR01bZ3UckitIOBFAehXekqrcl1JwIS3FDQlr/gLj\n+NZLaoN5AgMBAAECggEAKwo/6qakKNX5xngF/O7Si5HnhIV59/ULoNASVsdKRAGI\nKk3MoxOMfezxSaxL5l0E1jLRRPViatFYdFuZrRxfCH+RiVMnddoTGOVtZoWD68ka\n2gdgOA/MrM5MKJKhRc+qSTEpl43uEV0RaNx2Tr6zyZjXpyZtm4PxnwhdSS/vy7PK\nFMj07MK70cdsEK+O/7SbCO3kh3sc8+EulILWce9zEDxtCGzDG8T4n8qFSzf4ZOfy\nnn/wxGeqcDwgC7qTYTWe1/26X59M5o2TZQIxO0xjnb0QbYxua2WpWnUM8MunRUtR\nZbI0GdoR1mriirXNIWm8iVUk8hIWkLE5zGZu6XaQ9QKBgQD/4xMU7P0eZzSlKOlB\ns9H3MtyQc++gvumQ0MOvu8lQN2ymwjGny7N957rgir6llo7Q88SpjAkj916Q2OQc\nGEh1YI6BHgWsQTHqWW9kI4SrlKzvUn7+LHTE+JdRz5C3E+Xw8m4TxKRNmZlnbF41\nkcOblKtrbsIxmw1ym+clhdj/xQKBgQDJb33dDTNrDkw+B+DaFlLMJt0osdz0EiIv\n427Kc7iL1jBYBqkhBiHaIXIS77H0mOypU9GlcayS9e4vDEDkijkaYqgGch62OB4E\nNpb+tyJdSSXrWZ0ucehbTqzWBgy1oPL/JDIVgxJRyNN2EMzV+WXEbJcsBfhOwjzh\nCiGE2AQcJQKBgQDWneaoO2jE8jzWdWzGPYLSOWeDBKosAVO2sVIfd3oOfJ31c5Tg\nLlp6NDyqDdR+37sjCAGfTqNv9g7rn+4ankdPo0+CfeK2KewqqR5jN+MTYdx10ZRP\nrIu3lOSdqmCvHNJT95FZpSlFKJngg6S0e3A7ckMgFUJtBqYNxTLmZs+tHQKBgFI7\nQ4R0GSOBCLrh+HbPWimhS/OK+IpixLYMAHSBXTsoyz+EKJMkr7keojT8yQbzTtmp\nMBJ8H1k3MG7gb7VcgAc3cyR+fe8hZY+OwYFmPY8bh3FWegY11gdATOpqOdIDzG8/\n1XpWsanVdA3kudo4H8VaFzSPk1iDjtrHiftzO+pJAoGBAKOXUgPQXOyXUlbaLiRh\nkb39h3N8tzqLryXSpWGAvsqspYS0kg2V79aIvUxe0AK2PmxZTlN6FutANXskRR03\neW9frAu46Dn82Ea3uKmcY07raxkCOdUpuV0p/ANWNJr9YnVrYz1mbBj8d7m2Ef3d\neriDUrGUwW7D7KZrr/HBmYw/\n-----END PRIVATE KEY-----\n",
+  "client_email": "python-bot@fbla-project-403921.iam.gserviceaccount.com",
+  "client_id": "112809317000710706415",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-bot%40fbla-project-403921.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
