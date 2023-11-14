@@ -1,0 +1,42 @@
+html,body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: serif;
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+form {
+  display: grid;
+  grid-template-rows: repeat(6, 4em);
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.937);
+  width: 65vw;
+  height: 60vh;
+}
+
+input {
+  border-radius: 50px;
+  text-align: center;
+  background-color: rgba(187, 187, 187, 0.818);
+  height: 45%;
+  width: 80%;
+}
+
+h1 {
+  font-size: 50px;
+  margin-top: 6rem;
+}
+
+button {
+  border-radius: 50px;
+  height: 35%;
+  width: 80%;
+}
