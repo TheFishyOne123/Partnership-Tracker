@@ -11,7 +11,6 @@ function LoginPage() {
         <input id="username" class="username" placeholder="Username"></input>
         <input id="password" placeholder="Password"></input>
         <button>Login</button>
-        <h5>Don't have an account? <Link to='/signup'>Create</Link></h5>
       </form>
     </>
   );
