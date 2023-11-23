@@ -1,0 +1,17 @@
+{
+  "name": "partnership-tracker",
+  "version": "V2",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {"dev": "nodemon index.js"},
+  "keywords": [],
+  "author": "Dustin Marks",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.1",
+    "nodemon": "^3.0.1"
+  }
+}
