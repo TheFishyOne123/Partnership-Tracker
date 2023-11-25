@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom"
 
 
-const LoginPage = () => {
-  const [login, setLogin] = useState();
+function LoginPage() {
+  const navigate = useNavigate()
 
   return (
     <div className='h-screen w-screen flex justify-center content-center flex-col flex-wrap'>
@@ -17,9 +17,47 @@ const LoginPage = () => {
               onSuccess={credentialResponse => {
                 const decoded = jwtDecode(credentialResponse.credential);
                 const info = [decoded.name, decoded.email]
-                useEffect(() => {
-    
-                }, [])
+                axios
+                  .get('http://localhost:5555/users')
+                  .then((response) => {
+                    const userslist = response.data.data
+                    function findMatch(info, userslist) {
+                      for (let a of userslist) {
+                        const infoobj = {};
+                        let count = 1;
+                        for (let value of info) {
+                          if (count === 2) {
+                            infoobj['email'] = value;
+                          } else {
+                            infoobj['name'] = value;
+                          }
+                          count += 1;
+                        }
+                        delete a._id;
+                        if (a.name === infoobj.name && a.email === infoobj.email) {
+                          console.log('User Found!')
+                          return true;
+                        }
+                      }
+                      return false;
+                    }
+                    console.log('Checking Google Account Against Database')
+                    if (findMatch(info,userslist)) {
+                      console.log('The Google Account Used Is Allowed!')
+                      navigate("/home")
+                    }
+                    else if (!findMatch(info,userslist)) {
+                      console.log('User Not Found!')
+                      alert('The Google Account Used Is Not Allowed!')
+                    }
+                    else {
+                      alert('There Was A Error Checking If Account Is Allowed')
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                    }
+                  )
                 }
               }
               onError={() => {
