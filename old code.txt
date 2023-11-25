@@ -1,0 +1,40 @@
+ axios
+                  .get('http://localhost:5555/users')
+                  .then((response) => {
+                    const userslist = response.data.data
+                    function findMatch(info, userslist) {
+                      for (let a of userslist) {
+                        const infoobj = {};
+                        let count = 1;
+                        for (let value of info) {
+                          if (count === 2) {
+                            infoobj['email'] = value;
+                          } else {
+                            infoobj['name'] = value;
+                          }
+                          count += 1;
+                        }
+                        delete a._id;
+                        if (a.name === infoobj.name && a.email === infoobj.email) {
+                          console.log('User Found!')
+                          return true;
+                        }
+                      }
+                      return false;
+                    }
+                    console.log('Checking Google Account Against Database')
+                    if (findMatch(info,userslist)) {
+                      console.log('The Google Account Used Is Allowed!')
+                    }
+                    else if (!findMatch(info,userslist)) {
+                      console.log('User Not Found!')
+                      alert('The Google Account Used Is Not Allowed!')
+                    }
+                    else {
+                      alert('There Was A Error Checking If Account Is Allowed')
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                    }
+                  )
