@@ -1,12 +1,10 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import {useNavigate} from "react-router-dom"
-
+import Cookies from 'js-cookie';
 
 function LoginPage() {
-  const navigate = useNavigate()
+  
 
   return (
     <div className='h-screen w-screen flex justify-center content-center flex-col flex-wrap'>
@@ -44,7 +42,15 @@ function LoginPage() {
                     console.log('Checking Google Account Against Database')
                     if (findMatch(info,userslist)) {
                       console.log('The Google Account Used Is Allowed!')
-                      navigate("/home")
+                      Cookies.set('Credentials', info, { secure: true, httpOnly: true });
+                      console.log('Generating Token')
+                      axios.post('http://localhost:5555/users/login-attempt', info)
+                        .then(response => {
+                          console.log(response.data); 
+                        })
+                        .catch(error => {
+                          console.error('Error:', error);
+                        });
                     }
                     else if (!findMatch(info,userslist)) {
                       console.log('User Not Found!')

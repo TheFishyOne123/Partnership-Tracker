@@ -1,6 +1,12 @@
+import React from "react"
+import navbar from "../assets/Components/navbar"
+
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <>
+      <navbar/>
+      
+    </>
   )
 }
 
