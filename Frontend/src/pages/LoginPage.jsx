@@ -1,15 +1,21 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function LoginPage() {
-  const history = useHistory();
-  const [AuthInfo, setAuthInfo] = useState(false);
+  const navigate = useNavigate();
+  const [AuthInfo, setAuthInfo] = useState(false)
 
+  useEffect(() => {
+    if (AuthInfo) {
+      console.log('Navigating To Home Page');
+      navigate('/home', { state: { forwardedState: AuthInfo } });
+    }
+  }, [AuthInfo, navigate]);
 
   return (
     <div className='h-screen w-screen flex justify-center content-center flex-col flex-wrap'>
@@ -46,10 +52,8 @@ function LoginPage() {
                     }
                     console.log('Checking Google Account Against Database')
                     if (findMatch(info,userslist)) {
+                      setAuthInfo(info)
                       console.log('The Google Account Used Is Allowed!')
-                      console.log('Navigating To Home Page')
-                      history.push('/nextpage', { forwardedState: myState });
-                      
                     }
                     else if (!findMatch(info,userslist)) {
                       console.log('User Not Found!')
