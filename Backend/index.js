@@ -3,8 +3,6 @@ import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 import allowedUsersRoute from './routes/allowedUsersRoutes.js'
 import cors from 'cors';
-import jsonwebtoken from 'jsonwebtoken';
-
 
 const app = express();
 
