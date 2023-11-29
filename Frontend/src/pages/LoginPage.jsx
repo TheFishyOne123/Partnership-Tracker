@@ -2,19 +2,20 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [AuthInfo, setAuthInfo] = useState(false)
+  let [AuthInfo, setAuthInfo] = useState(false)
 
   useEffect(() => {
     if (AuthInfo) {
       console.log('Navigating To Home Page');
       navigate('/home', { state: { forwardedState: AuthInfo } });
     }
+    
   }, [AuthInfo, navigate]);
 
   return (

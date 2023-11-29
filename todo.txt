@@ -1,7 +1,4 @@
-Add Verification To The Sytem To Stop Users From Force Entry To Pages
-
-Add Cookies
-
 Create Home Page
 
 Create First Time Login Q&A
+

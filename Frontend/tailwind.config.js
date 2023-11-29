@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/pages/*.{js,jsx}",
+    "./src/assets/Components/*.jsx"
   ],
   theme: {
     screens: {

@@ -6,7 +6,6 @@ import cors from 'cors';
 
 const app = express();
 
-
 // Parses Request Body
 app.use(express.json());
 
