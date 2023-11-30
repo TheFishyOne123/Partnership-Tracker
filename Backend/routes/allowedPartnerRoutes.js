@@ -1,15 +1,15 @@
 import express from 'express';
-import { User } from '../models/userModel.js';
+import { Partner } from '../models/partnerModel.js';
 
 const router = express.Router();
 
-// Get All Users In Database Route
+// Get All Partners
 router.get('/all', async (request, response) => {
   try {
-    const users = await User.find({});
+    const partners = await Partner.find({});
 
     return response.status(200).json({
-      data: users,
+      data: partners,
     });
   } catch (error) {
     console.log(error.message);

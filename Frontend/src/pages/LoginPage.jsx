@@ -28,7 +28,7 @@ function LoginPage() {
                 const decoded = jwtDecode(credentialResponse.credential);
                 const info = [decoded.name, decoded.email]
                 axios
-                  .get('http://localhost:5555/users')
+                  .get('http://localhost:5555/users/all')
                   .then((response) => {
                     const userslist = response.data.data
                     function findMatch(info, userslist) {

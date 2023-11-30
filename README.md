@@ -19,9 +19,9 @@ Background Image Is Open Source Image
 React
 Vite
 Tailwind
-react-Bootstrap/Dropdown
+react-Bootstrap
 react-router-dom
-@react-oauth/google
+@react-oauth
 jwt-decode
 axios
-react-dom/client
+react-dom
