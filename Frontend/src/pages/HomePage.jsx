@@ -2,7 +2,7 @@ import React from "react"
 import Navbar from "../assets/Components/navbar"
 import { useLocation } from 'react-router-dom';
 import '../index.css'
-
+import Database from "../assets/Components/database";
 
 const HomePage = () => {
   const location = useLocation();
@@ -22,6 +22,7 @@ const HomePage = () => {
     return (
       <>
         <Navbar forwardedState={forwardedState} />
+        <Database />
       </>
     )
   }

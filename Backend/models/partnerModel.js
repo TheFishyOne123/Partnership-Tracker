@@ -12,12 +12,24 @@ const partnersSchema = mongoose.Schema(
       },
       phone: {
         type: String,
-        required:false,
+        required:true,
       },
-      typeOrg: {
+      pathway: {
         type: String,
         required: true,
       },
+      timeAvailable: {
+        type: String,
+        required: true,
+      },
+      beginningAvailable: {
+        type: String,
+        required: true,
+      },
+      endingAvailable: {
+        type: String,
+        required: true,
+      }
       }
   )
 
