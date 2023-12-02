@@ -2,6 +2,14 @@ import mongoose from 'mongoose';
 
 const partnersSchema = mongoose.Schema(
     {
+      companyName: {
+        type: String,
+        required: true,
+      },
+      postion: {
+        type: String,
+        required: true,
+      },
       owner: {
         type: String,
         required: true,
@@ -18,7 +26,7 @@ const partnersSchema = mongoose.Schema(
         type: String,
         required: true,
       },
-      timeAvailable: {
+      dayAvailable: {
         type: String,
         required: true,
       },
