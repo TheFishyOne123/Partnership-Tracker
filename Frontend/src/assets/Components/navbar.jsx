@@ -10,7 +10,7 @@ function navbar(props) {
   };
 
   return (
-   <div className=' text-gray-50	w-screen pl-8 bg-gray-500 font-black h-12 flex items-center text-xl'>
+   <div className=' text-gray-50	w-screen pl-8 bg-gray-500 font-black h-14 flex items-center text-xl'>
       <p className='font-normal'>Partnership Tracker</p>
       <div className='flex ml-auto pr-8	'>
       <Dropdown className="d-inline mx-2" autoClose="outside">
