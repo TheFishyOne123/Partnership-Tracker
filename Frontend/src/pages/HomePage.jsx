@@ -12,8 +12,8 @@ const HomePage = () => {
   if (!forwardedState) {
     console.log('Unsuccessful Authentacation')
     return (
-      <div>
-        <h1>No Auth Info</h1>
+      <div className="flex justify-center content-center text-white text-5xl">
+        <h1>Please ReLogin</h1>
       </div>
     )
   }
@@ -30,9 +30,9 @@ const HomePage = () => {
     console.log(forwardedState)
     console.log("There Was A Error With Authentacation")
     return (
-      <>
-        <h1>There Was A Error With The Request</h1>
-      </>
+      <div>
+        <h1>There Was A Error</h1>
+      </div>
     )
   }
   
