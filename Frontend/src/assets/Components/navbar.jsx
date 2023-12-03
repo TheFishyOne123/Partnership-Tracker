@@ -1,6 +1,7 @@
 import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from 'react-router-dom';
+import Searchbar from './searchbar';
 
 function navbar(props) {
   const name = props.forwardedState;
@@ -10,11 +11,12 @@ function navbar(props) {
   };
 
   return (
-   <div className=' text-gray-50	w-screen pl-8 bg-gray-500 font-black h-14 flex items-center text-xl'>
+   <div className=' text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl '>
       <p className='font-normal'>Partnership Tracker</p>
-      <div className='flex ml-auto pr-8	'>
+      <Searchbar/>
+      <div className='flex ml-auto pr-8	'> 
       <Dropdown className="d-inline mx-2" autoClose="outside">
-        <Dropdown.Toggle variant="secondary" className='bg-transparent border-transparent hover:border-transparent' id="dropdown-autoclose-outside">
+        <Dropdown.Toggle variant="secondary" className=' text-lg bg-transparent border-transparent hover:border-transparent' id="dropdown-autoclose-outside">
           {name[0]}
         </Dropdown.Toggle>
         <Dropdown.Menu>

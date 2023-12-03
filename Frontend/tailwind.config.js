@@ -9,11 +9,11 @@ export default {
     screens: {
       '2xl': {'min': '1536px'},
 
-      'xl': {'min': '1024px'},
+      'xl': {'min': '1025px'},
 
-      'lg': {'max': '1023px'},
+      'lg': {'max': '1024px'},
 
-      'md': {'max': '767px'},
+      'md': {'max': '768px'},
 
       'sm': {'max': '639px'},
     }
