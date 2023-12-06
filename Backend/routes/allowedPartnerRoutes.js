@@ -4,16 +4,35 @@ import { Partner } from '../models/partnerModel.js';
 const router = express.Router();
 
 // Get All Partners
-router.get('/all', async (request, response) => {
+router.get('/all', async (req, res) => {
   try {
     const partners = await Partner.find({});
-
-    return response.status(200).json({
+    res.status(200).json({
       data: partners,
     });
   } catch (error) {
     console.log(error.message);
-    response.status(500).send({ message: error.message });
+    res.status(500).send({ message: error.message });
+  }
+});
+
+// Search Partners
+router.get('/search', async (req, res) => {
+  try {
+    const search = req.query.search;
+    const searchResults = await Partner.find({
+      $or: [
+        { companyName: { $regex: `^${search}`, $options: 'i' } },
+        { position: { $regex: `^${search}`, $options: 'i' } },
+        { owner: { $regex: `^${search}`, $options: 'i' } },
+        { pathway: { $regex: `^${search}`, $options: 'i' } },
+        { availability: { $regex: `^${search}`, $options: 'i' } },
+      ],
+    });
+    res.json(searchResults);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
