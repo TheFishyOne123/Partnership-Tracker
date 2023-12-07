@@ -11,9 +11,13 @@ function LoginPage() {
   let [AuthInfo, setAuthInfo] = useState(false)
 
   useEffect(() => {
-    if (AuthInfo) {
-      console.log('Navigating To Home Page');
-      navigate('/home', { state: { forwardedState: AuthInfo } });
+    if (AuthInfo === 1) {
+      console.log('Navigating To User Page');
+      navigate('/user', { state: { forwardedState: AuthInfo } });
+    }
+    else if (AuthInfo === 2) {
+      console.log('Navigating To Admin Page');
+      navigate('/admin', { state: { forwardedState: AuthInfo } });
     }
     
   }, [AuthInfo, navigate]);
@@ -28,40 +32,26 @@ function LoginPage() {
                 const decoded = jwtDecode(credentialResponse.credential);
                 const info = [decoded.name, decoded.email]
                 axios
-                  .get('http://localhost:5555/users/all')
+                  .get('http://localhost:5555/users/user', { params: { user: info[1]} })
                   .then((response) => {
-                    const userslist = response.data.data
-                    function findMatch(info, userslist) {
-                      for (let a of userslist) {
-                        const infoobj = {};
-                        let count = 1;
-                        for (let value of info) {
-                          if (count === 2) {
-                            infoobj['email'] = value;
-                          } else {
-                            infoobj['name'] = value;
-                          }
-                          count += 1;
-                        }
-                        delete a._id;
-                        if (a.name === infoobj.name && a.email === infoobj.email) {
-                          console.log('User Found!')
-                          return true;
-                        }
-                      }
-                      return false;
-                    }
                     console.log('Checking Google Account Against Database')
-                    if (findMatch(info,userslist)) {
-                      setAuthInfo(info)
-                      console.log('The Google Account Used Is Allowed!')
+                    if (response.status === 200) {
+                      if (response.data.message.admin){
+                        setAuthInfo(2)
+                      }
+                      else {
+                        setAuthInfo(1)
+                      }
                     }
-                    else if (!findMatch(info,userslist)) {
+                    else if (response.status === 404) {
                       console.log('User Not Found!')
                       alert('The Google Account Used Is Not Allowed!')
                     }
-                    else {
+                    else if (response.status === 500 || response.status === 501) {
                       alert('There Was A Error Checking If Account Is Allowed')
+                    }
+                    else {
+                      console.log('Unexpected Error In Checking For User')
                     }
                   })
                   .catch((error) => {
