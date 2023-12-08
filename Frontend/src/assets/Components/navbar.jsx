@@ -6,7 +6,7 @@ import Searchbar from './searchbar';
 function Navbar(props) {
   const name = props.forwardedState;
   const navigate = useNavigate();
-
+  console.log(name)
   function handleLogout() {
     navigate('/', { state: { AuthInfo: false } });
   }

@@ -11,11 +11,11 @@ function LoginPage() {
   let [AuthInfo, setAuthInfo] = useState(false)
 
   useEffect(() => {
-    if (AuthInfo === 1) {
+    if (AuthInfo[1]) {
       console.log('Navigating To User Page');
       navigate('/user', { state: { forwardedState: AuthInfo } });
     }
-    else if (AuthInfo === 2) {
+    else if (AuthInfo[1] === 2) {
       console.log('Navigating To Admin Page');
       navigate('/admin', { state: { forwardedState: AuthInfo } });
     }
@@ -36,11 +36,11 @@ function LoginPage() {
                   .then((response) => {
                     console.log('Checking Google Account Against Database')
                     if (response.status === 200) {
-                      if (response.data.message.admin){
-                        setAuthInfo(2)
+                      if (response.data.data.admin){
+                        setAuthInfo(info, response.data.data.admin)
                       }
                       else {
-                        setAuthInfo(1)
+                        setAuthInfo([info, 2])
                       }
                     }
                     else if (response.status === 404) {
