@@ -22,7 +22,7 @@ function Navbar(props) {
       <div className='flex ml-auto pr-8	'>
         <Dropdown className="d-inline mx-2" autoClose="outside">
           <Dropdown.Toggle variant="secondary" className=' text-lg bg-transparent border-transparent hover:border-transparent' id="dropdown-autoclose-outside">
-            {name[0]}
+            {name[0][0]}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleLogout} className='active:bg-gray-400'>Logout</Dropdown.Item>

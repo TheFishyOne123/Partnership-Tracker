@@ -22,6 +22,7 @@ const AdminPage = () => {
       </div>
     );
   } else if (forwardedState) {
+    if (forwardedState)
     return (
       <>
         <Navbar forwardedState={forwardedState} onSearchChange={handleSearchUpdate}/>

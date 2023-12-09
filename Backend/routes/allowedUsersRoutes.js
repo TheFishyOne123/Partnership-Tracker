@@ -9,9 +9,8 @@ router.get('/:user', async (request,response) => {
     const userToFind = request.query.user;
     const user = await User.findOne({ email: userToFind });
     if (!user) {
-      return response.status(404).send({ message: 'User Not Found' });
+      return response.status(204).send();
     } 
-
     else if (user) {
       response.status(200).json({
         data: user

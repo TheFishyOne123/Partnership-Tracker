@@ -8,16 +8,18 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate();
-  let [AuthInfo, setAuthInfo] = useState(false)
+  let [AuthInfo, setAuthInfo] = useState(null)
 
   useEffect(() => {
-    if (AuthInfo[1]) {
-      console.log('Navigating To User Page');
-      navigate('/user', { state: { forwardedState: AuthInfo } });
-    }
-    else if (AuthInfo[1] === 2) {
-      console.log('Navigating To Admin Page');
-      navigate('/admin', { state: { forwardedState: AuthInfo } });
+    if (AuthInfo) { 
+      if (!AuthInfo[1]) {
+        console.log('Navigating To User Page');
+        navigate('/user', { state: { forwardedState: AuthInfo } });
+      }
+      else if (AuthInfo[1]) {
+        console.log('Navigating To Admin Page');
+        navigate('/admin', { state: { forwardedState: AuthInfo } });
+      }
     }
     
   }, [AuthInfo, navigate]);
@@ -32,18 +34,13 @@ function LoginPage() {
                 const decoded = jwtDecode(credentialResponse.credential);
                 const info = [decoded.name, decoded.email]
                 axios
-                  .get('http://localhost:5555/users/user', { params: { user: info[1]} })
+                  .get(`http://localhost:5555/users/user?user=${encodeURIComponent(info[1])}`)
                   .then((response) => {
                     console.log('Checking Google Account Against Database')
                     if (response.status === 200) {
-                      if (response.data.data.admin){
-                        setAuthInfo(info, response.data.data.admin)
-                      }
-                      else {
-                        setAuthInfo([info, 2])
-                      }
+                      setAuthInfo([info,response.data.data.admin])
                     }
-                    else if (response.status === 404) {
+                    else if (response.status === 204) {
                       console.log('User Not Found!')
                       alert('The Google Account Used Is Not Allowed!')
                     }
@@ -51,15 +48,13 @@ function LoginPage() {
                       alert('There Was A Error Checking If Account Is Allowed')
                     }
                     else {
-                      console.log('Unexpected Error In Checking For User')
+                      console.log('Unexpected Result In Checking For User')
                     }
                   })
                   .catch((error) => {
-                    console.log(error)
-                    }
-                  )
-                }
-              }
+                      console.log(error)
+                  })
+                }}
               onError={() => {
                 console.log('Error Attempting To Login');
               }}
