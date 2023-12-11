@@ -2,7 +2,7 @@
 @tailwind utilities;
 @tailwind base;
 
-html, body {
+body {
    height: 100vh;
    background-image: url("./assets/images/Background.jpg");
    background-size: cover;

@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import Navbar from "../assets/Components/navbar";
+import AdminNavbar from "../assets/Components/adminNavbar";
 import { useLocation } from 'react-router-dom';
-import '../index.css';
+import '../assets/CSS/admin.css';
 import Database from "../assets/Components/database";
 import Searchbar from "../assets/Components/searchbar";
 import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
+const UserAdminPage = () => {
   const location = useLocation();
-  const forwardedState = location.state ? location.state.forwardedState : null;
+  const forwardedState = location.state?.forwardedState;
   const [search, setSearch] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  console.log(forwardedState)
 
   const handleSearchUpdate = (value) => {
     setSearch(value);
-  };  
+  };
 
   const relogin = () => {
     navigate('/')
-  }
+  }  
 
   if (!forwardedState) {
     console.log('Unsuccessful Authentication');
@@ -32,10 +34,10 @@ const HomePage = () => {
     );
   } else if (forwardedState) {
     return (
-      <>
-        <Navbar forwardedState={forwardedState} onSearchChange={handleSearchUpdate}/>
+      <div className="admin-page-body">
+        <AdminNavbar forwardedState={forwardedState} onSearchChange={handleSearchUpdate}/>
         <Database search={search} />
-      </>
+      </div>
     );    
   } else {
     console.log(forwardedState);
@@ -51,4 +53,4 @@ const HomePage = () => {
   }
 };
 
-export default HomePage;
+export default UserAdminPage;

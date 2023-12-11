@@ -15,7 +15,8 @@ MongoDB
 Cors
 
 Frontend:
-Background Image Is Open Source Image
+User Background Image Is Open Source
+Admin Background Image Is Open Soure
 React
 Vite
 Tailwind
