@@ -19,6 +19,16 @@ const AdminNavbar = (props) => {
     console.log(info)
     navigate('/admin/users', { state: { forwardedState: info } });
   }
+
+  const handlePartners = () => {
+    console.log(info)
+    navigate('/admin/partners', { state: { forwardedState: info } });
+  }
+
+  const handleRequests = () => {
+    console.log(info)
+    navigate('/admin/requests', { state: { forwardedState: info } });
+  }
   
   return (
     <div className='text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl '>
@@ -31,8 +41,8 @@ const AdminNavbar = (props) => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleUsers}>Users</Dropdown.Item>
-            <Dropdown.Item>Partners</Dropdown.Item>
-            <Dropdown.Item>Requests</Dropdown.Item>
+            <Dropdown.Item onClick={handlePartners}>Partners</Dropdown.Item>
+            <Dropdown.Item onClick={handleRequests}>Requests</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown drop="down-centered" className="d-inline mx-2" autoClose="outside">
