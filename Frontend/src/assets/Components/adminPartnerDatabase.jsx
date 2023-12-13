@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Popup from 'reactjs-popup';
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import EditingForm from './EditingForm.jsx';
 
 function AdminPartnerDatabase({ search }) {
   const [partnersList, setPartnersList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [editingForm, setEditingForm] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:5555/partners/all')
@@ -34,9 +37,24 @@ function AdminPartnerDatabase({ search }) {
       setSearchResults([]);
     }
   }, [search]);
+
+  const handleEdit = () => {
+    setEditingForm(true)
+  }
+
+  const handleDuplicate = () => {
+
+  }
+
+  const handleDelete = () => {
+
+  }
   
   return (
-    <div className='bg-[#383d41f0] w-10/12 mx-auto mt-20 flex justify-center p-3'>
+    <div className='bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center p-3'>
+      <EditingForm isOpen={editingForm} onClose={() => setEditingForm(false)}>
+        <h1 className="text-2xl mb-4">Your Modal Content Goes Here</h1>
+      </EditingForm>
       <table className='border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px] md:'>
         <thead>
           <tr className='bg-gray-500'>
@@ -74,9 +92,9 @@ function AdminPartnerDatabase({ search }) {
                     <td className='p-2 sm:p-0'>{partner.firstDayAvailable}</td>
                     <td className='p-2 sm:p-0'>{partner.lastDayAvailable}</td>
                     <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
-                      <button><FaPencilAlt size="1.5em" /></button>
-                      <button><FaCopy size="1.5em" /></button>
-                      <button><FaTrash size="1.5em" /></button>
+                      <button className='text-green-500' onClick={handleEdit}><FaPencilAlt size="1.5em" /></button>
+                      <button className='text-blue-500'><FaCopy size="1.5em" /></button>
+                      <button className='text-red-500'><FaTrash size="1.5em" /></button>
                     </td>
                   </tr>
                 ))
@@ -93,6 +111,11 @@ function AdminPartnerDatabase({ search }) {
                     <td className='p-2 sm:p-0'>{result.timeOfDay}</td>
                     <td className='p-2 sm:p-0'>{result.firstDayAvailable}</td>
                     <td className='p-2 sm:p-0'>{result.lastDayAvailable}</td>
+                    <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
+                      <button className='text-green-500'><FaPencilAlt size="1.5em" /></button>
+                      <button className='text-blue-500'><FaCopy size="1.5em" /></button>
+                      <button className='text-red-500'><FaTrash size="1.5em" /></button>
+                    </td>
                     </tr>
                   ))}
                 </>

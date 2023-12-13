@@ -14,8 +14,6 @@ const PartnersAdminPage = () => {
     const [search, setSearch] = useState('');
     const navigate = useNavigate()
   
-    console.log(forwardedState)
-  
     const handleSearchUpdate = (value) => {
       setSearch(value);
     };
@@ -42,7 +40,6 @@ const PartnersAdminPage = () => {
         </div>
       );    
     } else {
-      console.log(forwardedState);
       console.log("There Was An Error With Authentication");
       return (
         <div className='h-screen w-screen flex items-center justify-center'>

@@ -36,4 +36,16 @@ router.get('/search', async (req, res) => {
   }
 });
 
+router.get('/edit', async(req, res) => {
+  try {
+    await Partner.findByIdAndUpdate(req.query.name, req.body);
+    res.status(200)
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+})
+
+
+
 export default router;
