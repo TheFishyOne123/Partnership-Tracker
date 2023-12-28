@@ -16,6 +16,11 @@ export default {
       'md': {'max': '768px'},
 
       'sm': {'max': '639px'},
+    },
+    extend: {
+      backdropBlur: {
+        xs: '2px',
+      }
     }
   }, 
   plugins: [],
