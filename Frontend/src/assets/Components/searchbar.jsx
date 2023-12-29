@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Searchbar({ onSearchChange }) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -10,10 +10,10 @@ function Searchbar({ onSearchChange }) {
   };
 
   return (
-    <div className='flex justify-center ml-auto w-6/12 text-black'>
+    <div className="flex justify-center ml-auto w-6/12">
       <input
         type="text"
-        className='w-8/12 rounded-2xl h-8 text-center text-lg'
+        className="w-9/12 rounded-2xl h-9 text-center text-lg bg-[#383d41f0]"
         value={search}
         onChange={handleSearchChange}
       />

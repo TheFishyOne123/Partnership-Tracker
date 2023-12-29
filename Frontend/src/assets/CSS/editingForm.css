@@ -1,6 +1,5 @@
 input {
-    background-color: white;
-    color: black;
+    background-color: rgb(107 114 128);
     text-align: center;
     border-radius: 5px;
 }

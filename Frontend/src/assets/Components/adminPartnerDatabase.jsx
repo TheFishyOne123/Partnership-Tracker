@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Popup from "reactjs-popup";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import EditingForm from "./editingForm.jsx";
+import AddNewPartnersDiv from "./addNewPartnersDiv.jsx";
 
 function AdminPartnerDatabase({ search }) {
   const [partnersList, setPartnersList] = useState([]);
@@ -93,40 +93,61 @@ function AdminPartnerDatabase({ search }) {
         <tbody>
           {partnersList.length === 0 ? (
             <tr>
-              <td colSpan="9">
-                <h1>Empty</h1>
+              <td colSpan={10}>
+                <AddNewPartnersDiv />
               </td>
             </tr>
           ) : (
             <>
               {!search ? (
-                partnersList.map((partner) => (
-                  <tr className="bg-gray-500" key={partner._id}>
-                    <td className="p-2 sm:p-0">{partner.companyName}</td>
-                    <td className="p-2 sm:p-0">{partner.position}</td>
-                    <td className="p-2 sm:p-0">{partner.owner}</td>
-                    <td className="p-2 lg:hidden sm:p-0">{partner.email}</td>
-                    <td className="p-2 sm:p-0">{partner.phone}</td>
-                    <td className="p-2 sm:p-0">{partner.pathway}</td>
-                    <td className="p-2 sm:p-0">{partner.timeOfDay}</td>
-                    <td className="p-2 sm:p-0">{partner.firstDayAvailable}</td>
-                    <td className="p-2 sm:p-0">{partner.lastDayAvailable}</td>
-                    <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
-                      <button
-                        className="text-green-500"
-                        onClick={() => handleEdit(partner._id)}
-                      >
-                        <FaPencilAlt size="1.5em" />
-                      </button>
-                      <button className="text-blue-500">
-                        <FaCopy size="1.5em" />
-                      </button>
-                      <button className="text-red-500">
-                        <FaTrash size="1.5em" />
-                      </button>
+                <>
+                  {partnersList.map((partner) => (
+                    <tr className="bg-gray-500" key={partner._id}>
+                      <td className="py-0.5 px-1 sm:p-0">
+                        {partner.companyName}
+                      </td>
+                      <td className="py-0.5 px-1  sm:p-0">
+                        {partner.position}
+                      </td>
+                      <td className="py-0.5 px-1  sm:p-0">{partner.owner}</td>
+                      <td className="py-0.5 px-1  lg:hidden sm:p-0">
+                        {partner.email}
+                      </td>
+                      <td className="py-0.5 px-1  sm:p-0">{partner.phone}</td>
+                      <td className="py-0.5 px-1  sm:p-0">{partner.pathway}</td>
+                      <td className="py-0.5 px-1  sm:p-0">
+                        {partner.timeOfDay}
+                      </td>
+                      <td className="py-0.5 px-1  sm:p-0">
+                        {partner.firstDayAvailable}
+                      </td>
+                      <td className="p-2 sm:p-0">{partner.lastDayAvailable}</td>
+                      <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5 align-middle">
+                        <div className="flex gap-2.5 content-center pt-2">
+                          <button
+                            className="text-green-500"
+                            onClick={() => handleEdit(partner._id)}
+                          >
+                            <FaPencilAlt size="1.5em" />
+                          </button>
+                          <button className="text-blue-500">
+                            <FaCopy size="1.5em" />
+                          </button>
+                          <button className="text-red-500">
+                            <FaTrash size="1.5em" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td colSpan={10}>
+                      <div className="inline-block p-2">
+                        <AddNewPartnersDiv />
+                      </div>
                     </td>
                   </tr>
-                ))
+                </>
               ) : (
                 <>
                   {searchResults.map((result) => (

@@ -37,8 +37,8 @@ const AdminNavbar = (props) => {
   };
 
   return (
-    <div className="text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl ">
-      <p className="font-normal">Partnership Tracker</p>
+    <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal">
+      <p className=" text-2xl">Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
       <div className="flex ml-auto pr-8	">
         <Dropdown
@@ -46,13 +46,12 @@ const AdminNavbar = (props) => {
           className="d-inline mx-2"
           autoClose="outside"
         >
-          <Button
-            variant="secondary"
-            className="text-lg bg-transparent border-transparent hover:border-transparent"
+          <button
+            className="text-lg align-middle py-1 pl-1"
             onClick={handleHome}
           >
             Admin
-          </Button>
+          </button>
           <Dropdown.Toggle
             split
             variant="secondary"
