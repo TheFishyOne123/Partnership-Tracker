@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
 import Searchbar from "./searchbar";
+import Button from "react-bootstrap/Button";
 
 const AdminNavbar = (props) => {
   const navigate = useNavigate();
@@ -30,6 +31,11 @@ const AdminNavbar = (props) => {
     navigate("/admin/requests", { state: { forwardedState: info } });
   };
 
+  const handleHome = () => {
+    console.log(info);
+    navigate("/admin", { state: { forwardedState: info } });
+  };
+
   return (
     <div className="text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl ">
       <p className="font-normal">Partnership Tracker</p>
@@ -40,13 +46,19 @@ const AdminNavbar = (props) => {
           className="d-inline mx-2"
           autoClose="outside"
         >
+          <Button
+            variant="secondary"
+            className="text-lg bg-transparent border-transparent hover:border-transparent"
+            onClick={handleHome}
+          >
+            Admin
+          </Button>
           <Dropdown.Toggle
+            split
             variant="secondary"
             className="text-lg bg-transparent border-transparent hover:border-transparent"
             id="dropdown-autoclose-outside"
-          >
-            Admin
-          </Dropdown.Toggle>
+          ></Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleUsers}>Users</Dropdown.Item>
             <Dropdown.Item onClick={handlePartners}>Partners</Dropdown.Item>
