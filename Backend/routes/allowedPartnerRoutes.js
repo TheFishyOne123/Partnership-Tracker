@@ -26,7 +26,7 @@ router.get("/search", async (req, res) => {
         { position: { $regex: `^${search}`, $options: "i" } },
         { owner: { $regex: `^${search}`, $options: "i" } },
         { pathway: { $regex: `^${search}`, $options: "i" } },
-        { dayAvailable: { $regex: `^${search}`, $options: "i" } },
+        { timeOfDay: { $regex: `^${search}`, $options: "i" } },
       ],
     });
     res.status(200).json(searchResults);

@@ -58,7 +58,7 @@ function AdminPartnerDatabase({ search }) {
       }
     };
     searchForPartner(partnerID);
-    setSearchResults["_id"] = partnerID;
+    setIdSearch["_id"] = partnerID;
     setEditingForm(true);
   };
 
