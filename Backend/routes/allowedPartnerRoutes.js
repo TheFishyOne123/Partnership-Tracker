@@ -29,7 +29,7 @@ router.get("/search", async (req, res) => {
         { dayAvailable: { $regex: `^${search}`, $options: "i" } },
       ],
     });
-    res.json(searchResults);
+    res.status(200).json(searchResults);
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -49,3 +49,29 @@ router.get("/searchByID", async (req, res) => {
 });
 
 export default router;
+
+// Edit Row Data
+router.put("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log("Received Request To Update ID:", id);
+  console.log("Received Partner Data:", req.body);
+
+  try {
+    const updatedPartner = await Partner.findOneAndUpdate(
+      { _id: id },
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    );
+
+    console.log("Updated Partner Data:", updatedPartner);
+
+    if (!updatedPartner) {
+      return res.status(404).json({ message: "Partner Data Not Found!" });
+    }
+
+    return res.sendStatus(200);
+  } catch (error) {
+    console.error("Error Handling Partner Data!", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});

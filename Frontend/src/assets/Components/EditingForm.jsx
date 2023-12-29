@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import "../CSS/editingForm.css";
-import Dropdown from "react-bootstrap/Dropdown";
+import axios from "axios";
 
 function editingForm({ isOpen, onClose, rowdata }) {
   const [selectedPathway, setSelectedPathway] = useState(rowdata.pathway);
@@ -19,15 +19,39 @@ function editingForm({ isOpen, onClose, rowdata }) {
     ? "bg-[#383d41f0] text-gray-50  p-6 rounded-lg w-9/12"
     : "hidden";
 
-  const handleSubmitForm = (e) => {
+  const updatePartnerData = async (id, updatedPartnerData) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5555/partners/edit/${id}`,
+        updatedPartnerData
+      );
+
+      if (response.status === 200) {
+        console.log("Successful Edit");
+      }
+    } catch (error) {
+      console.error("Error Updating Partner Data", error);
+    }
+  };
+
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    const editData = new FormData(e.target);
+    const formData = new FormData(e.target);
     const editDataObject = {};
 
-    editData.forEach((value, key) => {
+    formData.forEach((value, key) => {
       editDataObject[key] = value;
     });
+
+    console.log("Form Data:", editDataObject);
+
+    try {
+      await updatePartnerData(rowdata._id, editDataObject);
+      onClose();
+    } catch (error) {
+      console.error("Error Updating Partner Data", error);
+    }
   };
 
   return (
@@ -57,7 +81,7 @@ function editingForm({ isOpen, onClose, rowdata }) {
             />
             <input
               required
-              name="companyPosition"
+              name="position"
               type="text"
               defaultValue={rowdata.position}
             />
@@ -117,13 +141,13 @@ function editingForm({ isOpen, onClose, rowdata }) {
             </select>
             <input
               required
-              name="firstDay"
+              name="firstDayAvailable"
               type="date"
               defaultValue={rowdata.firstDayAvailable}
             />
             <input
               required
-              name="lastDay"
+              name="lastDayAvailable"
               type="date"
               defaultValue={rowdata.lastDayAvailable}
             />
