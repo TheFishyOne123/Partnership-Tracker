@@ -13,7 +13,7 @@ function AdminPartnerDatabase({ search }) {
   const [idSearchResults, setIdSearch] = useState({
     data: { companyName: "" },
   });
-  const [creationForm, setCreationForm] = useState(false);
+  var [creationFormStatus, setCreationFormStatus] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,7 +24,7 @@ function AdminPartnerDatabase({ search }) {
       .catch((error) => {
         console.error("Error fetching partners:", error);
       });
-  }, [editingForm, creationForm, setCreationForm]);
+  }, [editingForm, creationFormStatus]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,7 +95,7 @@ function AdminPartnerDatabase({ search }) {
           {partnersList.length === 0 ? (
             <tr>
               <td colSpan={10}>
-                <AddNewPartnersDiv creationFormStatus={setCreationForm} />
+                <AddNewPartnersDiv creationFormStatus={setCreationFormStatus} />
               </td>
             </tr>
           ) : (
@@ -145,7 +145,7 @@ function AdminPartnerDatabase({ search }) {
                     <td colSpan={10}>
                       <div className="inline-block p-2">
                         <AddNewPartnersDiv
-                          creationFormStatus={setCreationForm}
+                          creationFormStatus={setCreationFormStatus}
                         />
                       </div>
                     </td>
