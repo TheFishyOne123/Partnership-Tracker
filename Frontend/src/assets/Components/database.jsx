@@ -37,7 +37,7 @@ function Database({ search }) {
   }, [search]);
 
   return (
-    <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center p-3">
+    <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center p-6">
       <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px] md:">
         <thead>
           <tr className="bg-gray-500">

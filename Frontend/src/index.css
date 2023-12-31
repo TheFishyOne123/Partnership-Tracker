@@ -3,8 +3,11 @@
 @tailwind base;
 
 body {
-   height: 100vh;
+   min-height: 100vh;
    background-image: url("./assets/images/Background.jpg");
-   background-size: cover;
    background-repeat: no-repeat;
+   background-size: 100% 100%; 
+   overflow: hidden;
+   overflow-y: scroll;
+   padding-bottom: 2%;
 }

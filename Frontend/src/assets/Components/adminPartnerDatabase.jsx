@@ -24,7 +24,7 @@ function AdminPartnerDatabase({ search }) {
       .catch((error) => {
         console.error("Error fetching partners:", error);
       });
-  }, [editingForm, creationForm]);
+  }, [editingForm, creationForm, setCreationForm]);
 
   useEffect(() => {
     const fetchData = async () => {

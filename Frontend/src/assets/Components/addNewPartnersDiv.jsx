@@ -6,12 +6,12 @@ function AddNewPartnersDiv({ creationFormStatus }) {
 
   const handleOpenForm = () => {
     setIsFormOpen(true);
-    creationFormStatus(false);
+    creationFormStatus((prevCreationForm) => !prevCreationForm);
   };
 
   const handleCloseForm = () => {
     setIsFormOpen(false);
-    creationFormStatus(true);
+    creationFormStatus((prevCreationForm) => !prevCreationForm);
   };
 
   return (
