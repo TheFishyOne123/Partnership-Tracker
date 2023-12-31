@@ -75,3 +75,37 @@ router.put("/edit/:id", async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+// Create New Partner
+router.post("/create", async (req, res) => {
+  try {
+    const {
+      companyName,
+      position,
+      owner,
+      email,
+      phone,
+      pathway,
+      timeOfDay,
+      firstDayAvailable,
+      lastDayAvailable,
+    } = req.body;
+
+    const newRecord = await Partner.create({
+      companyName,
+      position,
+      owner,
+      email,
+      phone,
+      pathway,
+      timeOfDay,
+      firstDayAvailable,
+      lastDayAvailable,
+    });
+
+    res.status(200).json(newRecord);
+  } catch (error) {
+    console.error("Error creating record:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});

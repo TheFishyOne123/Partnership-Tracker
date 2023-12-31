@@ -1,7 +1,11 @@
 .admin-page-body {
-    height: 100vh;
-    background-image: url("../images/AdminBackground.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
+  min-height: 100vh;
+  background-image: url("../images/AdminBackground.jpg");
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+}
