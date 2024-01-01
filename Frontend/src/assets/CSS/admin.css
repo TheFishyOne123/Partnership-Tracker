@@ -1,12 +1,17 @@
 .admin-page-body {
   min-height: 100vh;
-  background-image: url("../images/AdminBackground.jpg");
-  background-size: 100% 100%; 
-  background-repeat: no-repeat;
-  overflow: hidden;
+  position: relative;
 }
 
-body {
-  overflow: hidden;
-  overflow-y: scroll;
+.admin-page-body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/AdminBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 }

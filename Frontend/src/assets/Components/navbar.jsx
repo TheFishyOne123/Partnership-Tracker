@@ -16,7 +16,7 @@ function Navbar(props) {
   };
 
   return (
-    <div className=" text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl ">
+    <div className=" text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-50 p-4 ">
       <p className="font-normal">Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
       <div className="flex ml-auto pr-8	">

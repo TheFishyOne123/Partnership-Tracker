@@ -37,7 +37,7 @@ const AdminNavbar = (props) => {
   };
 
   return (
-    <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal">
+    <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-50 p-4 ">
       <p className=" text-2xl">Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
       <div className="flex ml-auto pr-8	">
