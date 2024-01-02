@@ -96,7 +96,7 @@ function AdminPartnerDatabase({ search }) {
             <th className="p-2 sm:p-0">Company Name</th>
             <th className="p-2 sm:p-0">Position</th>
             <th className="p-2 sm:p-0">Owner</th>
-            <th className="p-2 lg:hidden  sm:p-0">Email</th>
+            <th className="p-2 lg:hidden laptop:hidden  sm:p-0">Email</th>
             <th className="p-2 sm:p-0">Phone</th>
             <th className="p-2 sm:p-0">Pathway</th>
             <th className="p-2 sm:p-0">Availability</th>
@@ -109,20 +109,37 @@ function AdminPartnerDatabase({ search }) {
           {!search ? (
             <>
               {partnersList.map((partner) => (
-                <tr className="bg-gray-500" key={partner._id}>
-                  <td className="py-0.5 px-1 sm:p-0">{partner.companyName}</td>
-                  <td className="py-0.5 px-1  sm:p-0">{partner.position}</td>
-                  <td className="py-0.5 px-1  sm:p-0">{partner.owner}</td>
-                  <td className="py-0.5 px-1  lg:hidden sm:p-0">
+                <tr
+                  className="bg-gray-500 bt:text-xs text-sm"
+                  key={partner._id}
+                >
+                  <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                    {partner.companyName}
+                  </td>
+                  <td className="py-0.5 px-1 bt:px-.5   sm:p-0">
+                    {partner.position}
+                  </td>
+                  <td className="py-0.5 px-1  bt:px-.5   sm:p-0">
+                    {partner.owner}
+                  </td>
+                  <td className="py-0.5 px-1  bt:px-.5  lg:hidden sm:p-0">
                     {partner.email}
                   </td>
-                  <td className="py-0.5 px-1  sm:p-0">{partner.phone}</td>
-                  <td className="py-0.5 px-1  sm:p-0">{partner.pathway}</td>
-                  <td className="py-0.5 px-1  sm:p-0">{partner.timeOfDay}</td>
-                  <td className="py-0.5 px-1  sm:p-0">
+                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
+                    {partner.phone}
+                  </td>
+                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
+                    {partner.pathway}
+                  </td>
+                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
+                    {partner.timeOfDay}
+                  </td>
+                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
                     {partner.firstDayAvailable}
                   </td>
-                  <td className="p-2 sm:p-0">{partner.lastDayAvailable}</td>
+                  <td className="p-2 sm:p-0  bt:px-.5">
+                    {partner.lastDayAvailable}
+                  </td>
                   <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5 align-middle">
                     <div className="flex gap-2.5 content-center pt-2">
                       <button

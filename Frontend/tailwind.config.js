@@ -3,25 +3,27 @@ export default {
   content: [
     "./index.html",
     "./src/pages/*.{js,jsx}",
-    "./src/assets/Components/*.jsx"
+    "./src/assets/Components/*.jsx",
   ],
   theme: {
     screens: {
-      '2xl': {'min': '1536px'},
+      "2xl": { min: "1536px" },
 
-      'xl': {'min': '1025px'},
+      bt: { max: "1583px" },
 
-      'lg': {'max': '1024px'},
+      laptop: { min: "1024", max: "1440" },
 
-      'md': {'max': '768px'},
+      lg: { max: "1023px" },
 
-      'sm': {'max': '639px'},
+      md: { max: "768px" },
+
+      sm: { max: "639px" },
     },
     extend: {
       backdropBlur: {
-        xs: '2px',
-      }
-    }
-  }, 
+        xs: "2px",
+      },
+    },
+  },
   plugins: [],
-}
+};
