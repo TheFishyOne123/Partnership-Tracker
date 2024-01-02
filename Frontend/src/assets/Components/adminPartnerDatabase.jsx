@@ -5,11 +5,14 @@ import { FaCopy } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import EditingForm from "./editingForm.jsx";
 import AddNewPartnersDiv from "./addNewPartnersDiv.jsx";
+import PartnerDeletionPopUp from "./partnerDeletionPopUp.jsx";
 
 function AdminPartnerDatabase({ search }) {
   const [partnersList, setPartnersList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [editingForm, setEditingForm] = useState(false);
+  const [deletionPopUp, setDeletionPopup] = useState(false);
+  const [deletionID, setDeletionId] = useState("");
   const [idSearchResults, setIdSearch] = useState({
     data: { companyName: "" },
   });
@@ -24,7 +27,7 @@ function AdminPartnerDatabase({ search }) {
       .catch((error) => {
         console.error("Error fetching partners:", error);
       });
-  }, [editingForm, creationFormStatus]);
+  }, [editingForm, creationFormStatus, deletionPopUp]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,16 +68,27 @@ function AdminPartnerDatabase({ search }) {
 
   const handleDuplicate = () => {};
 
-  const handleDelete = () => {};
+  const handleDelete = (deletionID) => {
+    setDeletionId(deletionID);
+    setDeletionPopup(true);
+  };
 
   return (
-    <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center p-3">
+    <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center flex-col p-3">
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
           setEditingForm(false);
         }}
         rowdata={idSearchResults.data}
+      />
+      <PartnerDeletionPopUp
+        isOpen={deletionPopUp}
+        onClose={() => {
+          setDeletionPopup(false);
+          setDeletionId("");
+        }}
+        deletionID={deletionID}
       />
       <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px] md:">
         <thead>
@@ -120,7 +134,10 @@ function AdminPartnerDatabase({ search }) {
                       <button className="text-blue-500">
                         <FaCopy size="1.5em" />
                       </button>
-                      <button className="text-red-500">
+                      <button
+                        className="text-red-500"
+                        onClick={() => handleDelete(partner._id)}
+                      >
                         <FaTrash size="1.5em" />
                       </button>
                     </div>

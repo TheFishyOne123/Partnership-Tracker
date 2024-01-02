@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request, response } from "express";
 import { Partner } from "../models/partnerModel.js";
 
 const router = express.Router();
@@ -107,5 +107,29 @@ router.post("/create", async (req, res) => {
   } catch (error) {
     console.error("Error creating record:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Delete A Partner
+router.delete("/delete/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    console.log("New Deletion Request!");
+    console.log("Deletion ID: ", id);
+
+    const partner = await Partner.findByIdAndDelete(id);
+
+    if (!partner) {
+      return response.status(404).json({ message: "Partner Not Found" });
+    }
+    return response
+      .status(200)
+      .json({ message: "Partner Succesfully Deleted" });
+  } catch (error) {
+    console.log("Error: ", error);
+    response
+      .status(500)
+      .json({ message: "There Was A Error Deleting The Partner" });
   }
 });
