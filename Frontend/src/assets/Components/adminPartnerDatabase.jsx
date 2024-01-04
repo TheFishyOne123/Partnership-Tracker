@@ -16,7 +16,8 @@ function AdminPartnerDatabase({ search }) {
   const [idSearchResults, setIdSearch] = useState({
     data: { companyName: "" },
   });
-  var [creationFormStatus, setCreationFormStatus] = useState(false);
+  const [creationFormStatus, setCreationFormStatus] = useState(false);
+  const [duplicationStatus, setDuplicationStatus] = useState(false);
 
   useEffect(() => {
     axios
@@ -27,7 +28,7 @@ function AdminPartnerDatabase({ search }) {
       .catch((error) => {
         console.error("Error fetching partners:", error);
       });
-  }, [editingForm, creationFormStatus, deletionPopUp]);
+  }, [editingForm, creationFormStatus, deletionPopUp, duplicationStatus]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +67,28 @@ function AdminPartnerDatabase({ search }) {
     setEditingForm(true);
   };
 
-  const handleDuplicate = () => {};
+  const handleDuplicate = async (duplicationID) => {
+    try {
+      console.log("Duplicating Partner");
+      setDuplicationStatus(true);
+      const results = await axios.get(
+        "http://localhost:5555/partners/searchByID",
+        { params: { id: duplicationID } }
+      );
+      const response = await axios.post(
+        `http://localhost:5555/partners/create`,
+        results.data
+      );
+      if (response.status === 200) {
+        console.log("Successfully Duplicated Partner");
+        setDuplicationStatus(false);
+      }
+    } catch (error) {
+      setDuplicationStatus(false);
+      console.log("Error Duplicating Partner");
+      console.log("Error: ", error);
+    }
+  };
 
   const handleDelete = (deletionID) => {
     setDeletionId(deletionID);
@@ -148,7 +170,10 @@ function AdminPartnerDatabase({ search }) {
                       >
                         <FaPencilAlt size="1.5em" />
                       </button>
-                      <button className="text-blue-500">
+                      <button
+                        className="text-blue-500"
+                        onClick={() => handleDuplicate(partner._id)}
+                      >
                         <FaCopy size="1.5em" />
                       </button>
                       <button
@@ -203,7 +228,10 @@ function AdminPartnerDatabase({ search }) {
                       <button className="text-blue-500">
                         <FaCopy size="1.5em" />
                       </button>
-                      <button className="text-red-500">
+                      <button
+                        className="text-red-500"
+                        onClick={() => handleDelete(result._id)}
+                      >
                         <FaTrash size="1.5em" />
                       </button>
                     </td>
