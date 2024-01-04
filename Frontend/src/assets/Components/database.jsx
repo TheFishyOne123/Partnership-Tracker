@@ -38,7 +38,7 @@ function Database({ search }) {
 
   return (
     <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center p-6">
-      <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px] md:">
+      <table className="w-10/12 border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
         <thead>
           <tr className="bg-gray-500">
             <th className="p-2 sm:p-0">Company Name</th>
@@ -64,15 +64,33 @@ function Database({ search }) {
               {!search ? (
                 partnersList.map((partner) => (
                   <tr className="bg-gray-500" key={partner._id}>
-                    <td className="p-2 sm:p-0">{partner.companyName}</td>
-                    <td className="p-2 sm:p-0">{partner.position}</td>
-                    <td className="p-2 sm:p-0">{partner.owner}</td>
-                    <td className="p-2 lg:hidden sm:p-0">{partner.email}</td>
-                    <td className="p-2 sm:p-0">{partner.phone}</td>
-                    <td className="p-2 sm:p-0">{partner.pathway}</td>
-                    <td className="p-2 sm:p-0">{partner.timeOfDay}</td>
-                    <td className="p-2 sm:p-0">{partner.firstDayAvailable}</td>
-                    <td className="p-2 sm:p-0">{partner.lastDayAvailable}</td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                      {partner.companyName}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                      {partner.position}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                      {partner.owner}
+                    </td>
+                    <td className="lg:hidden py-0.5 px-1 bt:px-.5  sm:p-0 whitespace-nowrap">
+                      {partner.email}
+                    </td>
+                    <td className="py-0.5 px-1.5 bt:px-.5  sm:p-0 whitespace-nowrap">
+                      {partner.phone}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                      {partner.pathway}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                      {partner.timeOfDay}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0 whitespace-nowrap">
+                      {partner.firstDayAvailable}
+                    </td>
+                    <td className="py-0.5 px-1 bt:px-.5  sm:p-0 whitespace-nowrap">
+                      {partner.lastDayAvailable}
+                    </td>
                   </tr>
                 ))
               ) : (

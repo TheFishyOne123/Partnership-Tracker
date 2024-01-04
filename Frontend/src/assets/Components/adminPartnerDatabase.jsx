@@ -112,7 +112,7 @@ function AdminPartnerDatabase({ search }) {
         }}
         deletionID={deletionID}
       />
-      <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px] md:">
+      <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
         <thead>
           <tr className="bg-gray-500">
             <th className="p-2 sm:p-0">Company Name</th>
