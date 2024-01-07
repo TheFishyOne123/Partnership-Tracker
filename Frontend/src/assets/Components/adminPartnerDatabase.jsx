@@ -96,7 +96,7 @@ function AdminPartnerDatabase({ search }) {
   };
 
   return (
-    <div className="bg-[#383d41f0] text-white w-10/12 mx-auto mt-20 flex justify-center flex-col p-3">
+    <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
@@ -112,7 +112,7 @@ function AdminPartnerDatabase({ search }) {
         }}
         deletionID={deletionID}
       />
-      <table className="border-separate border-spacing-y-3 border-spacing-x-6 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
+      <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
         <thead>
           <tr className="bg-gray-500">
             <th className="p-2 sm:p-0">Company Name</th>
@@ -122,8 +122,10 @@ function AdminPartnerDatabase({ search }) {
             <th className="p-2 sm:p-0">Phone</th>
             <th className="p-2 sm:p-0">Pathway</th>
             <th className="p-2 sm:p-0">Availability</th>
-            <th className="p-2 sm:p-0">First Day Available</th>
-            <th className="p-2 sm:p-0">Last Day Available</th>
+            <th className="p-2 sm:p-0 whitespace-nowrap">
+              First Day Available
+            </th>
+            <th className="p-2 sm:p-0 whitespace-nowrap">Last Day Available</th>
             <th className="p-2 sm:p-0">Actions</th>
           </tr>
         </thead>
@@ -135,22 +137,22 @@ function AdminPartnerDatabase({ search }) {
                   className="bg-gray-500 bt:text-xs text-sm"
                   key={partner._id}
                 >
-                  <td className="py-0.5 px-1 bt:px-.5  sm:p-0">
+                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {partner.companyName}
                   </td>
-                  <td className="py-0.5 px-1 bt:px-.5   sm:p-0">
+                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {partner.position}
                   </td>
-                  <td className="py-0.5 px-1  bt:px-.5   sm:p-0">
+                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                     {partner.owner}
                   </td>
-                  <td className="py-0.5 px-1  bt:px-.5  lg:hidden sm:p-0">
+                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {partner.email}
                   </td>
-                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
+                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
                     {partner.phone}
                   </td>
-                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
+                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {partner.pathway}
                   </td>
                   <td className="py-0.5 px-1  bt:px-.5  sm:p-0">
