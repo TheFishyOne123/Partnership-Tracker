@@ -114,7 +114,7 @@ function AdminPartnerDatabase({ search }) {
       />
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
         <thead>
-          <tr className="bg-gray-500">
+          <tr className="text-lg">
             <th className="p-2 sm:p-0">Company Name</th>
             <th className="p-2 sm:p-0">Position</th>
             <th className="p-2 sm:p-0">Owner</th>
@@ -240,6 +240,13 @@ function AdminPartnerDatabase({ search }) {
                   </tr>
                 ))
               )}
+              <tr>
+                <td colSpan={10}>
+                  <AddNewPartnersDiv
+                    creationFormStatus={setCreationFormStatus}
+                  />
+                </td>
+              </tr>
             </>
           )}
         </tbody>
