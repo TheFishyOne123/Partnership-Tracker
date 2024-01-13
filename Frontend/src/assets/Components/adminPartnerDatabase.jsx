@@ -190,56 +190,54 @@ function AdminPartnerDatabase({ search }) {
               </tr>
             </>
           ) : (
-            <>
-              {searchResults.length === 0 ? (
-                <tr>
-                  <td colSpan={10}>
-                    <AddNewPartnersDiv
-                      creationFormStatus={setCreationFormStatus}
-                    />
-                  </td>
-                </tr>
-              ) : (
-                searchResults.map((result) => (
-                  <tr className="bg-gray-500" key={result._id}>
-                    <td className="p-2 sm:p-0">{result.companyName}</td>
-                    <td className="p-2 sm:p-0">{result.position}</td>
-                    <td className="p-2 sm:p-0">{result.owner}</td>
-                    <td className="p-2 lg:hidden sm:p-0">{result.email}</td>
-                    <td className="p-2 sm:p-0">{result.phone}</td>
-                    <td className="p-2 sm:p-0">{result.pathway}</td>
-                    <td className="p-2 sm:p-0">{result.timeOfDay}</td>
-                    <td className="p-2 sm:p-0">{result.firstDayAvailable}</td>
-                    <td className="p-2 sm:p-0">{result.lastDayAvailable}</td>
-                    <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
-                      <button
-                        className="text-green-500"
-                        onClick={() => handleEdit(result._id)}
-                      >
-                        <FaPencilAlt size="1.5em" />
-                      </button>
-                      <button className="text-blue-500">
-                        <FaCopy size="1.5em" />
-                      </button>
-                      <button
-                        className="text-red-500"
-                        onClick={() => handleDelete(result._id)}
-                      >
-                        <FaTrash size="1.5em" />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              )}
-              <tr>
-                <td colSpan={10}>
-                  <AddNewPartnersDiv
-                    creationFormStatus={setCreationFormStatus}
-                  />
+            searchResults.map((result) => (
+              <tr className="bg-gray-500" key={result._id}>
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  {result.companyName}
+                </td>
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  {result.position}
+                </td>
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
+                  {result.owner}
+                </td>
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  {result.email}
+                </td>
+                <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
+                  {result.phone}
+                </td>
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  {result.pathway}
+                </td>
+                <td className="p-2 sm:p-0">{result.timeOfDay}</td>
+                <td className="p-2 sm:p-0">{result.firstDayAvailable}</td>
+                <td className="p-2 sm:p-0">{result.lastDayAvailable}</td>
+                <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
+                  <button
+                    className="text-green-500"
+                    onClick={() => handleEdit(result._id)}
+                  >
+                    <FaPencilAlt size="1.5em" />
+                  </button>
+                  <button className="text-blue-500">
+                    <FaCopy size="1.5em" />
+                  </button>
+                  <button
+                    className="text-red-500"
+                    onClick={() => handleDelete(result._id)}
+                  >
+                    <FaTrash size="1.5em" />
+                  </button>
                 </td>
               </tr>
-            </>
+            ))
           )}
+          <tr>
+            <td colSpan={10}>
+              <AddNewPartnersDiv creationFormStatus={setCreationFormStatus} />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
