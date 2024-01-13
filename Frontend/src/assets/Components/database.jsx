@@ -40,13 +40,13 @@ function Database({ search }) {
 
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
-      <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
+      <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead>
-          <tr className=" text-lg">
+          <tr className="text-lg laptop:text-base">
             <th className="p-2 sm:p-0">Company Name</th>
             <th className="p-2 sm:p-0">Position</th>
             <th className="p-2 sm:p-0">Owner</th>
-            <th className="p-2 lg:hidden laptop:hidden  sm:p-0">Email</th>
+            <th className="p-2 bt:hidden sm:p-0">Email</th>
             <th className="p-2 sm:p-0">Phone</th>
             <th className="p-2 sm:p-0">Pathway</th>
             <th className="p-2 sm:p-0">Availability</th>
@@ -70,29 +70,29 @@ function Database({ search }) {
                   {partnersList.map((partner) => (
                     <>
                       <tr className="bg-gray-500" key={partner._id}>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                           {partner.companyName}
                         </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                           {partner.position}
                         </td>
                         <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                           {partner.owner}
                         </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        <td className=" bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                           {partner.email}
                         </td>
                         <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
                           {partner.phone}
                         </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                           {partner.pathway}
                         </td>
-                        <td className="p-2 sm:p-0">{partner.timeOfDay}</td>
-                        <td className="p-2 sm:p-0">
+                        <td className="p-1.5 sm:p-0">{partner.timeOfDay}</td>
+                        <td className="p-.5 sm:p-0">
                           {partner.firstDayAvailable}
                         </td>
-                        <td className="p-2 sm:p-0">
+                        <td className="p-.5 sm:p-0">
                           {partner.lastDayAvailable}
                         </td>
                       </tr>
