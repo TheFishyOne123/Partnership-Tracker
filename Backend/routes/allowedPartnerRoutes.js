@@ -48,8 +48,6 @@ router.get("/searchByID", async (req, res) => {
   }
 });
 
-export default router;
-
 // Edit Row Data
 router.put("/edit/:id", async (req, res) => {
   const { id } = req.params;
@@ -133,3 +131,5 @@ router.delete("/delete/:id", async (request, response) => {
       .json({ message: "There Was A Error Deleting The Partner" });
   }
 });
+
+export default router;

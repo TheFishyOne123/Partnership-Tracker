@@ -179,15 +179,6 @@ function AdminPartnerDatabase({ search }) {
                   </td>
                 </tr>
               ))}
-              <tr>
-                <td colSpan={10}>
-                  <div className="inline-block p-2">
-                    <AddNewPartnersDiv
-                      creationFormStatus={setCreationFormStatus}
-                    />
-                  </div>
-                </td>
-              </tr>
             </>
           ) : (
             searchResults.map((result) => (
