@@ -6,6 +6,7 @@ import { MdEdit } from "react-icons/md";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
+  const [requestData, setRequestData] = useState([]);
 
   useEffect(() => {
     axios
@@ -17,6 +18,46 @@ const RequestsDatabase = () => {
         console.error("Error fetching requests:", error);
       });
   }, []);
+
+  const handleCreatePartner = async (requestID) => {
+    const findRequest = async (requestID) => {
+      try {
+        const request = await axios.get(
+          "http://localhost:5555/requests/searchByID",
+          { params: { id: requestID } }
+        );
+        console.log(request);
+        setRequestData(request);
+      } catch (error) {
+        console.error("Error Finding Request: ", error);
+      }
+    };
+    const createPartner = async (newPartner) => {
+      try {
+        const response = await axios.post(
+          `http://localhost:5555/partners/create`,
+          newPartner
+        );
+        if (response.status === 200) {
+          console.log("Successfully Created New Partner");
+        }
+      } catch (error) {
+        console.error("Error Creating Partner: ", error);
+      }
+    };
+    try {
+      const response = await findRequest(requestID);
+      if (response && response.data) {
+        const { data } = response;
+        console.log(data);
+        await createPartner(data.data);
+      } else {
+        console.error("Invalid response from findRequest");
+      }
+    } catch (error) {
+      console.error("Error handling request and creating partner: ", error);
+    }
+  };
 
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
@@ -71,8 +112,8 @@ const RequestsDatabase = () => {
                   <td className="p-.5 sm:p-0">{request.lastDayAvailable}</td>
                   <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5 align-middle">
                     <div className="flex gap-2 content-center pt-2">
-                      <button >
-                        <GrCheckmark size="2em"/>
+                      <button onClick={() => handleCreatePartner(request._id)}>
+                        <GrCheckmark size="2em" />
                       </button>
                       <button>
                         <MdEdit size="2em" />

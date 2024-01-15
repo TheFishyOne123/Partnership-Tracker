@@ -50,4 +50,16 @@ router.post("/create", async (req, res) => {
   }
 });
 
+//Find Request By ID
+router.get("/searchByID", async (req, res) => {
+  const searchValue = req.query.id;
+
+  try {
+    const results = await RequestModel.findById(searchValue);
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 export default router;
