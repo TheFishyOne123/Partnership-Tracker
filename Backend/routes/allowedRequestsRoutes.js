@@ -62,4 +62,28 @@ router.get("/searchByID", async (req, res) => {
   }
 });
 
+// Delete A Partner
+router.delete("/delete/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    console.log("New Deletion Request!");
+    console.log("Deletion ID: ", id);
+
+    const partner = await RequestModel.findByIdAndDelete(id);
+
+    if (!partner) {
+      return response.status(404).json({ message: "Request Not Found" });
+    }
+    return response
+      .status(200)
+      .json({ message: "Request Succesfully Deleted" });
+  } catch (error) {
+    console.log("Error: ", error);
+    response
+      .status(500)
+      .json({ message: "There Was A Error Deleting The Request" });
+  }
+});
+
 export default router;

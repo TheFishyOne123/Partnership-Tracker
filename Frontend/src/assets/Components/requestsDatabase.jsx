@@ -6,7 +6,8 @@ import { MdEdit } from "react-icons/md";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
-  const [requestData, setRequestData] = useState([]);
+  const [requestData, setRequestData] = useState();
+  const [requestStatus, setRequestStatus] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,7 +18,7 @@ const RequestsDatabase = () => {
       .catch((error) => {
         console.error("Error fetching requests:", error);
       });
-  }, []);
+  }, [requestStatus]);
 
   const handleCreatePartner = async (requestID) => {
     const findRequest = async (requestID) => {
@@ -28,6 +29,8 @@ const RequestsDatabase = () => {
         );
         console.log(request);
         setRequestData(request);
+        console.log(requestData);
+        return request.data;
       } catch (error) {
         console.error("Error Finding Request: ", error);
       }
@@ -35,7 +38,7 @@ const RequestsDatabase = () => {
     const createPartner = async (newPartner) => {
       try {
         const response = await axios.post(
-          `http://localhost:5555/partners/create`,
+          "http://localhost:5555/partners/create",
           newPartner
         );
         if (response.status === 200) {
@@ -45,18 +48,58 @@ const RequestsDatabase = () => {
         console.error("Error Creating Partner: ", error);
       }
     };
+    const removeRequest = async (requestID) => {
+      try {
+        const url = `http://localhost:5555/requests/delete/${requestID}`;
+
+        const response = await axios.delete(url);
+
+        if (response.status === 200) {
+          console.log("Request Deleted Successfully");
+        }
+      } catch (error) {
+        console.log("Error Deleting");
+        console.log("Error: ", error);
+      }
+    };
+
     try {
+      setRequestStatus(false);
       const response = await findRequest(requestID);
-      if (response && response.data) {
-        const { data } = response;
-        console.log(data);
-        await createPartner(data.data);
+      console.log(response);
+      if (response) {
+        console.log(response);
+        await createPartner(response);
+        removeRequest(requestID);
+        setRequestStatus(true);
+        alert("Request Successfully Created");
       } else {
         console.error("Invalid response from findRequest");
       }
     } catch (error) {
       console.error("Error handling request and creating partner: ", error);
     }
+  };
+
+  const handleDeleteRequest = (requestID) => {
+    setRequestStatus(false);
+    const removeRequest = async (requestID) => {
+      try {
+        const url = `http://localhost:5555/requests/delete/${requestID}`;
+
+        const response = await axios.delete(url);
+
+        if (response.status === 200) {
+          console.log("Request Deleted Successfully");
+        }
+      } catch (error) {
+        console.log("Error Deleting");
+        console.log("Error: ", error);
+      }
+    };
+    removeRequest(requestID);
+    alert("Request Deleted Successfully");
+    setRequestStatus(true);
   };
 
   return (
@@ -118,7 +161,7 @@ const RequestsDatabase = () => {
                       <button>
                         <MdEdit size="2em" />
                       </button>
-                      <button>
+                      <button onClick={() => handleDeleteRequest(request._id)}>
                         <IoMdClose size="2.2em" />
                       </button>
                     </div>
