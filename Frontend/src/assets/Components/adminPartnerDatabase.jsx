@@ -143,7 +143,7 @@ function AdminPartnerDatabase({ search }) {
                   <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                     {partner.owner}
                   </td>
-                  <td className=" bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  <td className=" lg:hidden bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {partner.email}
                   </td>
                   <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
@@ -192,7 +192,7 @@ function AdminPartnerDatabase({ search }) {
                 <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                   {result.owner}
                 </td>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar lg:hidden bt:hidden">
                   {result.email}
                 </td>
                 <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">

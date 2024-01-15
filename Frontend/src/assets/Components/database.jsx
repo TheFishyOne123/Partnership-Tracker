@@ -42,7 +42,7 @@ function Database({ search }) {
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead>
-          <tr className="text-lg laptop:text-base">
+          <tr className="text-lg laptop:text-base" key="Head">
             <th className="p-2 sm:p-0">Company Name</th>
             <th className="p-2 sm:p-0">Position</th>
             <th className="p-2 sm:p-0">Owner</th>
@@ -58,7 +58,7 @@ function Database({ search }) {
         </thead>
         <tbody>
           {partnersList.length === 0 ? (
-            <tr>
+            <tr key="Empty">
               <td colSpan="10">
                 <h1>Empty</h1>
               </td>
@@ -68,35 +68,33 @@ function Database({ search }) {
               {!search ? (
                 <>
                   {partnersList.map((partner) => (
-                    <>
-                      <tr className="bg-gray-500" key={partner._id}>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {partner.companyName}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {partner.position}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
-                          {partner.owner}
-                        </td>
-                        <td className=" bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {partner.email}
-                        </td>
-                        <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
-                          {partner.phone}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {partner.pathway}
-                        </td>
-                        <td className="p-1.5 sm:p-0">{partner.timeOfDay}</td>
-                        <td className="p-.5 sm:p-0">
-                          {partner.firstDayAvailable}
-                        </td>
-                        <td className="p-.5 sm:p-0">
-                          {partner.lastDayAvailable}
-                        </td>
-                      </tr>
-                    </>
+                    <tr className="bg-gray-500" key={partner._id}>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {partner.companyName}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {partner.position}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
+                        {partner.owner}
+                      </td>
+                      <td className=" bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {partner.email}
+                      </td>
+                      <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
+                        {partner.phone}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {partner.pathway}
+                      </td>
+                      <td className="p-1.5 sm:p-0">{partner.timeOfDay}</td>
+                      <td className="p-.5 sm:p-0">
+                        {partner.firstDayAvailable}
+                      </td>
+                      <td className="p-.5 sm:p-0">
+                        {partner.lastDayAvailable}
+                      </td>
+                    </tr>
                   ))}
                   <tr>
                     <td colSpan={10}>
@@ -111,37 +109,31 @@ function Database({ search }) {
               ) : (
                 <>
                   {searchResults.map((result) => (
-                    <>
-                      <tr className="bg-gray-500" key={result._id}>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {result.companyName}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {result.position}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
-                          {result.owner}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {result.email}
-                        </td>
-                        <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
-                          {result.phone}
-                        </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
-                          {result.pathway}
-                        </td>
-                        <td className="p-2 sm:p-0">{result.timeOfDay}</td>
-                        <td className="p-2 sm:p-0">
-                          {result.firstDayAvailable}
-                        </td>
-                        <td className="p-2 sm:p-0">
-                          {result.lastDayAvailable}
-                        </td>
-                      </tr>
-                    </>
+                    <tr className="bg-gray-500" key={result._id}>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {result.companyName}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {result.position}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
+                        {result.owner}
+                      </td>
+                      <td className="lg:hidden bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {result.email}
+                      </td>
+                      <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
+                        {result.phone}
+                      </td>
+                      <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                        {result.pathway}
+                      </td>
+                      <td className="p-2 sm:p-0">{result.timeOfDay}</td>
+                      <td className="p-2 sm:p-0">{result.firstDayAvailable}</td>
+                      <td className="p-2 sm:p-0">{result.lastDayAvailable}</td>
+                    </tr>
                   ))}
-                  <tr>
+                  <tr key="Form">
                     <td colSpan={10}>
                       <RequestNewPartnersDiv
                         creationFormStatus={setCreationFormStatus}

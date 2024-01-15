@@ -1,9 +1,22 @@
-import express, { request, response } from "express";
+import express from "express";
 import { User } from "../models/userModel.js";
 
 const router = express.Router();
 
-//Get Specfic User In Database Route
+// Get All Users
+router.get("/all", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.status(200).json({
+      data: users,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+// Get Specific User In Database Route
 router.get("/:user", async (request, response) => {
   try {
     const userToFind = request.query.user;
