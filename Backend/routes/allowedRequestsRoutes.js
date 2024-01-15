@@ -1,12 +1,12 @@
-import express, { request, response } from "express";
-import { Request } from "../models/requestModel.js";
+import express from "express";
+import { Request as RequestModel } from "../models/requestModel.js";
 
 const router = express.Router();
 
 // Get All Requests
 router.get("/all", async (req, res) => {
   try {
-    const requests = await request.find({});
+    const requests = await RequestModel.find({});
     res.status(200).json({
       data: requests,
     });
@@ -31,7 +31,7 @@ router.post("/create", async (req, res) => {
       lastDayAvailable,
     } = req.body;
 
-    const newRecord = await Request.create({
+    const newRecord = await RequestModel.create({
       companyName,
       position,
       owner,
