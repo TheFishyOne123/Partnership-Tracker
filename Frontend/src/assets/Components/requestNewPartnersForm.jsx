@@ -2,22 +2,22 @@ import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import axios from "axios";
 
-function AddNewPartnersForm({ onClose }) {
+function requestNewPartnersForm({ onClose }) {
   const modalClasses =
     "fixed inset-0 flex items-center justify-center backdrop-blur-xs";
   const contentClasses = "bg-[#383d41f0] text-gray-50 p-6 rounded-lg w-6/12";
 
-  const createNewPartner = async (newPartner) => {
+  const createNewRequest = async (newRequest) => {
     try {
       const response = await axios.post(
-        `http://localhost:5555/partners/create`,
-        newPartner
+        `http://localhost:5555/requests/create`,
+        newRequest
       );
       if (response.status === 200) {
-        console.log("Successfully Created New Partner");
+        console.log("Successfully Created New Request");
       }
     } catch (error) {
-      console.error("Error Creating Partner: ", error);
+      console.error("Error Creating Request: ", error);
     }
   };
 
@@ -25,14 +25,14 @@ function AddNewPartnersForm({ onClose }) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const creationDataObject = {};
+    const requestsDataObject = {};
 
     formData.forEach((value, key) => {
-      creationDataObject[key] = value;
+      requestsDataObject[key] = value;
     });
 
-    console.log(creationDataObject);
-    createNewPartner(creationDataObject);
+    console.log(requestsDataObject);
+    createNewRequest(requestsDataObject);
     onClose();
   };
 
@@ -124,4 +124,4 @@ function AddNewPartnersForm({ onClose }) {
   );
 }
 
-export default AddNewPartnersForm;
+export default requestNewPartnersForm;

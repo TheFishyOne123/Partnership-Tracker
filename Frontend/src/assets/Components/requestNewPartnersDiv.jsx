@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RequestNewPartnersForm from "./requestNewPartnersForm";
 
-function AddNewPartnersDiv({ creationFormStatus }) {
+function requestNewPartnersDiv({ creationFormStatus }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleOpenForm = () => {
@@ -30,4 +30,4 @@ function AddNewPartnersDiv({ creationFormStatus }) {
   );
 }
 
-export default AddNewPartnersDiv;
+export default requestNewPartnersDiv;
