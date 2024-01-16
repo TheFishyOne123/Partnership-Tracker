@@ -1,20 +1,45 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
+import { FaPencilAlt } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import CreateNewUserDiv from "./createNewUserDiv";
 
 function usersDatabase() {
   const [usersList, setUsersList] = useState([]);
+  const [creationFormStatus, setCreationFormStatus] = useState(false);
+  const [deletionStatus, setDeletionStatus] = useState(false);
 
   useEffect(() => {
     axios
       .get("http://localhost:5555/users/all")
       .then((response) => {
-        console.log("Response data:", response.data.data);
         setUsersList(response.data.data || []);
       })
       .catch((error) => {
         console.error("Error fetching requests:", error);
       });
-  }, []);
+  }, [creationFormStatus, deletionStatus]);
+
+  const handleDelete = (deletionID) => {
+    setDeletionStatus(false);
+    const deleteUser = async (deletionID) => {
+      try {
+        const url = `http://localhost:5555/users/delete/${deletionID}`;
+
+        const response = await axios.delete(url);
+
+        if (response.status === 200) {
+          console.log("User Deleted Successfully");
+        }
+      } catch (error) {
+        console.log("Error Deleting");
+        console.log("Error: ", error);
+      }
+    };
+    deleteUser(deletionID);
+    setDeletionStatus(true);
+    alert("User Deleted Successfully");
+  };
 
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
@@ -24,7 +49,6 @@ function usersDatabase() {
             <th className="p-2 sm:p-0">Name</th>
             <th className="p-2 sm:p-0">Email</th>
             <th className="p-2 sm:p-0">Admin</th>
-            <th className="p-2 sm:p-0">New User</th>
             <th className="p-2 sm:p-0">Actions</th>
           </tr>
         </thead>
@@ -36,16 +60,44 @@ function usersDatabase() {
               </td>
             </tr>
           ) : (
-            usersList.map((user) => (
-              <tr className="bg-gray-500" key={user._id}>
-                <td className="py-0.5 px-2 whitespace-nowrap">{user.name}</td>
-                <td className="py-0.5 px-2 whitespace-nowrap">{user.email}</td>
-                <td className="py-0.5 px-2 whitespace-nowrap">
-                  {user.admin ? "Yes" : "No"}
+            <>
+              {usersList.map((user) => (
+                <tr className="bg-gray-500" key={user._id}>
+                  <td className="py-0.5 px-2 whitespace-nowrap">{user.name}</td>
+                  <td className="py-0.5 px-2 whitespace-nowrap">
+                    {user.email}
+                  </td>
+                  <td className="py-0.5 px-2 whitespace-nowrap">
+                    {user.admin ? "Yes" : "No"}
+                  </td>
+                  <td className="py-0.5 px-2">
+                    <div className="flex gap-2.5 content-center p-2">
+                      <button
+                        className="text-green-500"
+                        onClick={() => handleEdit(user._id)}
+                      >
+                        <FaPencilAlt size="1.5em" />
+                      </button>
+                      <button
+                        className="text-red-500"
+                        onClick={() => handleDelete(user._id)}
+                      >
+                        <FaTrash size="1.5em" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan={10}>
+                  <div className="inline-block p-2">
+                    <CreateNewUserDiv
+                      creationFormStatus={setCreationFormStatus}
+                    />
+                  </div>
                 </td>
-                <td className="py-0.5 px-2 ">{user.newUser ? "Yes" : "No"}</td>
               </tr>
-            ))
+            </>
           )}
         </tbody>
       </table>
