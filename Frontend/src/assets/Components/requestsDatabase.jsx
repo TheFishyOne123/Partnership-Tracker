@@ -155,13 +155,19 @@ const RequestsDatabase = () => {
                   <td className="p-.5 sm:p-0">{request.lastDayAvailable}</td>
                   <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5 align-middle">
                     <div className="flex gap-2 content-center pt-2">
-                      <button onClick={() => handleCreatePartner(request._id)}>
+                      <button
+                        className="text-green-500"
+                        onClick={() => handleCreatePartner(request._id)}
+                      >
                         <GrCheckmark size="2em" />
                       </button>
                       <button>
                         <MdEdit size="2em" />
                       </button>
-                      <button onClick={() => handleDeleteRequest(request._id)}>
+                      <button
+                        className="text-red-500"
+                        onClick={() => handleDeleteRequest(request._id)}
+                      >
                         <IoMdClose size="2.2em" />
                       </button>
                     </div>

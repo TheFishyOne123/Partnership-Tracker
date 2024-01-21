@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NewUserForm from "./newUserForm";
+import AddNewPartnersForm from "./addNewPartnersForm";
 
 function AddNewPartnersDiv({ creationFormStatus }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -16,7 +16,7 @@ function AddNewPartnersDiv({ creationFormStatus }) {
 
   return (
     <div>
-      {isFormOpen && <NewUserForm onClose={handleCloseForm} />}
+      {isFormOpen && <AddNewPartnersForm onClose={handleCloseForm} />}
       <h1 className="text-white text-lg font-bold mb-2">
         Not What You're Looking For?
       </h1>
