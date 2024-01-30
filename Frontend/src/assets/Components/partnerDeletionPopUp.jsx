@@ -17,16 +17,17 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionID }) {
 
       if (response.status === 200) {
         console.log("Partner Deleted Successfully");
+        onClose();
       }
     } catch (error) {
-      console.log("Error Deleting");
+      console.log("Error Deleting Partner");
       console.log("Error: ", error);
     }
   };
 
-  const handleYes = () => {
+  const handleYes = async () => {
     console.log("Deleting Partner");
-    deletePartner(deletionID);
+    await deletePartner(deletionID);
     onClose();
   };
 

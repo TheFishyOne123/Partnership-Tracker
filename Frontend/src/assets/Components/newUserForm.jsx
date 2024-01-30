@@ -6,7 +6,7 @@ const modalClasses =
   "fixed inset-0 flex items-center justify-center backdrop-blur-xs";
 const contentClasses = "bg-[#383d41f0] text-gray-50 p-6 rounded-lg w-6/12";
 
-function newUserForm({ onClose }) {
+const newUserForm = ({ onClose }) => {
   const createNewUser = async (userData) => {
     try {
       const response = await axios.post(
@@ -15,6 +15,7 @@ function newUserForm({ onClose }) {
       );
       if (response.status === 200) {
         console.log("Successfully Created New User");
+        onClose();
       }
     } catch (error) {
       console.error("Error Creating User: ", error);
@@ -32,7 +33,6 @@ function newUserForm({ onClose }) {
     creationDataObject["newUser"] = true;
     console.log(creationDataObject);
     createNewUser(creationDataObject);
-    onClose();
   };
 
   return (
@@ -79,6 +79,6 @@ function newUserForm({ onClose }) {
       </div>
     </div>
   );
-}
+};
 
 export default newUserForm;

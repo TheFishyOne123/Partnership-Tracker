@@ -74,6 +74,12 @@ const AdminNavbar = (props) => {
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-left">
             <Dropdown.Item
+              onClick={() => props.setGuideStatus(true)}
+              className="active:bg-gray-400"
+            >
+              Guide
+            </Dropdown.Item>
+            <Dropdown.Item
               onClick={handleLogout}
               className="active:bg-gray-400"
             >

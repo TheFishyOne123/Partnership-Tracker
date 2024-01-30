@@ -74,7 +74,7 @@ function usersDatabase() {
                     <div className="flex gap-2.5 content-center p-2">
                       <button
                         className="text-red-500"
-                        onClick={() => handleDelete(user.email)}
+                        onClick={() => handleDelete(user._id)}
                       >
                         <FaTrash size="1.5em" />
                       </button>

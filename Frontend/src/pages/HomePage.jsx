@@ -29,7 +29,6 @@ const HomePage = () => {
 
   const updateUser = async (userData) => {
     try {
-      console.log(userData);
       const response = await axios.get(
         `http://localhost:5555/users/user?user=${userData[0][1]}`
       );
@@ -41,7 +40,7 @@ const HomePage = () => {
         response.data.data
       );
 
-      console.log("Successful Edit");
+      console.log("Successfully Updated User");
     } catch (error) {
       console.error("Error Updating User Data", error);
     }

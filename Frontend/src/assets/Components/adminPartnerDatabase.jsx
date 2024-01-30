@@ -6,6 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import EditingForm from "./editingForm.jsx";
 import AddNewPartnersDiv from "./addNewPartnersDiv.jsx";
 import PartnerDeletionPopUp from "./partnerDeletionPopUp.jsx";
+import UserGuideAdmin from "./userGuideAdmin.jsx";
 
 function AdminPartnerDatabase({ search }) {
   const [partnersList, setPartnersList] = useState([]);
@@ -18,6 +19,30 @@ function AdminPartnerDatabase({ search }) {
   });
   const [creationFormStatus, setCreationFormStatus] = useState(false);
   const [duplicationStatus, setDuplicationStatus] = useState(false);
+  const [guideStatus, setGuideStatus] = useState(false);
+
+  const checkUser = async (userData) => {
+    await axios.get(`http://localhost:5555/users/user?user=${userData[0][1]}`);
+  };
+
+  const updateUser = async (userData) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5555/users/user?user=${userData[0][1]}`
+      );
+
+      response.data.data.newUser = false;
+
+      await axios.put(
+        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        response.data.data
+      );
+
+      console.log("Successfully Updated User");
+    } catch (error) {
+      console.error("Error Updating User Data", error);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -97,6 +122,14 @@ function AdminPartnerDatabase({ search }) {
 
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
+      <UserGuideAdmin
+        isOpen={guideStatus}
+        onClose={() => {
+          setGuideStatus(false);
+          updateUser(forwardedState);
+        }}
+      />
+
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
