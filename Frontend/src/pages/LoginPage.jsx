@@ -39,7 +39,11 @@ function LoginPage() {
                 .then((response) => {
                   console.log("Checking Google Account Against Database");
                   if (response.status === 200) {
-                    setAuthInfo([info, response.data.data.admin]);
+                    setAuthInfo([
+                      info,
+                      response.data.data.admin,
+                      response.data.data.newUser,
+                    ]);
                   } else if (response.status === 204) {
                     console.log("User Not Found!");
                     alert("The Google Account Used Is Not Allowed!");

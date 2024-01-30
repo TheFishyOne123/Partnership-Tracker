@@ -11,9 +11,11 @@ export default {
 
       bt: { max: "1583px" },
 
-      laptop: { min: "1024", max: "1440" },
+      tst: { max: "1300px", min: "1024px" },
 
-      lg: { max: "1023px" },
+      laptop: { min: "1024px", max: "1440px" },
+
+      lg: { max: "1024px" },
 
       md: { max: "768px" },
 

@@ -58,7 +58,7 @@ router.delete("/delete/:id", async (request, response) => {
   }
 });
 
-// Create New Partner
+// Create New User
 router.post("/create", async (req, res) => {
   try {
     const { name, email, admin, newUser } = req.body;
@@ -74,6 +74,28 @@ router.post("/create", async (req, res) => {
   } catch (error) {
     console.error("Error creating record:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Edit Users
+router.put("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { email: id },
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User Data Not Found!" });
+    }
+
+    return res.sendStatus(200);
+  } catch (error) {
+    console.error("Error Handling User Data!", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

@@ -6,6 +6,7 @@ import Searchbar from "./searchbar";
 function Navbar(props) {
   const name = props.forwardedState;
   const navigate = useNavigate();
+
   function handleLogout() {
     navigate("/", { state: { AuthInfo: false } });
   }
@@ -15,19 +16,25 @@ function Navbar(props) {
   };
 
   return (
-    <div className=" text-gray-50	w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-50 p-4 ">
+    <div className="text-gray-50 w-screen pl-8 bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-50 p-4">
       <p className="font-normal">Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
-      <div className="flex ml-auto pr-8	">
+      <div className="flex ml-auto pr-8">
         <Dropdown className="d-inline mx-2" autoClose="outside">
           <Dropdown.Toggle
             variant="secondary"
-            className=" text-lg bg-transparent border-transparent hover:border-transparent"
+            className="text-lg bg-transparent border-transparent hover:border-transparent"
             id="dropdown-autoclose-outside"
           >
             {name[0][0]}
           </Dropdown.Toggle>
           <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => props.setGuideStatus(true)}
+              className="active:bg-gray-400"
+            >
+              Guide
+            </Dropdown.Item>
             <Dropdown.Item
               onClick={handleLogout}
               className="active:bg-gray-400"

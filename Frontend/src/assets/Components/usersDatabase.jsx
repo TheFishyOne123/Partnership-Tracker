@@ -41,6 +41,10 @@ function usersDatabase() {
     alert("User Deleted Successfully");
   };
 
+  const handleEdit = async (email) => {
+    
+  }
+
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
@@ -80,7 +84,7 @@ function usersDatabase() {
                       </button>
                       <button
                         className="text-red-500"
-                        onClick={() => handleDelete(user._id)}
+                        onClick={() => handleDelete(user.email)}
                       >
                         <FaTrash size="1.5em" />
                       </button>
