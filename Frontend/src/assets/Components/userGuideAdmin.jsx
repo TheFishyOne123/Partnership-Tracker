@@ -6,7 +6,7 @@ import video1 from "../images/Search_Video.mp4";
 import video2 from "../images/Create_Request.mp4";
 import video3 from "../images/Navigating_Pages.mp4";
 import video4 from "../images/User_Functions.mp4";
-import video5 from "../images/User_Functions.mp4";
+import video5 from "../images/Request_Functions.mp4";
 import video6 from "../images/Admin_Partner_Functions.mp4";
 import video7 from "../images/Signout.mp4";
 import video8 from "../images/Open_Guide.mp4";
