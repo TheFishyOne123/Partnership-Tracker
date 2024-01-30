@@ -16,7 +16,8 @@ Cors
 
 Frontend:
 User Background Image Is Open Source
-Admin Background Image Is Open Soure
+Admin Background Image Is Open Soure\
+All Videos Made By Me
 React
 Vite
 Tailwind
