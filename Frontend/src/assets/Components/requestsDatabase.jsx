@@ -161,9 +161,6 @@ const RequestsDatabase = () => {
                       >
                         <GrCheckmark size="2em" />
                       </button>
-                      <button>
-                        <MdEdit size="2em" />
-                      </button>
                       <button
                         className="text-red-500"
                         onClick={() => handleDeleteRequest(request._id)}
