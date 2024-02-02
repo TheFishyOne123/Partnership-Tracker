@@ -1,3 +1,4 @@
+// Imports
 import React, { useState, useEffect } from "react";
 import Navbar from "../assets/Components/navbar";
 import { useLocation } from "react-router-dom";
@@ -8,13 +9,16 @@ import { useNavigate } from "react-router-dom";
 import UserGuide from "../assets/Components/userGuide";
 import axios from "axios";
 
+// Main Encapsulation Function
 const HomePage = () => {
+  // Variables
   const location = useLocation();
   const forwardedState = location.state?.forwardedState || null;
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const [guideStatus, setGuideStatus] = useState(false);
 
+  // Functions
   const handleSearchUpdate = (value) => {
     setSearch(value);
   };
@@ -27,6 +31,7 @@ const HomePage = () => {
     await axios.get(`http://localhost:5555/users/user?user=${userData[0][1]}`);
   };
 
+  // Updates Users newUser State To False
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -46,6 +51,7 @@ const HomePage = () => {
     }
   };
 
+  // Checks Guide Status To Decide Whether To Deploy Guide Or Not / Also Checks Authentication State
   useEffect(() => {
     if (forwardedState && forwardedState[2] === true) {
       if (checkUser(forwardedState[0][1])) setGuideStatus(true);
@@ -75,6 +81,7 @@ const HomePage = () => {
     );
   }
 
+  // Frontend Return Statement
   return (
     <>
       <UserGuide
@@ -93,6 +100,7 @@ const HomePage = () => {
       <Database search={search} />
     </>
   );
-};
+}
 
+// Export To Page Manager
 export default HomePage;

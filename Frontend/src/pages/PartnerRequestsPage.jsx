@@ -1,3 +1,4 @@
+// Imports
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../assets/CSS/admin.css";
@@ -5,12 +6,15 @@ import { useNavigate } from "react-router-dom";
 import AdminNavbarRequests from "../assets/Components/adminNavbarNoSearchbar";
 import RequestsDatabase from "../assets/Components/requestsDatabase";
 
+// Main Encapsulation Functiopn For Page
 const PartnerRequestsPage = () => {
+  // Variables
   const location = useLocation();
   const forwardedState = location.state?.forwardedState;
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
+  // Functions
   const handleSearchUpdate = (value) => {
     setSearch(value);
   };
@@ -19,6 +23,7 @@ const PartnerRequestsPage = () => {
     navigate("/");
   };
 
+  // Authentication State Check
   if (!forwardedState) {
     console.log("Unsuccessful Authentication");
     return (
@@ -34,7 +39,9 @@ const PartnerRequestsPage = () => {
         </div>
       </div>
     );
-  } else if (forwardedState) {
+  }
+  // Main Page Frontend Return
+  else if (forwardedState) {
     return (
       <div className="admin-page-body">
         <AdminNavbarRequests forwardedState={forwardedState} />
@@ -59,4 +66,5 @@ const PartnerRequestsPage = () => {
   }
 };
 
+// Export To Page Manager
 export default PartnerRequestsPage;

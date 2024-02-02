@@ -106,7 +106,7 @@ const RequestsDatabase = () => {
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead>
-          <tr>
+          <tr key="Head">
             <th className="p-2 sm:p-0">Company Name</th>
             <th className="p-2 sm:p-0">Position</th>
             <th className="p-2 sm:p-0">Owner</th>
@@ -121,7 +121,7 @@ const RequestsDatabase = () => {
             <th className=" p-2 sm:p-0">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody key="Body">
           {requestsList.length === 0 ? (
             <tr>
               <td colSpan="10">

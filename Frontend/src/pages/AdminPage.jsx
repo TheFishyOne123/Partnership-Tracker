@@ -1,3 +1,4 @@
+// Imports
 import React, { useState, useEffect } from "react";
 import AdminNavbar from "../assets/Components/adminNavbar";
 import { useLocation } from "react-router-dom";
@@ -8,13 +9,16 @@ import { useNavigate } from "react-router-dom";
 import UserGuideAdmin from "../assets/Components/userGuideAdmin";
 import axios from "axios";
 
+// Main Encapsulation
 const AdminPage = () => {
+  // Variables
   const location = useLocation();
   const forwardedState = location.state ? location.state.forwardedState : null;
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const [guideStatus, setGuideStatus] = useState(false);
 
+  // Functions
   const handleSearchUpdate = (value) => {
     setSearch(value);
   };
@@ -55,6 +59,7 @@ const AdminPage = () => {
     }
   };
 
+  // Checks Database If the User Is New
   useEffect(() => {
     const checkUserAndSetGuide = async () => {
       if (forwardedState && forwardedState[2] === true) {
@@ -68,6 +73,7 @@ const AdminPage = () => {
     checkUserAndSetGuide();
   }, [forwardedState]);
 
+  // Authencation Check
   if (!forwardedState) {
     console.log("Unsuccessful Authentication");
     return (
@@ -84,7 +90,9 @@ const AdminPage = () => {
       </div>
     );
   } else if (forwardedState) {
+    // Frontend Elements For Page
     return (
+      //Guide & Navbar & Database Components
       <div className="admin-page-body">
         <UserGuideAdmin
           isOpen={guideStatus}
@@ -102,7 +110,9 @@ const AdminPage = () => {
         <Database search={search} />
       </div>
     );
-  } else {
+  }
+  // Error Catch Else Statement For Authentcation
+  else {
     console.log(forwardedState);
     console.log("There Was An Error With Authentication");
     return (
@@ -121,4 +131,5 @@ const AdminPage = () => {
   }
 };
 
+// Export To Page Controller
 export default AdminPage;

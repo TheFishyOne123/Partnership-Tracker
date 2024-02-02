@@ -1,3 +1,4 @@
+// Imports
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
@@ -5,10 +6,13 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../index.css";
 
-function LoginPage() {
+// Main Encapsulation For Page
+const LoginPage = () => {
+  // Variables
   const navigate = useNavigate();
   let [AuthInfo, setAuthInfo] = useState(null);
 
+  // Authencation Check On Log On
   useEffect(() => {
     if (AuthInfo) {
       if (!AuthInfo[1]) {
@@ -21,6 +25,7 @@ function LoginPage() {
     }
   }, [AuthInfo, navigate]);
 
+  // Page Frontend Return
   return (
     <div className="h-screen w-screen flex justify-center content-center flex-col flex-wrap">
       <div className="flex items-center justify-center w-5/12 h-1/6 sm:w-5/6 xl: bg-white/90 flex-col">
@@ -70,4 +75,5 @@ function LoginPage() {
   );
 }
 
+// Export To Page Manager
 export default LoginPage;
