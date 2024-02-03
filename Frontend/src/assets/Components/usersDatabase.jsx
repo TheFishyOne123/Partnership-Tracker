@@ -46,10 +46,10 @@ function usersDatabase() {
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead>
           <tr>
+            <th className="p-0.5 sm:p-0">Select</th>
             <th className="p-2 sm:p-0">Name</th>
             <th className="p-2 sm:p-0">Email</th>
             <th className="p-2 sm:p-0">Admin</th>
-            <th className="p-2 sm:p-0">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -62,23 +62,21 @@ function usersDatabase() {
           ) : (
             <>
               {usersList.map((user) => (
-                <tr className="bg-gray-500" key={user._id}>
-                  <td className="py-0.5 px-2 whitespace-nowrap">{user.name}</td>
-                  <td className="py-0.5 px-2 whitespace-nowrap">
+                <tr key={user._id}>
+                  <td className="py-1 px-0.5 whitespace-nowrap">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 align-middle"
+                    />
+                  </td>
+                  <td className="py-0.5 px-2 whitespace-nowrap bg-gray-500">
+                    {user.name}
+                  </td>
+                  <td className="py-0.5 px-2 whitespace-nowrap bg-gray-500">
                     {user.email}
                   </td>
-                  <td className="py-0.5 px-2 whitespace-nowrap">
+                  <td className="py-0.5 px-2 whitespace-nowrap bg-gray-500">
                     {user.admin ? "Yes" : "No"}
-                  </td>
-                  <td className="py-0.5 px-2">
-                    <div className="flex gap-2.5 content-center p-2">
-                      <button
-                        className="text-red-500"
-                        onClick={() => handleDelete(user._id)}
-                      >
-                        <FaTrash size="1.5em" />
-                      </button>
-                    </div>
                   </td>
                 </tr>
               ))}
