@@ -8,6 +8,7 @@ function usersDatabase() {
   const [usersList, setUsersList] = useState([]);
   const [creationFormStatus, setCreationFormStatus] = useState(false);
   const [deletionStatus, setDeletionStatus] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     axios
@@ -20,7 +21,7 @@ function usersDatabase() {
       });
   }, [creationFormStatus, deletionStatus]);
 
-  const handleDelete = (deletionID) => {
+  const handleDelete = async () => {
     setDeletionStatus(false);
     const deleteUser = async (deletionID) => {
       try {
@@ -36,30 +37,54 @@ function usersDatabase() {
         console.log("Error: ", error);
       }
     };
-    deleteUser(deletionID);
-    setDeletionStatus(true);
-    alert("User Deleted Successfully");
+    if (selected > 0) {
+      console.log("Users To Delete " + selected.length);
+      for (let userID of selected) {
+        console.log(userID);
+        await deleteUser(userID);
+      }
+      setSelected([]);
+      setDeletionStatus(true);
+      alert("Users Deleted Successfully");
+    } else if (selected <= 0) {
+      console.log("No Users Selected");
+      alert("No Users Selected! Select Users To Delete!");
+    } else {
+      console.log("Error Deleting Users");
+      alert("Error Deleting Users");
+    }
+  };
+
+  const handleSelected = (rowID) => {
+    if (!selected.includes(rowID)) {
+      setSelected((prevList) => [...prevList, rowID]);
+    } else if (selected.includes(rowID)) {
+      setSelected((prevList) => prevList.filter((item) => item !== rowID));
+    } else {
+      console.log("Error Removing / Adding Selection!");
+      alert("Error Adding / Removing Selection! See Console For More Info");
+    }
   };
 
   return (
-    <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
-      <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
+    <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
+      <div className="flex justify-end">
+        <Dropdown drop="down-centered" className="d-inline">
+          <Dropdown.Toggle
+            variant="secondary"
+            className="text-lg"
+            id="dropdown-autoclose-outside"
+          >
+            Actions
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>Edit</Dropdown.Item>
+            <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+      <table className=" mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead className=" text-lg">
-          <div>
-            <Dropdown drop="down-centered" className="d-inline mx-2 ">
-              <Dropdown.Toggle
-                variant="secondary"
-                className="text-lg"
-                id="dropdown-autoclose-outside"
-              >
-                Actions
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item>Edit</Dropdown.Item>
-                <Dropdown.Item>Delete</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
           <tr>
             <th className="p-0.5">Select</th>
             <th className="p-2">Name</th>
@@ -81,6 +106,7 @@ function usersDatabase() {
                   <td className="py-1 px-0.5 whitespace-nowrap">
                     <input
                       type="checkbox"
+                      onChange={() => handleSelected(user._id)}
                       className="form-checkbox h-5 w-5 align-middle"
                     />
                   </td>
