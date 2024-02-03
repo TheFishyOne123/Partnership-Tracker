@@ -2,7 +2,6 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
 import Searchbar from "./searchbar";
-import Button from "react-bootstrap/Button";
 
 const AdminNavbar = (props) => {
   const navigate = useNavigate();

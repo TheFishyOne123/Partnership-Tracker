@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { FaPencilAlt } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 import CreateNewUserDiv from "./createNewUserDiv";
 
 function usersDatabase() {
@@ -44,12 +44,27 @@ function usersDatabase() {
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
       <table className="border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
-        <thead>
+        <thead className=" text-lg">
+          <div>
+            <Dropdown drop="down-centered" className="d-inline mx-2 ">
+              <Dropdown.Toggle
+                variant="secondary"
+                className="text-lg"
+                id="dropdown-autoclose-outside"
+              >
+                Actions
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>Edit</Dropdown.Item>
+                <Dropdown.Item>Delete</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           <tr>
-            <th className="p-0.5 sm:p-0">Select</th>
-            <th className="p-2 sm:p-0">Name</th>
-            <th className="p-2 sm:p-0">Email</th>
-            <th className="p-2 sm:p-0">Admin</th>
+            <th className="p-0.5">Select</th>
+            <th className="p-2">Name</th>
+            <th className="p-2">Email</th>
+            <th className="p-2">Admin</th>
           </tr>
         </thead>
         <tbody>
