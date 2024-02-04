@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaPencilAlt } from "react-icons/fa";
-import { FaCopy } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
 import EditingForm from "./editingForm.jsx";
 import AddNewPartnersDiv from "./addNewPartnersDiv.jsx";
 import PartnerDeletionPopUp from "./partnerDeletionPopUp.jsx";
 import UserGuideAdmin from "./userGuideAdmin.jsx";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function AdminPartnerDatabase({ search }) {
   const [partnersList, setPartnersList] = useState([]);
@@ -20,10 +18,6 @@ function AdminPartnerDatabase({ search }) {
   const [creationFormStatus, setCreationFormStatus] = useState(false);
   const [duplicationStatus, setDuplicationStatus] = useState(false);
   const [guideStatus, setGuideStatus] = useState(false);
-
-  const checkUser = async (userData) => {
-    await axios.get(`http://localhost:5555/users/user?user=${userData[0][1]}`);
-  };
 
   const updateUser = async (userData) => {
     try {
@@ -121,7 +115,7 @@ function AdminPartnerDatabase({ search }) {
   };
 
   return (
-    <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28">
+    <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
       <UserGuideAdmin
         isOpen={guideStatus}
         onClose={() => {
@@ -145,70 +139,78 @@ function AdminPartnerDatabase({ search }) {
         }}
         deletionID={deletionID}
       />
-      <table className="border-separate bt:text-sm border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs sm:text-[6px]">
+      <div className="flex justify-end">
+        <Dropdown drop="down-centered" className="d-inline">
+          <Dropdown.Toggle
+            variant="secondary"
+            className="text-lg"
+            id="dropdown-autoclose-outside"
+          >
+            Actions
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>Edit</Dropdown.Item>
+            <Dropdown.Item>Duplicate</Dropdown.Item>
+            <Dropdown.Item>Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+      <table className="mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
         <thead>
-          <tr className="bt:text-xs">
-            <th className="p-2 sm:p-0">Company Name</th>
-            <th className="p-2 sm:p-0">Position</th>
-            <th className="p-2 sm:p-0">Owner</th>
-            <th className="p-2 lg:hidden bt:hidden  sm:p-0">Email</th>
-            <th className="p-2 sm:p-0">Phone</th>
-            <th className="p-2 sm:p-0">Pathway</th>
-            <th className="p-2 sm:p-0">Availability</th>
-            <th className="p-2 sm:p-0 whitespace-nowrap">
+          <tr className="text-lg tst:text-sm" key="Head">
+            <th className="px-1 py-2 sm:p-0">Select</th>
+            <th className="px-1 py-2 sm:p-0">Company Name</th>
+            <th className="px-1 py-2 sm:p-0">Position</th>
+            <th className="px-1 py-2 sm:p-0">Owner</th>
+            <th className="px-1 py-2 bt:hidden sm:p-0">Email</th>
+            <th className="px-1 py-2 sm:p-0">Phone</th>
+            <th className="px-1 py-2 sm:p-0">Pathway</th>
+            <th className="px-1 py-2 sm:p-0">Availability</th>
+            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
               First Day Available
             </th>
-            <th className="p-2 sm:p-0 whitespace-nowrap">Last Day Available</th>
-            <th className="p-2 sm:p-0">Actions</th>
+            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
+              Last Day Available
+            </th>
           </tr>
         </thead>
         <tbody>
           {!search ? (
             <>
               {partnersList.map((partner) => (
-                <tr className="bg-gray-500" key={partner._id}>
-                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                <tr className="tst:text-xs" key={partner._id}>
+                  <td className="py-0.5 whitespace-nowrap">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-4 align-middle"
+                    />
+                  </td>
+                  <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden">
                     {partner.companyName}
                   </td>
-                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden ">
                     {partner.position}
                   </td>
-                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
+                  <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                     {partner.owner}
                   </td>
-                  <td className=" lg:hidden bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  <td className="bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
                     {partner.email}
                   </td>
-                  <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
+                  <td className="bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
                     {partner.phone}
                   </td>
-                  <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                  <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden ">
                     {partner.pathway}
                   </td>
-                  <td className="p-1.5 sm:p-0">{partner.timeOfDay}</td>
-                  <td className="p-.5 sm:p-0">{partner.firstDayAvailable}</td>
-                  <td className="p-.5 sm:p-0">{partner.lastDayAvailable}</td>
-                  <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5 align-middle">
-                    <div className="flex gap-2.5 content-center pt-2">
-                      <button
-                        className="text-green-500"
-                        onClick={() => handleEdit(partner._id)}
-                      >
-                        <FaPencilAlt size="1.5em" />
-                      </button>
-                      <button
-                        className="text-blue-500"
-                        onClick={() => handleDuplicate(partner._id)}
-                      >
-                        <FaCopy size="1.5em" />
-                      </button>
-                      <button
-                        className="text-red-500"
-                        onClick={() => handleDelete(partner._id)}
-                      >
-                        <FaTrash size="1.5em" />
-                      </button>
-                    </div>
+                  <td className="bg-gray-500 p-1.5 sm:p-0">
+                    {partner.timeOfDay}
+                  </td>
+                  <td className="bg-gray-500 p-.5 sm:p-0">
+                    {partner.firstDayAvailable}
+                  </td>
+                  <td className="bg-gray-500 p-.5 sm:p-0">
+                    {partner.lastDayAvailable}
                   </td>
                 </tr>
               ))}

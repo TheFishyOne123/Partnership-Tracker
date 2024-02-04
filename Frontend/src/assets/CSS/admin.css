@@ -1,6 +1,8 @@
 .admin-page-body {
   min-height: 100vh;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
 
 .admin-page-body::before {
@@ -15,3 +17,16 @@
   background-repeat: no-repeat;
   z-index: -1;
 }
+
+.admin-page-body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.admin-page-body::-webkit-scrollbar-track {
+  background: rgb(107, 114, 128);
+}
+
+.admin-page-body::-webkit-scrollbar-thumb {
+  background: rgb(43, 44, 46);
+}
+

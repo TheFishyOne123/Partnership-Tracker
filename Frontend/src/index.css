@@ -27,11 +27,11 @@ body::before {
 
 body {
   scrollbar-width: thin;
-  scrollbar-color: transparent transparent; /* For Firefox */
+  scrollbar-color: transparent transparent;
 }
 
 body::-webkit-scrollbar {
-  width: 0.5rem; /* For Chrome, Safari, and Opera */
+  width: 0.5rem; 
 }
 
 body::-webkit-scrollbar-track {
