@@ -37,9 +37,7 @@ const LoginPage = () => {
               const info = [decoded.name, decoded.email];
               axios
                 .get(
-                  `http://localhost:5555/users/user?user=${encodeURIComponent(
-                    info[1]
-                  )}`
+                  `http://localhost:5555/users/${encodeURIComponent(info[1])}`
                 )
                 .then((response) => {
                   console.log("Checking Google Account Against Database");
@@ -73,7 +71,7 @@ const LoginPage = () => {
       </div>
     </div>
   );
-}
+};
 
 // Export To Page Manager
 export default LoginPage;

@@ -64,7 +64,7 @@ function editingForm({ isOpen, onClose, rowdata }) {
             </button>
           </div>
           <h1 className="flex text-2xl justify-center py-9">
-            Editing Row Data
+            Editing Partner Data
           </h1>
           <form
             className="grid grid-cols-3 gap-6 px-7 pb-6 text-center"

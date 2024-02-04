@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import axios from "axios";
 
@@ -7,6 +7,30 @@ const modalClasses =
 const contentClasses = "bg-[#383d41f0] text-gray-50 p-6 rounded-lg w-6/12";
 
 const newUserForm = ({ onClose }) => {
+  const [adminStatus, setAdmin] = useState(false);
+
+  const emailCheck = async (email) => {
+    try {
+      const response = await axios.get(`http://localhost:5555/users/${email}`);
+      if (response.status === 200) {
+        return true;
+      } else if (response.status === 204) {
+        console.log("Email Not In Use Continue Creating User!");
+        return false;
+      } else {
+        console.log("Something Went Wrong When Checking Email. ");
+        alert(
+          "Error Checking Email Against Database! Check Console For More Info!"
+        );
+      }
+    } catch (error) {
+      console.error("Error Checking Email Against Database!", error);
+      alert(
+        "Error Checking Email Against Database! Check Console For More Info!"
+      );
+    }
+  };
+
   const createNewUser = async (userData) => {
     try {
       const response = await axios.post(
@@ -22,7 +46,7 @@ const newUserForm = ({ onClose }) => {
     }
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const creationDataObject = {};
@@ -32,7 +56,20 @@ const newUserForm = ({ onClose }) => {
     });
     creationDataObject["newUser"] = true;
     console.log(creationDataObject);
-    createNewUser(creationDataObject);
+
+    try {
+      const emailCheckValue = await emailCheck(creationDataObject.email);
+
+      if (emailCheckValue) {
+        console.log("Email Already In Use!");
+        alert("Email Already In Use! Try Again With A Different Email!");
+      } else {
+        createNewUser(creationDataObject);
+      }
+    } catch (error) {
+      console.log("Unexpected Output When Creating User", error);
+      alert("Error When Creating User. Check Console!");
+    }
   };
 
   return (
@@ -66,7 +103,12 @@ const newUserForm = ({ onClose }) => {
               type="email"
               placeholder="Ex: johndoe@gmail.com"
             />
-            <select required name="admin">
+            <select
+              required
+              name="admin"
+              value={adminStatus}
+              onChange={(e) => setAdmin(e.target.value === "true")}
+            >
               <option value={false}>No</option>
               <option value={true}>Yes</option>
             </select>

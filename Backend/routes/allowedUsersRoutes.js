@@ -17,10 +17,13 @@ router.get("/all", async (req, res) => {
 });
 
 // Get Specific User In Database Route
-router.get("/:user", async (request, response) => {
+router.get("/:email", async (request, response) => {
   try {
-    const userToFind = request.query.user;
+    const userToFind = request.params.email;
+    console.log("New User To Find", userToFind);
+    
     const user = await User.findOne({ email: userToFind });
+    
     if (!user) {
       return response.status(204).send();
     } else if (user) {
@@ -36,15 +39,16 @@ router.get("/:user", async (request, response) => {
   }
 });
 
+
 // Delete A User
-router.delete("/delete/:id", async (request, response) => {
+router.delete("/delete/:email", async (request, response) => {
   try {
-    const { id } = request.params;
+    const { email } = request.params;
 
     console.log("New Deletion Request!");
-    console.log("Deletion ID: ", id);
+    console.log("Deletion Email: ", email);
 
-    const user = await User.findByIdAndDelete(id);
+    const user = await User.findOneAndDelete({ email: email });
 
     if (!user) {
       return response.status(404).json({ message: "User Not Found" });
