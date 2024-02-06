@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-function PartnerDeletionPopUp({ isOpen, onClose, deletionID }) {
+function PartnerDeletionPopUp({ isOpen, onClose, deletionIDs }) {
   const modalClasses = isOpen
     ? "fixed inset-0 flex items-center justify-center backdrop-blur-xs"
     : "hidden";
@@ -17,7 +17,6 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionID }) {
 
       if (response.status === 200) {
         console.log("Partner Deleted Successfully");
-        onClose();
       }
     } catch (error) {
       console.log("Error Deleting Partner");
@@ -26,8 +25,10 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionID }) {
   };
 
   const handleYes = async () => {
-    console.log("Deleting Partner");
-    await deletePartner(deletionID);
+    for (const partner of deletionIDs) {
+      console.log("Deleting Partner ", partner);
+      await deletePartner(partner);
+    }
     onClose();
   };
 
@@ -36,7 +37,7 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionID }) {
       <div className={contentClasses}>
         <div className="flex flex-col ">
           <h1 className=" self-center py-5 text-lg">
-            Are You Sure You Want Delete This Partner?
+            Are You Sure You Want Delete The Selected Partners?
           </h1>
           <div className=" self-center flex gap-20 pb-5">
             <button

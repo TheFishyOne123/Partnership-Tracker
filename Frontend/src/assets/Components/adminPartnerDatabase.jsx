@@ -11,13 +11,13 @@ function AdminPartnerDatabase({ search }) {
   const [searchResults, setSearchResults] = useState([]);
   const [editingForm, setEditingForm] = useState(false);
   const [deletionPopUp, setDeletionPopup] = useState(false);
-  const [deletionID, setDeletionId] = useState("");
   const [idSearchResults, setIdSearch] = useState({
     data: { companyName: "" },
   });
   const [creationFormStatus, setCreationFormStatus] = useState(false);
   const [duplicationStatus, setDuplicationStatus] = useState(false);
   const [guideStatus, setGuideStatus] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   const updateUser = async (userData) => {
     try {
@@ -109,9 +109,19 @@ function AdminPartnerDatabase({ search }) {
     }
   };
 
-  const handleDelete = (deletionID) => {
-    setDeletionId(deletionID);
+  const handleDelete = () => {
     setDeletionPopup(true);
+  };
+
+  const handleSelected = (email) => {
+    if (!selected.includes(email)) {
+      setSelected((prevList) => [...prevList, email]);
+    } else if (selected.includes(email)) {
+      setSelected((prevList) => prevList.filter((item) => item !== email));
+    } else {
+      console.log("Error Removing / Adding Selection!");
+      alert("Error Adding / Removing Selection! See Console For More Info");
+    }
   };
 
   return (
@@ -135,9 +145,8 @@ function AdminPartnerDatabase({ search }) {
         isOpen={deletionPopUp}
         onClose={() => {
           setDeletionPopup(false);
-          setDeletionId("");
         }}
-        deletionID={deletionID}
+        deletionIDs={selected}
       />
       <div className="flex justify-end">
         <Dropdown drop="down-centered" className="d-inline">
@@ -151,7 +160,7 @@ function AdminPartnerDatabase({ search }) {
           <Dropdown.Menu>
             <Dropdown.Item>Edit</Dropdown.Item>
             <Dropdown.Item>Duplicate</Dropdown.Item>
-            <Dropdown.Item>Delete</Dropdown.Item>
+            <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -182,7 +191,9 @@ function AdminPartnerDatabase({ search }) {
                   <td className="py-0.5 whitespace-nowrap">
                     <input
                       type="checkbox"
-                      className="form-checkbox h-5 w-4 align-middle"
+                      onChange={() => handleSelected(partner._id)}
+                      checked={selected.includes(partner._id)}
+                      className="form-checkbox h-5 w-5 align-middle"
                     />
                   </td>
                   <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden">
@@ -217,44 +228,39 @@ function AdminPartnerDatabase({ search }) {
             </>
           ) : (
             searchResults.map((result) => (
-              <tr className="bg-gray-500" key={result._id}>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+              <tr className="tst:text-xs" key={result._id}>
+                <td className="py-0.5 whitespace-nowrap">
+                  <input
+                    type="checkbox"
+                    onChange={() => handleSelected(result._id)}
+                    checked={selected.includes(result._id)}
+                    className="form-checkbox h-5 w-5 align-middle"
+                  />
+                </td>
+                <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden">
                   {result.companyName}
                 </td>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden ">
                   {result.position}
                 </td>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
+                <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                   {result.owner}
                 </td>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar lg:hidden bt:hidden">
+                <td className="bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
                   {result.email}
                 </td>
-                <td className="py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
+                <td className="bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
                   {result.phone}
                 </td>
-                <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
+                <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden ">
                   {result.pathway}
                 </td>
-                <td className="p-2 sm:p-0">{result.timeOfDay}</td>
-                <td className="p-2 sm:p-0">{result.firstDayAvailable}</td>
-                <td className="p-2 sm:p-0">{result.lastDayAvailable}</td>
-                <td className="p-1 sm:p-0 flex gap-2 justify-center pt-1.5">
-                  <button
-                    className="text-green-500"
-                    onClick={() => handleEdit(result._id)}
-                  >
-                    <FaPencilAlt size="1.5em" />
-                  </button>
-                  <button className="text-blue-500">
-                    <FaCopy size="1.5em" />
-                  </button>
-                  <button
-                    className="text-red-500"
-                    onClick={() => handleDelete(result._id)}
-                  >
-                    <FaTrash size="1.5em" />
-                  </button>
+                <td className="bg-gray-500 p-1.5 sm:p-0">{result.timeOfDay}</td>
+                <td className="bg-gray-500 p-.5 sm:p-0">
+                  {result.firstDayAvailable}
+                </td>
+                <td className="bg-gray-500 p-.5 sm:p-0">
+                  {result.lastDayAvailable}
                 </td>
               </tr>
             ))
