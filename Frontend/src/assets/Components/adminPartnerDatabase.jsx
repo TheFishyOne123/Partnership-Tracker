@@ -94,13 +94,13 @@ function AdminPartnerDatabase({ search }) {
     }
   };
 
-  const handleDuplicate = async (duplicationID) => {
+  const handleDuplicate = async () => {
     try {
       console.log("Duplicating Partner");
       setDuplicationStatus(true);
       const results = await axios.get(
         "http://localhost:5555/partners/searchByID",
-        { params: { id: duplicationID } }
+        { params: { id: selected[0] } }
       );
       const response = await axios.post(
         `http://localhost:5555/partners/create`,
@@ -109,6 +109,7 @@ function AdminPartnerDatabase({ search }) {
       if (response.status === 200) {
         console.log("Successfully Duplicated Partner");
         setDuplicationStatus(false);
+        selected.shift();
       }
     } catch (error) {
       setDuplicationStatus(false);
@@ -151,6 +152,25 @@ function AdminPartnerDatabase({ search }) {
     }
   }, [editingForm]);
 
+  useEffect(() => {
+    if (duplicationStatus === true) {
+      //Pass
+    } else {
+      if (selected.length >= 1) {
+        console.log("Next User");
+        handleDuplicate();
+      } else if (selected.length === 0) {
+        setTempUserData("");
+        setDuplicationStatus(false);
+      } else {
+        console.log("Unexpected result while duplicating multiple partners");
+        alert(
+          "Unexpected Result While duplicating Partners! Check Console For More Details!"
+        );
+      }
+    }
+  }, [duplicationStatus]);
+
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
       <UserGuideAdmin
@@ -188,7 +208,7 @@ function AdminPartnerDatabase({ search }) {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>
-            <Dropdown.Item>Duplicate</Dropdown.Item>
+            <Dropdown.Item onClick={handleDuplicate}>Duplicate</Dropdown.Item>
             <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
