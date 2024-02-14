@@ -41,7 +41,7 @@ function Database({ search }) {
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28 overflow-x-hidden">
       <div className="overflow-hidden w-full">
-        <table className=" m-auto max-w-full table-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]">
+        <table className=" m-auto max-w-full table-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[10px]">
           <thead>
             <tr className="text-lg tst:text-sm" key="Head">
               <th className="px-1 py-2 sm:p-0">Company Name</th>
@@ -74,13 +74,13 @@ function Database({ search }) {
                       <tr className="bg-gray-500 bt:text-xs" key={partner._id}>
                         <td
                           title={partner.companyName}
-                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden"
+                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] lg:max-w-[20rem] overflow-hidden"
                         >
                           {partner.companyName}
                         </td>
                         <td
                           title={partner.position}
-                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden "
+                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden "
                         >
                           {partner.position}
                         </td>
@@ -98,7 +98,7 @@ function Database({ search }) {
                         </td>
                         <td
                           title={partner.pathway}
-                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[15rem] bt:max-w-[8rem] sm:max-w-[10rem] lg:max-w-[20rem] overflow-hidden "
+                          className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[6rem] sm:max-w-[10rem] lg:max-w-[20rem] overflow-hidden "
                         >
                           {partner.pathway}
                         </td>
@@ -128,7 +128,7 @@ function Database({ search }) {
                         <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
                           {result.companyName}
                         </td>
-                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[10rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
+                        <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[5rem] laptop:max-w-[10rm] sm:max-w-[10rem] lg:max-w-[20rem] overflow-hidden ">
                           {result.position}
                         </td>
                         <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">

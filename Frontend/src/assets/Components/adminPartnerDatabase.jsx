@@ -18,6 +18,7 @@ function AdminPartnerDatabase({ search }) {
   const [duplicationStatus, setDuplicationStatus] = useState(false);
   const [guideStatus, setGuideStatus] = useState(false);
   const [selected, setSelected] = useState([]);
+  const [tempUserData, setTempUserData] = useState({});
 
   const updateUser = async (userData) => {
     try {
@@ -69,21 +70,28 @@ function AdminPartnerDatabase({ search }) {
     }
   }, [search]);
 
-  const handleEdit = (partnerID) => {
-    const searchForPartner = async (ID) => {
+  const handleEdit = async () => {
+    console.log("Users Selected To Edit ", selected);
+    const userToEdit = selected[0];
+    console.log("User to edit:", userToEdit);
+    if (selected.length <= 0) {
+      console.log("No Users Selected");
+      alert("No Users Selected! Select Users To Delete!");
+    } else {
       try {
-        const results = await axios.get(
-          "http://localhost:5555/partners/searchByID",
-          { params: { id: ID } }
+        const response = await axios.get(
+          `http://localhost:5555/partners/searchByID`,
+          { params: { id: userToEdit } }
         );
-        setIdSearch(results);
+        setTempUserData(response.data);
+        setEditingForm(true);
       } catch (error) {
-        console.error("Error With Search:", error);
+        console.error("Error fetching partner data for editing:", error);
+        alert(
+          "Error fetching partner data for editing. Check console for details."
+        );
       }
-    };
-    searchForPartner(partnerID);
-    setIdSearch["_id"] = partnerID;
-    setEditingForm(true);
+    }
   };
 
   const handleDuplicate = async (duplicationID) => {
@@ -124,6 +132,25 @@ function AdminPartnerDatabase({ search }) {
     }
   };
 
+  useEffect(() => {
+    if (editingForm === true) {
+      //Pass
+    } else {
+      if (selected.length >= 1) {
+        console.log("Next User");
+        handleEdit();
+      } else if (selected.length === 0) {
+        setTempUserData("");
+        setCreationFormStatus(false);
+      } else {
+        console.log("Unexpected result while editing multiple partners");
+        alert(
+          "Unexpected Result While Editing Partners! Check Console For More Details!"
+        );
+      }
+    }
+  }, [editingForm]);
+
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
       <UserGuideAdmin
@@ -137,9 +164,11 @@ function AdminPartnerDatabase({ search }) {
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
-          setEditingForm(false);
+          {
+            setEditingForm(false), selected.shift();
+          }
         }}
-        rowdata={idSearchResults.data}
+        rowdata={tempUserData}
       />
       <PartnerDeletionPopUp
         isOpen={deletionPopUp}
@@ -158,7 +187,7 @@ function AdminPartnerDatabase({ search }) {
             Actions
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item>Edit</Dropdown.Item>
+            <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>
             <Dropdown.Item>Duplicate</Dropdown.Item>
             <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
           </Dropdown.Menu>

@@ -30,7 +30,7 @@ const AdminPage = () => {
   const checkUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/user?user=${userData[0][1]}`
+        `http://localhost:5555/users/${userData}`
       );
 
       return response.data.data.newUser;
@@ -43,7 +43,7 @@ const AdminPage = () => {
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/user?user=${userData[0][1]}`
+        `http://localhost:5555/users/${userData[0][1]}`
       );
 
       response.data.data.newUser = false;
