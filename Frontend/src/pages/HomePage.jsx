@@ -31,7 +31,7 @@ const HomePage = () => {
     await axios.get(`http://localhost:5555/users/user?user=${userData[0][1]}`);
   };
 
-  // Updates Users newUser State To False
+  // Function Updates New User State in Database To False
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -57,10 +57,10 @@ const HomePage = () => {
       if (checkUser(forwardedState[0][1])) setGuideStatus(true);
       else {
         setGuideStatus(false);
-        console.log("No Guide Needed!");
+        console.log("No Guide Needed");
       }
     } else {
-      console.log("No Guide Needed");
+      console.log("Guide Turned Off");
     }
   }, [forwardedState]);
 

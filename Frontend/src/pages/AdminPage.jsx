@@ -92,7 +92,7 @@ const AdminPage = () => {
   } else if (forwardedState) {
     // Frontend Elements For Page
     return (
-      //Guide & Navbar & Database Components
+      //Guide, Navbar, & Database Components
       <div className="admin-page-body">
         <UserGuideAdmin
           isOpen={guideStatus}

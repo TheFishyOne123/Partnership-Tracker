@@ -48,13 +48,13 @@ const LoginPage = () => {
                       response.data.data.newUser,
                     ]);
                   } else if (response.status === 204) {
-                    console.log("User Not Found!");
-                    alert("The Google Account Used Is Not Allowed!");
+                    console.log("User Not Found");
+                    alert("The Google Account Used Is Not Allowed");
                   } else if (
                     response.status === 500 ||
                     response.status === 501
                   ) {
-                    alert("There Was A Error Checking If Account Is Allowed");
+                    alert("There Was An Error Checking If Account Is Allowed");
                   } else {
                     console.log("Unexpected Result In Checking For User");
                   }

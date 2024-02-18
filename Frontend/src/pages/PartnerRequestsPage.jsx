@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AdminNavbarRequests from "../assets/Components/adminNavbarNoSearchbar";
 import RequestsDatabase from "../assets/Components/requestsDatabase";
 
-// Main Encapsulation Functiopn For Page
+// Main Encapsulation Function For Page
 const PartnerRequestsPage = () => {
   // Variables
   const location = useLocation();

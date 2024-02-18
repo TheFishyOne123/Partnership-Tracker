@@ -28,7 +28,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
   const emailCheck = async (email) => {
     try {
       if (rowdata.email === email) {
-        console.log("Same Email! No Need To Check Email!");
+        console.log("Same Email. No Need To Check Email.");
         return false;
       } else if (!rowdata.email === email) {
         try {
@@ -38,25 +38,25 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
           if (response.status === 200) {
             return true;
           } else if (response.status === 204) {
-            console.log("Email Not In Use Continue Editing User!");
+            console.log("Email Not In Use Continue Editing User.");
             return false;
           } else {
             console.log("Something Went Wrong When Checking Email. ");
             alert(
-              "Error Checking New Email Against Database! Check Console For More Info!"
+              "Error Checking New Email Against Database. Check Console For More Info."
             );
           }
         } catch (error) {
-          console.error("Error Checking New Email Against Database!", error);
+          console.error("Error Checking New Email Against Database.", error);
           alert(
-            "Error Checking New Email Against Database! Check Console For More Info!"
+            "Error Checking New Email Against Database. Check Console For More Info."
           );
         }
       }
     } catch (error) {
-      console.error("Error Checking New Email Against Database!", error);
+      console.error("Error Checking New Email Against Database.", error);
       alert(
-        "Error Checking New Email Against Database! Check Console For More Info!"
+        "Error Checking New Email Against Database. Check Console For More Info."
       );
     }
   };
@@ -74,13 +74,13 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
     try {
       const emailCheckValue = await emailCheck(editedDataObject.email);
       if (emailCheckValue === true) {
-        console.log("Email Already In Use!");
-        alert("Email Already In Use! Try Again With Different Email!");
+        console.log("Email Already In Use.");
+        alert("Email Already In Use. Try Again With Different Email.");
       } else if (emailCheckValue === false) {
         await editUser(rowdata.email, editedDataObject);
       } else {
         console.log("Unexpected Output of Email Check");
-        alert("Error Checking Email! Check Console For More Info!");
+        alert("Error Checking Email. Check Console For More Info.");
       }
     } catch (error) {
       console.error("There was a error Editing User ", error);

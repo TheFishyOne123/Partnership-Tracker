@@ -15,18 +15,18 @@ const newUserForm = ({ onClose }) => {
       if (response.status === 200) {
         return true;
       } else if (response.status === 204) {
-        console.log("Email Not In Use Continue Creating User!");
+        console.log("Email Not In Use Continue Creating User");
         return false;
       } else {
         console.log("Something Went Wrong When Checking Email. ");
         alert(
-          "Error Checking Email Against Database! Check Console For More Info!"
+          "Error Checking Email Against Database. Check Console For More Info."
         );
       }
     } catch (error) {
-      console.error("Error Checking Email Against Database!", error);
+      console.error("Error Checking Email Against Database.", error);
       alert(
-        "Error Checking Email Against Database! Check Console For More Info!"
+        "Error Checking Email Against Database. Check Console For More Info."
       );
     }
   };
@@ -61,14 +61,14 @@ const newUserForm = ({ onClose }) => {
       const emailCheckValue = await emailCheck(creationDataObject.email);
 
       if (emailCheckValue) {
-        console.log("Email Already In Use!");
-        alert("Email Already In Use! Try Again With A Different Email!");
+        console.log("Email Already In Use.");
+        alert("Email Already In Use. Try Again With A Different Email.");
       } else {
         createNewUser(creationDataObject);
       }
     } catch (error) {
       console.log("Unexpected Output When Creating User", error);
-      alert("Error When Creating User. Check Console!");
+      alert("Error When Creating User. Check Console.");
     }
   };
 

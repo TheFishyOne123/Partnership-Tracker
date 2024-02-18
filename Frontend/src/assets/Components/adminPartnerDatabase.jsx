@@ -76,7 +76,7 @@ function AdminPartnerDatabase({ search }) {
     console.log("User to edit:", userToEdit);
     if (selected.length <= 0) {
       console.log("No Users Selected");
-      alert("No Users Selected! Select Users To Delete!");
+      alert("No Users Selected. Select Users To Delete.");
     } else {
       try {
         const response = await axios.get(
@@ -128,8 +128,8 @@ function AdminPartnerDatabase({ search }) {
     } else if (selected.includes(email)) {
       setSelected((prevList) => prevList.filter((item) => item !== email));
     } else {
-      console.log("Error Removing / Adding Selection!");
-      alert("Error Adding / Removing Selection! See Console For More Info");
+      console.log("Error Removing / Adding Selection.");
+      alert("Error Adding / Removing Selection. See Console For More Info");
     }
   };
 
@@ -146,7 +146,7 @@ function AdminPartnerDatabase({ search }) {
       } else {
         console.log("Unexpected result while editing multiple partners");
         alert(
-          "Unexpected Result While Editing Partners! Check Console For More Details!"
+          "Unexpected Result While Editing Partners. Check Console For More Details."
         );
       }
     }
@@ -165,7 +165,7 @@ function AdminPartnerDatabase({ search }) {
       } else {
         console.log("Unexpected result while duplicating multiple partners");
         alert(
-          "Unexpected Result While duplicating Partners! Check Console For More Details!"
+          "Unexpected Result While duplicating Partners. Check Console For More Details."
         );
       }
     }

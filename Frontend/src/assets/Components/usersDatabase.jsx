@@ -51,7 +51,7 @@ function usersDatabase() {
       alert("Users Deleted Successfully");
     } else if (selected.length <= 0) {
       console.log("No Users Selected");
-      alert("No Users Selected! Select Users To Delete!");
+      alert("No Users Selected. Select Users To Delete.");
     } else {
       console.log(selected);
       console.log("Error Deleting Users");
@@ -92,7 +92,7 @@ function usersDatabase() {
     } else {
       console.log("Unexpected result while editing multiple users");
       alert(
-        "Unexpected result While Editing Users! Check Console For More Details!"
+        "Unexpected result While Editing Users. Check Console For More Details."
       );
     }
   }, [currentIndex]);
@@ -103,8 +103,8 @@ function usersDatabase() {
     } else if (selected.includes(email)) {
       setSelected((prevList) => prevList.filter((item) => item !== email));
     } else {
-      console.log("Error Removing / Adding Selection!");
-      alert("Error Adding / Removing Selection! See Console For More Info");
+      console.log("Error Removing / Adding Selection.");
+      alert("Error Adding / Removing Selection. See Console For More Info");
     }
   };
 
