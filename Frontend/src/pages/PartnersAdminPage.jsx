@@ -25,53 +25,51 @@ const PartnersAdminPage = () => {
     navigate("/");
   };
 
-  // Authenction Check
-  if (forwardedState) {
-    return (
-      <div className="admin-page-body">
-        <AdminNavbar
-          forwardedState={forwardedState}
-          onSearchChange={handleSearchUpdate}
-        />
-        <AdminPartnerDatabase search={search} />
-      </div>
-    );
-  }
-  // Main Page Frontend Return
-  else if (!forwardedState) {
-    console.log("Unsuccessful Authentication");
-    return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-5  bg-gray-500 text-5xl w-3/12 h-1/6">
-          <h1>Please Re-Login</h1>
-          <button
-            onClick={relogin}
-            className="bg-white w-8/12 h-2/6 rounded-full text-xl p-2"
-          >
-            Re-Login
-          </button>
-        </div>
-      </div>
-    );
-  }
-  // Error Catch Statement
-  else {
-    console.log("There Was An Error With Authentication");
-    return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-5  bg-gray-500 text-5xl w-3/12 h-1/6">
-          <h1>Error With Authentication</h1>
-          <button
-            onClick={relogin}
-            className="bg-white w-8/12 h-2/6 rounded-full text-xl p-2"
-          >
-            Re-Login
-          </button>
-        </div>
-      </div>
-    );
-  }
-};
+  // Main Encapsulation For Page
+  const PartnersAdminPage = () => {
+    // Variables
+    const location = useLocation();
+    const forwardedState = location.state?.forwardedState;
+    const [search, setSearch] = useState("");
+    const navigate = useNavigate();
 
+    // Functions
+    const handleSearchUpdate = (value) => {
+      setSearch(value);
+    };
+
+    const relogin = () => {
+      navigate("/");
+    };
+
+    // Authenction Check
+    if (forwardedState) {
+      return (
+        <div className="admin-page-body">
+          <AdminNavbar
+            forwardedState={forwardedState}
+            onSearchChange={handleSearchUpdate}
+          />
+          <AdminPartnerDatabase search={search} />
+        </div>
+      );
+    } else {
+      console.log("Unsuccessful Authentication");
+      return (
+        <div className="h-screen w-screen flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-5  bg-gray-500 text-5xl w-3/12 h-1/6">
+            <h1>Please Re-Login</h1>
+            <button
+              onClick={relogin}
+              className="bg-white w-8/12 h-2/6 rounded-full text-xl p-2"
+            >
+              Re-Login
+            </button>
+          </div>
+        </div>
+      );
+    }
+  };
+};
 // Export To Page Manager
 export default PartnersAdminPage;
