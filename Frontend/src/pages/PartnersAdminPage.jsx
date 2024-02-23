@@ -60,7 +60,7 @@ const PartnersAdminPage = () => {
     return (
       <div className="h-screen w-screen flex items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-5  bg-gray-500 text-5xl w-3/12 h-1/6">
-          <h1>Error With Authetication</h1>
+          <h1>Error With Authentication</h1>
           <button
             onClick={relogin}
             className="bg-white w-8/12 h-2/6 rounded-full text-xl p-2"
