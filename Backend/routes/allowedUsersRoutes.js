@@ -28,10 +28,8 @@ router.get("/:email", async (request, response) => {
       return response.status(200).json({
         data: user,
       });
-    } else if (!user) {
-      return response.status(204).send();
     } else {
-      response.status(501).send({ message: "Error Finding User" });
+      response.status(204).send();
     }
   } catch (error) {
     console.log(error.message);

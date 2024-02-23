@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import "../assets/CSS/admin.css";
 import { useNavigate } from "react-router-dom";
@@ -14,14 +14,7 @@ const UserAdminPage = () => {
     navigate("/");
   };
 
-  if (forwardedState) {
-    return (
-      <div className="admin-page-body">
-        <AdminNavbarNoSearchBar forwardedState={forwardedState} />
-        <UsersDatabase />
-      </div>
-    );
-  } else if (!forwardedState) {
+  if (!forwardedState) {
     console.log("Unsuccessful Authentication");
     return (
       <div className="h-screen w-screen flex items-center justify-center">
@@ -36,12 +29,19 @@ const UserAdminPage = () => {
         </div>
       </div>
     );
+  } else if (forwardedState) {
+    return (
+      <div className="admin-page-body">
+        <AdminNavbarNoSearchBar forwardedState={forwardedState} />
+        <UsersDatabase />
+      </div>
+    );
   } else {
     console.log("There Was An Error With Authentication");
     return (
       <div className="h-screen w-screen flex items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-5  bg-gray-500 text-5xl w-3/12 h-1/6">
-          <h1>Error With Authetication</h1>
+          <h1>Error With Authentication</h1>
           <button
             onClick={relogin}
             className="bg-white w-8/12 h-2/6 rounded-full text-xl p-2"

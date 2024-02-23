@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import { GrCheckmark } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
@@ -122,15 +122,15 @@ const RequestsDatabase = () => {
         </thead>
         <tbody key="Body">
           {requestsList.length === 0 ? (
-            <tr>
+            <tr key="Empty">
               <td colSpan="10">
                 <h1>Empty</h1>
               </td>
             </tr>
           ) : (
-            requestsList.map((request) => (
-              <>
-                <tr className="bg-gray-500" key={request._id}>
+            requestsList.map((request, index) => (
+              <Fragment key={`fragment-${request.id || index}`}>
+                <tr className="bg-gray-500" key={`row-${request.id}`}>
                   <td className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar">
                     {request.companyName}
                   </td>
@@ -153,7 +153,7 @@ const RequestsDatabase = () => {
                   <td className="p-.5 sm:p-0">{request.firstDayAvailable}</td>
                   <td className="p-.5 sm:p-0">{request.lastDayAvailable}</td>
                 </tr>
-              </>
+              </Fragment>
             ))
           )}
         </tbody>

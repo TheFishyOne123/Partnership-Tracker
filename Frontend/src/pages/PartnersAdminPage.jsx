@@ -26,7 +26,19 @@ const PartnersAdminPage = () => {
   };
 
   // Authenction Check
-  if (!forwardedState) {
+  if (forwardedState) {
+    return (
+      <div className="admin-page-body">
+        <AdminNavbar
+          forwardedState={forwardedState}
+          onSearchChange={handleSearchUpdate}
+        />
+        <AdminPartnerDatabase search={search} />
+      </div>
+    );
+  }
+  // Main Page Frontend Return
+  else if (!forwardedState) {
     console.log("Unsuccessful Authentication");
     return (
       <div className="h-screen w-screen flex items-center justify-center">
@@ -39,18 +51,6 @@ const PartnersAdminPage = () => {
             Re-Login
           </button>
         </div>
-      </div>
-    );
-  }
-  // Main Page Frontend Return
-  else if (forwardedState) {
-    return (
-      <div className="admin-page-body">
-        <AdminNavbar
-          forwardedState={forwardedState}
-          onSearchChange={handleSearchUpdate}
-        />
-        <AdminPartnerDatabase search={search} />
       </div>
     );
   }
