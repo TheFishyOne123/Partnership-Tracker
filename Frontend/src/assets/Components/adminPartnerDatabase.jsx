@@ -220,15 +220,15 @@ function AdminPartnerDatabase({ search }) {
             <th className="px-1 py-2 sm:p-0">Company Name</th>
             <th className="px-1 py-2 sm:p-0">Position</th>
             <th className="px-1 py-2 sm:p-0">Owner</th>
-            <th className="px-1 py-2 bt:hidden sm:p-0">Email</th>
+            <th className="px-1 py-2 sm:p-0">Email</th>
             <th className="px-1 py-2 sm:p-0">Phone</th>
             <th className="px-1 py-2 sm:p-0">Pathway</th>
             <th className="px-1 py-2 sm:p-0">Availability</th>
             <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
-              First Day Available
+              Start Date
             </th>
             <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
-              Last Day Available
+              End Date
             </th>
           </tr>
         </thead>
@@ -254,7 +254,7 @@ function AdminPartnerDatabase({ search }) {
                   <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                     {partner.owner}
                   </td>
-                  <td className="bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
+                  <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
                     {partner.email}
                   </td>
                   <td className="bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">
@@ -295,7 +295,7 @@ function AdminPartnerDatabase({ search }) {
                 <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap">
                   {result.owner}
                 </td>
-                <td className="bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
+                <td className="bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden ">
                   {result.email}
                 </td>
                 <td className="bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap">

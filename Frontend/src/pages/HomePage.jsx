@@ -53,15 +53,21 @@ const HomePage = () => {
 
   // Checks Guide Status To Decide Whether To Deploy Guide Or Not / Also Checks Authentication State
   useEffect(() => {
-    if (forwardedState && forwardedState[2] === true) {
-      if (checkUser(forwardedState[0][1])) setGuideStatus(true);
-      else {
-        setGuideStatus(false);
-        console.log("No Guide Needed");
+    const fetchData = async () => {
+      if (forwardedState && forwardedState[2] === true) {
+        try {
+          await checkUser(forwardedState[0][1]);
+          setGuideStatus(true);
+        } catch (error) {
+          setGuideStatus(false);
+          console.log("No Guide Needed");
+        }
+      } else {
+        console.log("Guide Turned Off");
       }
-    } else {
-      console.log("Guide Turned Off");
-    }
+    };
+
+    fetchData();
   }, [forwardedState]);
 
   if (!forwardedState) {
@@ -100,7 +106,7 @@ const HomePage = () => {
       <Database search={search} />
     </>
   );
-}
+};
 
 // Export To Page Manager
 export default HomePage;

@@ -21,15 +21,15 @@ router.get("/:email", async (request, response) => {
   try {
     const userToFind = request.params.email;
     console.log("New User To Find", userToFind);
-    
+
     const user = await User.findOne({ email: userToFind });
-    
-    if (!user) {
-      return response.status(204).send();
-    } else if (user) {
-      response.status(200).json({
+
+    if (user) {
+      return response.status(200).json({
         data: user,
       });
+    } else if (!user) {
+      return response.status(204).send();
     } else {
       response.status(501).send({ message: "Error Finding User" });
     }
@@ -38,7 +38,6 @@ router.get("/:email", async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
-
 
 // Delete A User
 router.delete("/delete/:email", async (request, response) => {

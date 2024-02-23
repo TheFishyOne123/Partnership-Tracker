@@ -14,7 +14,14 @@ const UserAdminPage = () => {
     navigate("/");
   };
 
-  if (!forwardedState) {
+  if (forwardedState) {
+    return (
+      <div className="admin-page-body">
+        <AdminNavbarNoSearchBar forwardedState={forwardedState} />
+        <UsersDatabase />
+      </div>
+    );
+  } else if (!forwardedState) {
     console.log("Unsuccessful Authentication");
     return (
       <div className="h-screen w-screen flex items-center justify-center">
@@ -27,13 +34,6 @@ const UserAdminPage = () => {
             Re-Login
           </button>
         </div>
-      </div>
-    );
-  } else if (forwardedState) {
-    return (
-      <div className="admin-page-body">
-        <AdminNavbarNoSearchBar forwardedState={forwardedState} />
-        <UsersDatabase />
       </div>
     );
   } else {

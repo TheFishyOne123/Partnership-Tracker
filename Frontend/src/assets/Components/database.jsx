@@ -41,7 +41,7 @@ function Database({ search }) {
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex justify-center p-6 mt-28 overflow-x-hidden">
       <div className="overflow-hidden w-full">
-        <table className=" m-auto max-w-full table-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[10px]">
+        <table className=" m-auto max-w-full table-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-sm bt:text-[15px]">
           <thead>
             <tr className="text-lg tst:text-sm" key="Head">
               <th className="px-1 py-2 sm:p-0">Company Name</th>
@@ -71,7 +71,7 @@ function Database({ search }) {
                 {!search ? (
                   <>
                     {partnersList.map((partner) => (
-                      <tr className="bg-gray-500 bt:text-xs" key={partner._id}>
+                      <tr className="bg-gray-500 bt:text-sm" key={partner._id}>
                         <td
                           title={partner.companyName}
                           className="py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] lg:max-w-[20rem] overflow-hidden"
