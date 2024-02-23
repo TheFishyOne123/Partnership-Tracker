@@ -11,14 +11,9 @@ const PartnerRequestsPage = () => {
   // Variables
   const location = useLocation();
   const forwardedState = location.state?.forwardedState;
-  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   // Functions
-  const handleSearchUpdate = (value) => {
-    setSearch(value);
-  };
-
   const relogin = () => {
     navigate("/");
   };

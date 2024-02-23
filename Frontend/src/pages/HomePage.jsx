@@ -4,7 +4,6 @@ import Navbar from "../assets/Components/navbar";
 import { useLocation } from "react-router-dom";
 import "../index.css";
 import Database from "../assets/Components/database";
-import Searchbar from "../assets/Components/searchbar";
 import { useNavigate } from "react-router-dom";
 import UserGuide from "../assets/Components/userGuide";
 import axios from "axios";

@@ -10,10 +10,6 @@ const AdminNavbarRequests = (props) => {
     navigate("/", { state: { AuthInfo: false } });
   }
 
-  const handleSearchUpdate = (value) => {
-    props.onSearchChange(value);
-  };
-
   const handleUsers = () => {
     navigate("/admin/users", { state: { forwardedState: info } });
   };

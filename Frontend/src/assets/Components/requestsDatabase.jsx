@@ -1,8 +1,5 @@
 import { React, useEffect, useState, Fragment } from "react";
 import axios from "axios";
-import { GrCheckmark } from "react-icons/gr";
-import { IoMdClose } from "react-icons/io";
-import { MdEdit } from "react-icons/md";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
