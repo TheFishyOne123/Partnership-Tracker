@@ -146,13 +146,7 @@ function usersDatabase() {
           </tr>
         </thead>
         <tbody>
-          {usersList && usersList.length === 0 ? (
-            <tr>
-              <td colSpan="10">
-                <h1>Empty</h1>
-              </td>
-            </tr>
-          ) : (
+          {usersList && usersList.length > 0 ? (
             <>
               {usersList.map((user) => (
                 <tr key={user._id}>
@@ -185,6 +179,12 @@ function usersDatabase() {
                 </td>
               </tr>
             </>
+          ) : (
+            <tr>
+              <td colSpan="10">
+                <h1>Empty</h1>
+              </td>
+            </tr>
           )}
         </tbody>
       </table>
