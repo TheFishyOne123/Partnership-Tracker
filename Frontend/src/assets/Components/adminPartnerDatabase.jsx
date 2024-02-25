@@ -11,9 +11,6 @@ function AdminPartnerDatabase({ search }) {
   const [searchResults, setSearchResults] = useState([]);
   const [editingForm, setEditingForm] = useState(false);
   const [deletionPopUp, setDeletionPopup] = useState(false);
-  const [idSearchResults, setIdSearch] = useState({
-    data: { companyName: "" },
-  });
   const [creationFormStatus, setCreationFormStatus] = useState(false);
   const [duplicationStatus, setDuplicationStatus] = useState(false);
   const [guideStatus, setGuideStatus] = useState(false);
