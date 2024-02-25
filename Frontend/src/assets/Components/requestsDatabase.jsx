@@ -1,11 +1,14 @@
 import { React, useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
+import RequestDeletionPopUp from "./requestDeletionPopUp";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
   const [requestData, setRequestData] = useState();
   const [requestStatus, setRequestStatus] = useState(false);
+  const [selected, setSelected] = useState([]);
+  const [deletionPopUp, setDeletionPopup] = useState(false);
 
   useEffect(() => {
     axios
@@ -16,94 +19,95 @@ const RequestsDatabase = () => {
       .catch((error) => {
         console.error("Error fetching requests:", error);
       });
-  }, [requestStatus]);
+  }, [requestStatus, deletionPopUp]);
 
-  const handleCreatePartner = async (requestID) => {
-    const findRequest = async (requestID) => {
-      try {
-        const request = await axios.get(
-          "http://localhost:5555/requests/searchByID",
-          { params: { id: requestID } }
-        );
-        console.log(request);
-        setRequestData(request);
-        console.log(requestData);
-        return request.data;
-      } catch (error) {
-        console.error("Error Finding Request: ", error);
-      }
-    };
+  // const handleCreatePartner = async (requestID) => {
+  //   const findRequest = async (requestID) => {
+  //     try {
+  //       const request = await axios.get(
+  //         "http://localhost:5555/requests/searchByID",
+  //         { params: { id: requestID } }
+  //       );
+  //       console.log(request);
+  //       setRequestData(request);
+  //       console.log(requestData);
+  //       return request.data;
+  //     } catch (error) {
+  //       console.error("Error Finding Request: ", error);
+  //     }
+  //   };
 
-    const createPartner = async (newPartner) => {
-      try {
-        const response = await axios.post(
-          "http://localhost:5555/partners/create",
-          newPartner
-        );
-        if (response.status === 200) {
-          console.log("Successfully Created New Partner");
-        }
-      } catch (error) {
-        console.error("Error Creating Partner: ", error);
-      }
-    };
+  //   const createPartner = async (newPartner) => {
+  //     try {
+  //       const response = await axios.post(
+  //         "http://localhost:5555/partners/create",
+  //         newPartner
+  //       );
+  //       if (response.status === 200) {
+  //         console.log("Successfully Created New Partner");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error Creating Partner: ", error);
+  //     }
+  //   };
 
-    const removeRequest = async (requestID) => {
-      try {
-        const url = `http://localhost:5555/requests/delete/${requestID}`;
+  //   const removeRequest = async (requestID) => {
+  //     try {
+  //       const url = `http://localhost:5555/requests/delete/${requestID}`;
 
-        const response = await axios.delete(url);
+  //       const response = await axios.delete(url);
 
-        if (response.status === 200) {
-          console.log("Request Deleted Successfully");
-        }
-      } catch (error) {
-        console.log("Error Deleting");
-        console.log("Error: ", error);
-      }
-    };
+  //       if (response.status === 200) {
+  //         console.log("Request Deleted Successfully");
+  //       }
+  //     } catch (error) {
+  //       console.log("Error Deleting");
+  //       console.log("Error: ", error);
+  //     }
+  //   };
 
-    try {
-      setRequestStatus(false);
-      const response = await findRequest(requestID);
-      console.log(response);
-      if (response) {
-        console.log(response);
-        await createPartner(response);
-        removeRequest(requestID);
-        setRequestStatus(true);
-        alert("Request Successfully Created");
-      } else {
-        console.error("Invalid response from findRequest");
-      }
-    } catch (error) {
-      console.error("Error handling request and creating partner: ", error);
-    }
+  //   try {
+  //     setRequestStatus(false);
+  //     const response = await findRequest(requestID);
+  //     console.log(response);
+  //     if (response) {
+  //       console.log(response);
+  //       await createPartner(response);
+  //       removeRequest(requestID);
+  //       setRequestStatus(true);
+  //       alert("Request Successfully Created");
+  //     } else {
+  //       console.error("Invalid response from findRequest");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error handling request and creating partner: ", error);
+  //   }
+  // };
+
+  const handleDelete = () => {
+    setDeletionPopup(true);
   };
 
-  const handleDeleteRequest = (requestID) => {
-    setRequestStatus(false);
-    const removeRequest = async (requestID) => {
-      try {
-        const url = `http://localhost:5555/requests/delete/${requestID}`;
-
-        const response = await axios.delete(url);
-
-        if (response.status === 200) {
-          console.log("Request Deleted Successfully");
-        }
-      } catch (error) {
-        console.log("Error Deleting");
-        console.log("Error: ", error);
-      }
-    };
-    removeRequest(requestID);
-    alert("Request Deleted Successfully");
-    setRequestStatus(true);
+  const handleSelected = (email) => {
+    if (!selected.includes(email)) {
+      setSelected((prevList) => [...prevList, email]);
+    } else if (selected.includes(email)) {
+      setSelected((prevList) => prevList.filter((item) => item !== email));
+    } else {
+      console.log("Error Removing / Adding Selection.");
+      alert("Error Adding / Removing Selection. See Console For More Info");
+    }
   };
 
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
+      <RequestDeletionPopUp
+        isOpen={deletionPopUp}
+        onClose={() => {
+          setDeletionPopup(false);
+        }}
+        deletionIDs={selected}
+      />
       <div className="flex justify-end">
         <Dropdown drop="down-centered" className="d-inline">
           <Dropdown.Toggle
@@ -116,7 +120,7 @@ const RequestsDatabase = () => {
           <Dropdown.Menu>
             <Dropdown.Item>Edit</Dropdown.Item>
             <Dropdown.Item>Duplicate</Dropdown.Item>
-            <Dropdown.Item>Delete</Dropdown.Item>
+            <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -149,8 +153,8 @@ const RequestsDatabase = () => {
                   <td className="py-0.5 whitespace-nowrap">
                     <input
                       type="checkbox"
-                      // onChange={() => handleSelected(partner._id)}
-                      // checked={selected.includes(partner._id)}
+                      onChange={() => handleSelected(request._id)}
+                      checked={selected.includes(request._id)}
                       className="form-checkbox h-5 w-5 align-middle"
                     />
                   </td>

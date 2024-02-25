@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-function PartnerDeletionPopUp({ isOpen, onClose, deletionIDs }) {
+function RequestDeletionPopUp({ isOpen, onClose, deletionIDs }) {
   const modalClasses = isOpen
     ? "fixed inset-0 flex items-center justify-center backdrop-blur-xs"
     : "hidden";
@@ -9,25 +9,25 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionIDs }) {
     ? "bg-[#383d41f0] text-gray-50  p-6 rounded-lg w-4/12"
     : "hidden";
 
-  const deletePartner = async (deletionID) => {
+  const deleteRequests = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/partners/delete/${deletionID}`;
+      const url = `http://localhost:5555/requests/delete/${deletionID}`;
 
       const response = await axios.delete(url);
 
       if (response.status === 200) {
-        console.log("Partner Deleted Successfully");
+        console.log("Request Deleted Successfully");
       }
     } catch (error) {
-      console.log("Error Deleting Partner");
+      console.log("Error Deleting Request");
       console.log("Error: ", error);
     }
   };
 
   const handleYes = async () => {
-    for (const partner of deletionIDs) {
-      console.log("Deleting Partner ", partner);
-      await deletePartner(partner);
+    for (const request of deletionIDs) {
+      console.log("Deleting Partner ", request);
+      await deleteRequests(request);
     }
     onClose();
   };
@@ -37,7 +37,7 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionIDs }) {
       <div className={contentClasses}>
         <div className="flex flex-col ">
           <h1 className=" self-center py-5 text-lg">
-            Are You Sure You Want To Delete The Selected Partners?
+            Are You Sure You Want To Delete The Selected Requests?
           </h1>
           <div className=" self-center flex gap-20 pb-5">
             <button
@@ -59,4 +59,4 @@ function PartnerDeletionPopUp({ isOpen, onClose, deletionIDs }) {
   );
 }
 
-export default PartnerDeletionPopUp;
+export default RequestDeletionPopUp;
