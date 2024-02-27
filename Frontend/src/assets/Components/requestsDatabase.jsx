@@ -5,7 +5,7 @@ import RequestDeletionPopUp from "./requestDeletionPopUp";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
-  const [requestData, setRequestData] = useState();
+  const [creationStatus, setCreationStatus] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [selected, setSelected] = useState([]);
   const [deletionPopUp, setDeletionPopup] = useState(false);
@@ -19,37 +19,68 @@ const RequestsDatabase = () => {
       .catch((error) => {
         console.error("Error fetching requests:", error);
       });
-  }, [requestStatus, deletionPopUp]);
+  }, [requestStatus, deletionPopUp, creationStatus]);
 
-  // const handleCreatePartner = async (requestID) => {
-  //   const findRequest = async (requestID) => {
-  //     try {
-  //       const request = await axios.get(
-  //         "http://localhost:5555/requests/searchByID",
-  //         { params: { id: requestID } }
-  //       );
-  //       console.log(request);
-  //       setRequestData(request);
-  //       console.log(requestData);
-  //       return request.data;
-  //     } catch (error) {
-  //       console.error("Error Finding Request: ", error);
-  //     }
-  //   };
+  const findRequest = async (requestID) => {
+    try {
+      const request = await axios.get(
+        "http://localhost:5555/requests/searchByID",
+        { params: { id: requestID } }
+      );
+      console.log(request.data);
+      return request.data;
+    } catch (error) {
+      console.error("Error Finding Request: ", error);
+    }
+  };
 
-  //   const createPartner = async (newPartner) => {
-  //     try {
-  //       const response = await axios.post(
-  //         "http://localhost:5555/partners/create",
-  //         newPartner
-  //       );
-  //       if (response.status === 200) {
-  //         console.log("Successfully Created New Partner");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error Creating Partner: ", error);
-  //     }
-  //   };
+  const deleteRequests = async (deletionID) => {
+    try {
+      const url = `http://localhost:5555/requests/delete/${deletionID}`;
+
+      const response = await axios.delete(url);
+
+      if (response.status === 200) {
+        console.log("Request Deleted Successfully");
+      }
+    } catch (error) {
+      console.log("Error Deleting Request");
+      console.log("Error: ", error);
+    }
+  };
+
+  const handleCreatePartner = async (requestIDs) => {
+    console.log(requestIDs);
+    const createPartners = async (newPartner) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:5555/partners/create",
+          newPartner
+        );
+        if (response.status === 200) {
+          console.log("Successfully Created New Partner");
+        }
+      } catch (error) {
+        console.error("Error Creating Partner: ", error);
+      }
+    };
+
+    for (let request of requestIDs) {
+      setCreationStatus(true);
+      console.log("Current request being handled", request);
+      try {
+        const requestData = await findRequest(request);
+        await createPartners(requestData);
+        console.log("Successfully Created New Partner");
+        deleteRequests(request);
+        setCreationStatus(false);
+        setSelected([]);
+      } catch (error) {
+        alert("Their was a error! Check console for more information")
+        console.log(error)
+      }
+    }
+  };
 
   //   const removeRequest = async (requestID) => {
   //     try {
@@ -105,6 +136,7 @@ const RequestsDatabase = () => {
         isOpen={deletionPopUp}
         onClose={() => {
           setDeletionPopup(false);
+          setSelected([]);
         }}
         deletionIDs={selected}
       />
@@ -118,9 +150,11 @@ const RequestsDatabase = () => {
             Actions
           </Dropdown.Toggle>
           <Dropdown.Menu>
+            <Dropdown.Item onClick={() => handleCreatePartner(selected)}>
+              Accept
+            </Dropdown.Item>
             <Dropdown.Item>Edit</Dropdown.Item>
-            <Dropdown.Item>Duplicate</Dropdown.Item>
-            <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
+            <Dropdown.Item onClick={handleDelete}>Deny</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

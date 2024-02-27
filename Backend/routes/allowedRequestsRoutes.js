@@ -57,6 +57,7 @@ router.get("/searchByID", async (req, res) => {
   try {
     const results = await RequestModel.findById(searchValue);
     res.json(results);
+    console.log(results);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
