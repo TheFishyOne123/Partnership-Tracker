@@ -16,6 +16,32 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// Edit Row Data
+router.put("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log("Received Request To Update Request ID:", id);
+  console.log("Received Request Data:", req.body);
+
+  try {
+    const updatedRequest = await RequestModel.findOneAndUpdate(
+      { _id: id },
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    );
+
+    console.log("Updated Request Data:", updatedRequest);
+
+    if (!updatedRequest) {
+      return res.status(404).json({ message: "Request Data Not Found!" });
+    }
+
+    return res.sendStatus(200);
+  } catch (error) {
+    console.error("Error Handling Request Data!", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 // Create New Request
 router.post("/create", async (req, res) => {
   try {

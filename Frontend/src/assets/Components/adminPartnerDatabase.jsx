@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import EditingForm from "./editingForm.jsx";
+import EditingForm from "./EditingForm.jsx";
 import AddNewPartnersDiv from "./addNewPartnersDiv.jsx";
 import PartnerDeletionPopUp from "./partnerDeletionPopUp.jsx";
 import UserGuideAdmin from "./userGuideAdmin.jsx";
@@ -177,7 +177,6 @@ function AdminPartnerDatabase({ search }) {
           updateUser(forwardedState);
         }}
       />
-
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
@@ -221,12 +220,8 @@ function AdminPartnerDatabase({ search }) {
             <th className="px-1 py-2 sm:p-0">Phone</th>
             <th className="px-1 py-2 sm:p-0">Pathway</th>
             <th className="px-1 py-2 sm:p-0">Availability</th>
-            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
-              Start Date
-            </th>
-            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">
-              End Date
-            </th>
+            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">Start Date</th>
+            <th className="px-1 py-2 sm:p-0 whitespace-nowrap">End Date</th>
           </tr>
         </thead>
         <tbody>

@@ -2,13 +2,15 @@ import { React, useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import RequestDeletionPopUp from "./requestDeletionPopUp";
+import RequestEditingForm from "./requestEditingForm";
 
 const RequestsDatabase = () => {
   const [requestsList, setRequestsList] = useState([]);
   const [creationStatus, setCreationStatus] = useState(false);
-  const [requestStatus, setRequestStatus] = useState(false);
   const [selected, setSelected] = useState([]);
   const [deletionPopUp, setDeletionPopup] = useState(false);
+  const [editingPopUp, setEditingPopup] = useState(false);
+  const [tempUserData, setTempUserData] = useState([]);
 
   useEffect(() => {
     axios
@@ -19,7 +21,7 @@ const RequestsDatabase = () => {
       .catch((error) => {
         console.error("Error fetching requests:", error);
       });
-  }, [requestStatus, deletionPopUp, creationStatus]);
+  }, [deletionPopUp, creationStatus, editingPopUp]);
 
   const findRequest = async (requestID) => {
     try {
@@ -76,44 +78,11 @@ const RequestsDatabase = () => {
         setCreationStatus(false);
         setSelected([]);
       } catch (error) {
-        alert("Their was a error! Check console for more information")
-        console.log(error)
+        alert("Their was a error! Check console for more information");
+        console.log(error);
       }
     }
   };
-
-  //   const removeRequest = async (requestID) => {
-  //     try {
-  //       const url = `http://localhost:5555/requests/delete/${requestID}`;
-
-  //       const response = await axios.delete(url);
-
-  //       if (response.status === 200) {
-  //         console.log("Request Deleted Successfully");
-  //       }
-  //     } catch (error) {
-  //       console.log("Error Deleting");
-  //       console.log("Error: ", error);
-  //     }
-  //   };
-
-  //   try {
-  //     setRequestStatus(false);
-  //     const response = await findRequest(requestID);
-  //     console.log(response);
-  //     if (response) {
-  //       console.log(response);
-  //       await createPartner(response);
-  //       removeRequest(requestID);
-  //       setRequestStatus(true);
-  //       alert("Request Successfully Created");
-  //     } else {
-  //       console.error("Invalid response from findRequest");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error handling request and creating partner: ", error);
-  //   }
-  // };
 
   const handleDelete = () => {
     setDeletionPopup(true);
@@ -130,6 +99,24 @@ const RequestsDatabase = () => {
     }
   };
 
+  const handleEditing = async () => {
+    if (selected.length <= 0) {
+      console.log("End Of Requests To Edit");
+      setSelected([]);
+      alert("All Requests Edited!");
+    } else if (selected.length > 0) {
+      console.log("IDs Of Selected Requests To Edit ", selected);
+      const searchResults = await findRequest(selected.slice(-1)[0]);
+      setTempUserData(searchResults);
+      console.log("Currently Editing ", selected.slice(-1)[0]);
+      console.log(searchResults);
+      setEditingPopup(true);
+    } else {
+      alert("There Was A Error. Check Console For More Info");
+      console.log("Error Editing Request ", selected.slice((-1)[0]));
+    }
+  };
+
   return (
     <div className="bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28">
       <RequestDeletionPopUp
@@ -139,6 +126,13 @@ const RequestsDatabase = () => {
           setSelected([]);
         }}
         deletionIDs={selected}
+      />
+      <RequestEditingForm
+        isOpen={editingPopUp}
+        onClose={() => {
+          setEditingPopup(false), selected.shift(), handleEditing();
+        }}
+        rowdata={tempUserData}
       />
       <div className="flex justify-end">
         <Dropdown drop="down-centered" className="d-inline">
@@ -153,7 +147,7 @@ const RequestsDatabase = () => {
             <Dropdown.Item onClick={() => handleCreatePartner(selected)}>
               Accept
             </Dropdown.Item>
-            <Dropdown.Item>Edit</Dropdown.Item>
+            <Dropdown.Item onClick={handleEditing}>Edit</Dropdown.Item>
             <Dropdown.Item onClick={handleDelete}>Deny</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
