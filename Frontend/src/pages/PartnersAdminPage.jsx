@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import "../assets/CSS/admin.css";
 import { useNavigate } from "react-router-dom";
 import AdminPartnerDatabase from "../assets/Components/adminPartnerDatabase";
+import UserGuideAdmin from "../assets/Components/userGuideAdmin";
+import axios from "axios";
 
 // Main Encapsulation For Page
 const PartnersAdminPage = () => {
@@ -13,6 +15,7 @@ const PartnersAdminPage = () => {
   const forwardedState = location.state?.forwardedState;
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [guideStatus, setGuideStatus] = useState(false);
 
   // Functions
   const handleSearchUpdate = (value) => {
@@ -23,13 +26,42 @@ const PartnersAdminPage = () => {
     navigate("/");
   };
 
+  const updateUser = async (userData) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5555/users/${userData[0][1]}`
+      );
+
+      response.data.data.newUser = false;
+
+      await axios.put(
+        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        response.data.data
+      );
+
+      console.log("Successfully Updated User");
+    } catch (error) {
+      console.error("Error Updating User Data", error);
+    }
+  };
+
   // Authenction Check
   if (forwardedState) {
     return (
       <div className="admin-page-body">
+          <UserGuideAdmin
+          className="z-10"
+          isOpen={guideStatus}
+          onClose={() => {
+            setGuideStatus(false);
+            updateUser(forwardedState);
+          }}
+        />
         <AdminNavbar
+          className="z-0"
           forwardedState={forwardedState}
           onSearchChange={handleSearchUpdate}
+          setGuideStatus={setGuideStatus}
         />
         <AdminPartnerDatabase search={search} />
       </div>

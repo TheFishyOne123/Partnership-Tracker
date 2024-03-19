@@ -1,17 +1,39 @@
-import React from "react";
+import {React, useState} from "react";
 import { useLocation } from "react-router-dom";
 import "../assets/CSS/admin.css";
 import { useNavigate } from "react-router-dom";
 import AdminNavbarNoSearchBar from "../assets/Components/adminNavbarNoSearchbar";
 import UsersDatabase from "../assets/Components/usersDatabase";
+import UserGuideAdmin from "../assets/Components/userGuideAdmin";
+import axios from "axios";
 
 const UserAdminPage = () => {
   const location = useLocation();
   const forwardedState = location.state?.forwardedState;
   const navigate = useNavigate();
+  const [guideStatus, setGuideStatus] = useState(false);
 
   const relogin = () => {
     navigate("/");
+  };
+
+  const updateUser = async (userData) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5555/users/${userData[0][1]}`
+      );
+
+      response.data.data.newUser = false;
+
+      await axios.put(
+        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        response.data.data
+      );
+
+      console.log("Successfully Updated User");
+    } catch (error) {
+      console.error("Error Updating User Data", error);
+    }
   };
 
   if (!forwardedState) {
@@ -32,7 +54,18 @@ const UserAdminPage = () => {
   } else {
     return (
       <div className="admin-page-body">
-        <AdminNavbarNoSearchBar forwardedState={forwardedState} />
+          <UserGuideAdmin
+          className="z-10"
+          isOpen={guideStatus}
+          onClose={() => {
+            setGuideStatus(false);
+            updateUser(forwardedState);
+          }}
+        />
+        <AdminNavbarNoSearchBar           
+          className="z-0"
+          setGuideStatus={setGuideStatus}
+          forwardedState={forwardedState}/>
         <UsersDatabase />
       </div>
     );

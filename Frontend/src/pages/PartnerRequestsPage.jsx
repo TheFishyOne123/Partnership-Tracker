@@ -1,10 +1,12 @@
 // Imports
-import React from "react";
+import {React, useState} from "react";
 import { useLocation } from "react-router-dom";
 import "../assets/CSS/admin.css";
 import { useNavigate } from "react-router-dom";
-import AdminNavbarRequests from "../assets/Components/adminNavbarNoSearchbar";
+import AdminNavbarRequests from "../assets/Components/adminNavbarNoSearchbar"
 import RequestsDatabase from "../assets/Components/requestsDatabase";
+import UserGuideAdmin from "../assets/Components/userGuideAdmin";
+import axios from "axios";
 
 // Main Encapsulation Function For Page
 const PartnerRequestsPage = () => {
@@ -12,10 +14,30 @@ const PartnerRequestsPage = () => {
   const location = useLocation();
   const forwardedState = location.state?.forwardedState;
   const navigate = useNavigate();
+  const [guideStatus, setGuideStatus] = useState(false);
 
   // Functions
   const relogin = () => {
     navigate("/");
+  };
+
+  const updateUser = async (userData) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5555/users/${userData[0][1]}`
+      );
+
+      response.data.data.newUser = false;
+
+      await axios.put(
+        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        response.data.data
+      );
+
+      console.log("Successfully Updated User");
+    } catch (error) {
+      console.error("Error Updating User Data", error);
+    }
   };
 
   // Authentication State Check
@@ -37,7 +59,19 @@ const PartnerRequestsPage = () => {
   } else {
     return (
       <div className="admin-page-body">
-        <AdminNavbarRequests forwardedState={forwardedState} />
+        <UserGuideAdmin
+          className="z-10"
+          isOpen={guideStatus}
+          onClose={() => {
+            setGuideStatus(false);
+            updateUser(forwardedState);
+          }}
+        />
+        <AdminNavbarRequests
+          className="z-0"
+          setGuideStatus={setGuideStatus}
+          forwardedState={forwardedState}
+        />
         <RequestsDatabase />
       </div>
     );

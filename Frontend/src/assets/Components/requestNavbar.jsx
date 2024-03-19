@@ -1,19 +1,14 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
-import Searchbar from "./searchbar";
 
-const AdminNavbar = (props) => {
+const RequestNavbar = (props) => {
   const navigate = useNavigate();
   const info = props.forwardedState;
 
   function handleLogout() {
     navigate("/", { state: { AuthInfo: false } });
   }
-
-  const handleSearchUpdate = (value) => {
-    props.onSearchChange(value);
-  };
 
   const handleUsers = () => {
     navigate("/admin/users", { state: { forwardedState: info } });
@@ -34,7 +29,6 @@ const AdminNavbar = (props) => {
   return (
     <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-1 p-4 ">
       <p className=" text-2xl">Partnership Tracker</p>
-      <Searchbar onSearchChange={handleSearchUpdate} />
       <div className="flex ml-auto pr-8	">
         <Dropdown
           drop="down-centered"
@@ -91,4 +85,4 @@ const AdminNavbar = (props) => {
   );
 };
 
-export default AdminNavbar;
+export default RequestNavbar;

@@ -27,7 +27,7 @@ const AdminNavbarRequests = (props) => {
   };
 
   return (
-    <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-50 p-4 ">
+    <div className="text-gray-50	w-screen pl-8 bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-1 p-4 ">
       <p className=" text-2xl">Partnership Tracker</p>
       <div className="flex ml-auto pr-8	">
         <Dropdown
@@ -66,6 +66,12 @@ const AdminNavbarRequests = (props) => {
             {info[0][0]}
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-left">
+            <Dropdown.Item
+              onClick={() => props.setGuideStatus(true)}
+              className="active:bg-gray-400"
+            >
+              Guide
+            </Dropdown.Item>
             <Dropdown.Item
               onClick={handleLogout}
               className="active:bg-gray-400"

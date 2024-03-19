@@ -13,7 +13,7 @@ import video8 from "../images/Open_Guide.mp4";
 
 function UserGuide({ isOpen, onClose }) {
   const modalClasses = isOpen
-    ? "fixed inset-0 flex items-center justify-center backdrop-blur-xs"
+    ? "fixed inset-0 z-10 m-20 flex items-center justify-center backdrop-blur-xs"
     : "hidden";
   const contentClasses = isOpen
     ? "bg-[#383d41f0] text-gray-50 p-6 rounded-lg w-9/12"
