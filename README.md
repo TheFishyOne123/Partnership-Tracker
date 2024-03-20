@@ -29,7 +29,7 @@ Work In Progress
 Within the back end config there are configurations for changing the port and server url incase of a need for a different Mongo Database.
 
 ## Formatting
-This program is formatted by Prettier 
+This program is being formatted by the Visual Studio Code Extension Prettier 
 
 ## Database
 This project is using the latest version of MongoDB. It is set up with three schemas including User, Partner and Request. All models and Schemas can be found in their labeled folder.  
