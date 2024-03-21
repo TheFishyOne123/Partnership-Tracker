@@ -39,6 +39,6 @@ This project is using the latest version of MongoDB. It is set up with three sch
 This project does not use an open source license and is using standard copyright laws. This is due to this project being developed for a competition. This project is set to be open source when the 2023 - 2024 Coding and Programming event is over. 
 
 ## Images Used
-All Background Images Used Are Copyright Free
+All Background Images Used Are Copyright Free                                                                                                
 Logo And Banner Designed By Lillian Riopel
 
