@@ -1,14 +1,11 @@
 // Imports
-
 import express from 'express'
 import { Request as RequestModel } from '../models/requestModel.js'
 
 // Intializing Router Variable For Use In Routes
-
 const router = express.Router()
 
 // Get All Requests
-
 router.get('/all', async (req, res) => {
   try {
     const requests = await RequestModel.find({})
@@ -22,7 +19,6 @@ router.get('/all', async (req, res) => {
 })
 
 // Edit Row Data
-
 router.put('/edit/:id', async (req, res) => {
   const { id } = req.params
   console.log('Received Request To Update Request ID:', id)
@@ -49,7 +45,6 @@ router.put('/edit/:id', async (req, res) => {
 })
 
 // Create New Request
-
 router.post('/create', async (req, res) => {
   try {
     const {
@@ -84,7 +79,6 @@ router.post('/create', async (req, res) => {
 })
 
 //Find Request By ID
-
 router.get('/searchByID', async (req, res) => {
   const searchValue = req.query.id
 
@@ -98,7 +92,6 @@ router.get('/searchByID', async (req, res) => {
 })
 
 // Delete A Partner
-
 router.delete('/delete/:id', async (request, response) => {
   try {
     const { id } = request.params
@@ -121,5 +114,4 @@ router.delete('/delete/:id', async (request, response) => {
 })
 
 // Exports Routes For Use In index.js
-
 export default router
