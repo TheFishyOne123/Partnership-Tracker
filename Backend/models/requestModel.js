@@ -1,5 +1,7 @@
+// Imports
 import mongoose from 'mongoose'
 
+// Requests Model
 const requestsSchema = mongoose.Schema({
   companyName: {
     type: String,
@@ -39,4 +41,5 @@ const requestsSchema = mongoose.Schema({
   }
 })
 
+// Exporting For Use In Database
 export const Request = mongoose.model('Request', requestsSchema)

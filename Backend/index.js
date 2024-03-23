@@ -1,5 +1,4 @@
 // Imports
-
 import express from 'express'
 import { PORT, mongoDBURL } from './config.js'
 import mongoose from 'mongoose'
@@ -9,25 +8,20 @@ import allowedRequestsRoutes from './routes/allowedRequestsRoutes.js'
 import cors from 'cors'
 
 // Base For Using Express
-
 const app = express()
 
 // Parses Request Body
-
 app.use(express.json())
 
-//Allow All Origins
-
+// Allow All Origins
 app.use(cors())
 
 // Allowed Routes
-
 app.use('/users', allowedUsersRoutes)
 app.use('/partners', allowedPartnerRoutes)
 app.use('/requests', allowedRequestsRoutes)
 
-//Database connection
-
+// Database connection
 mongoose
   .connect(mongoDBURL)
   .then(() => {

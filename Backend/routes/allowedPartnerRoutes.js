@@ -1,14 +1,11 @@
 // Variables
-
 import express from 'express'
 import { Partner } from '../models/partnerModel.js'
 
 // Intializing Router Variable For Use In Routes
-
 const router = express.Router()
 
 // Get All Partners
-
 router.get('/all', async (req, res) => {
   try {
     const partners = await Partner.find({})
@@ -22,7 +19,6 @@ router.get('/all', async (req, res) => {
 })
 
 // Search Partners
-
 router.get('/search', async (req, res) => {
   try {
     const search = req.query.search
@@ -43,7 +39,6 @@ router.get('/search', async (req, res) => {
 })
 
 // Search For Row By ID
-
 router.get('/searchByID', async (req, res) => {
   const searchValue = req.query.id
 
@@ -56,7 +51,6 @@ router.get('/searchByID', async (req, res) => {
 })
 
 // Edit Row Data
-
 router.put('/edit/:id', async (req, res) => {
   const { id } = req.params
   console.log('Received Request To Update ID:', id)
@@ -83,7 +77,6 @@ router.put('/edit/:id', async (req, res) => {
 })
 
 // Create New Partner
-
 router.post('/create', async (req, res) => {
   try {
     const {
@@ -118,7 +111,6 @@ router.post('/create', async (req, res) => {
 })
 
 // Delete A Partner
-
 router.delete('/delete/:id', async (request, response) => {
   try {
     const { id } = request.params
@@ -141,5 +133,4 @@ router.delete('/delete/:id', async (request, response) => {
 })
 
 // Exporting Routes For Use In index.js
-
 export default router
