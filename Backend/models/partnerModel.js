@@ -1,7 +1,7 @@
+// Imports
 import mongoose from 'mongoose'
 
 // Partner Model
-
 const partnersSchema = mongoose.Schema({
   companyName: {
     type: String,
@@ -42,5 +42,4 @@ const partnersSchema = mongoose.Schema({
 })
 
 // Exporting For Use In Database
-
 export const Partner = mongoose.model('Partner', partnersSchema)

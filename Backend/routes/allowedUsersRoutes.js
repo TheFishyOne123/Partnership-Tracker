@@ -1,14 +1,11 @@
 // Imports
-
 import express from 'express'
 import { User } from '../models/userModel.js'
 
 // Intializing Router Variable For Use In Routes
-
 const router = express.Router()
 
 // Get All Users
-
 router.get('/all', async (req, res) => {
   try {
     const users = await User.find({})
@@ -22,7 +19,6 @@ router.get('/all', async (req, res) => {
 })
 
 // Get Specific User In Database Route
-
 router.get('/:email', async (request, response) => {
   try {
     const userToFind = request.params.email
@@ -44,7 +40,6 @@ router.get('/:email', async (request, response) => {
 })
 
 // Delete A User
-
 router.delete('/delete/:email', async (request, response) => {
   try {
     const { email } = request.params
@@ -67,7 +62,6 @@ router.delete('/delete/:email', async (request, response) => {
 })
 
 // Create New User
-
 router.post('/create', async (req, res) => {
   try {
     const { name, email, admin, newUser } = req.body
@@ -87,7 +81,6 @@ router.post('/create', async (req, res) => {
 })
 
 // Edit Users
-
 router.put('/edit/:id', async (req, res) => {
   const { id } = req.params
 
@@ -110,5 +103,4 @@ router.put('/edit/:id', async (req, res) => {
 })
 
 // Exports Router For Use In index.js
-
 export default router
