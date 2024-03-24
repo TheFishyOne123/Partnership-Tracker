@@ -174,7 +174,7 @@ function Database({ search }) {
 
   return (
     <div className='bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
-      <div>
+      <div className='flex justify-end'>
         <Dropdown drop='down-centered' className='d-inline'>
           <Dropdown.Toggle
             variant='secondary'
