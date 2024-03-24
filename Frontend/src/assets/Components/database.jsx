@@ -3,6 +3,8 @@ import axios from 'axios'
 import RequestNewPartnersDiv from './requestNewPartnersDiv'
 import Dropdown from 'react-bootstrap/Dropdown'
 import exportFromJSON from 'export-from-json'
+import pdfMake from 'pdfmake/build/pdfmake.js'
+import pdfFonts from 'pdfmake/build/vfs_fonts.js'
 
 function Database({ search }) {
   const [partnersList, setPartnersList] = useState([])
@@ -67,6 +69,109 @@ function Database({ search }) {
     }
   }
 
+  const exportAsXls = () => {
+    if (search) {
+      if (searchResults.length <= 0) {
+        alert('No Search Results To Create Xls')
+      } else {
+        const xlsData = searchResults.map(({ _id, __v, ...xlsData }) => xlsData)
+        const exportType = exportFromJSON.types.xls
+        exportFromJSON({
+          data: xlsData,
+          fileName: 'SearchReport',
+          exportType: exportType
+        })
+      }
+    } else if (!search) {
+      const xlsData = partnersList.map(({ _id, __v, ...xlsData }) => xlsData)
+      const exportType = exportFromJSON.types.xls
+      exportFromJSON({
+        data: xlsData,
+        fileName: 'AllPartnersReport',
+        exportType: exportType
+      })
+    } else {
+      console.log('Unexpected Result While Exporting As Xls')
+      alert('Unexpected Result Check Console')
+    }
+  }
+
+  const exportAsPDF = () => {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs
+
+    const documentDefinition = {
+      headerRows: 1,
+      layout: 'lightHorizontalLines',
+      pageOrientation: 'landscape',
+      pageMargins: [10, 10, 10, 10],
+      content: [
+        { text: 'Partnership Tracker Partners', style: 'header' },
+        {
+          table: {
+            widths: [
+              'auto',
+              'auto',
+              'auto',
+              'auto',
+              145,
+              'auto',
+              'auto',
+              'auto',
+              'auto'
+            ],
+            body: [
+              [
+                { text: 'Company Name', style: 'tableHeader' },
+                { text: 'Position', style: 'tableHeader' },
+                { text: 'Owner', style: 'tableHeader' },
+                { text: 'Email', style: 'tableHeader' },
+                { text: 'Phone', style: 'tableHeader' },
+                { text: 'Pathway', style: 'tableHeader' },
+                { text: 'Availability', style: 'tableHeader' },
+                { text: 'Start Date', style: 'tableHeader' },
+                { text: 'End Date', style: 'tableHeader' }
+              ],
+              ...partnersList.map((partner) => [
+                { text: partner.companyName, style: 'tableCell' },
+                { text: partner.position, style: 'tableCell' },
+                { text: partner.owner, style: 'tableCell' },
+                { text: partner.email, style: 'tableCell' },
+                { text: partner.phone, style: 'tableCell' },
+                { text: partner.pathway, style: 'tableCell' },
+                { text: partner.timeOfDay, style: 'tableCell' },
+                { text: partner.firstDayAvailable, style: 'tableCell' },
+                { text: partner.lastDayAvailable, style: 'tableCell' }
+              ])
+            ]
+          }
+        }
+      ],
+      pageSize: 'A1',
+      styles: {
+        header: {
+          bold: true,
+          alignment: 'center',
+          margin: [0, 0, 0, 20],
+          fontSize: 36
+        },
+        tableHeader: {
+          bold: true,
+          alignment: 'center',
+          fontSize: 26
+        },
+        tableCell: {
+          fontSize: 23,
+          alignment: 'center'
+        }
+      }
+    }
+
+    pdfMake.createPdf(documentDefinition).download('partners_report.pdf')
+
+    console.log(documentDefinition)
+    pdfMake.createPdf(documentDefinition).download('partners_report.pdf')
+  }
+
   return (
     <div className='bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
       <div>
@@ -80,8 +185,8 @@ function Database({ search }) {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={exportAsCsv}>Export As CSV</Dropdown.Item>
-            <Dropdown.Item>Export As PDF</Dropdown.Item>
-            <Dropdown.Item>Export As XLS</Dropdown.Item>
+            <Dropdown.Item onClick={exportAsPDF}>Export As PDF</Dropdown.Item>
+            <Dropdown.Item onClick={exportAsXls}>Export As XLS</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
