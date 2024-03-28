@@ -5,6 +5,8 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import exportFromJSON from 'export-from-json'
 import pdfMake from 'pdfmake/build/pdfmake.js'
 import pdfFonts from 'pdfmake/build/vfs_fonts.js'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Database({ search }) {
   const [partnersList, setPartnersList] = useState([])
@@ -19,6 +21,16 @@ function Database({ search }) {
       })
       .catch((error) => {
         console.error('Error fetching partners:', error)
+        toast.error('Error Fetching Partners. Check Console For More Info.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       })
   }, [creationFormStatus])
 
@@ -32,6 +44,16 @@ function Database({ search }) {
         setSearchResults(response.data)
       } catch (error) {
         console.error('Error With Search:', error)
+        toast.error('Error With Search. Check Console For More Info.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       }
     }
 
@@ -45,7 +67,16 @@ function Database({ search }) {
   const exportAsCsv = () => {
     if (search) {
       if (searchResults.length <= 0) {
-        alert('No Search Results To Create CSV')
+        toast.warn('No Search Results To Convert To CSV', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       } else {
         const csvData = searchResults.map(({ _id, __v, ...csvData }) => csvData)
         const exportType = exportFromJSON.types.csv
@@ -65,14 +96,35 @@ function Database({ search }) {
       })
     } else {
       console.log('Unexpected Result While Exporting As Csv')
-      alert('Unexpected Result Check Console')
+      toast.error(
+        'Unexpected Result While Exporting As CSV. Check Console For More Info.',
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        }
+      )
     }
   }
 
   const exportAsXls = () => {
     if (search) {
       if (searchResults.length <= 0) {
-        alert('No Search Results To Create Xls')
+        toast.warn('No Search Results To Convert To XLS', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       } else {
         const xlsData = searchResults.map(({ _id, __v, ...xlsData }) => xlsData)
         const exportType = exportFromJSON.types.xls
@@ -92,84 +144,182 @@ function Database({ search }) {
       })
     } else {
       console.log('Unexpected Result While Exporting As Xls')
-      alert('Unexpected Result Check Console')
+      toast.error(
+        'Unexpected Result While Exporting As XLS. Check Console For More Info.',
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        }
+      )
     }
   }
 
   const exportAsPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs
 
-    const documentDefinition = {
-      headerRows: 1,
-      layout: 'lightHorizontalLines',
-      pageOrientation: 'landscape',
-      pageMargins: [10, 10, 10, 10],
-      content: [
-        { text: 'Partnership Tracker Partners', style: 'header' },
-        {
-          table: {
-            widths: [
-              'auto',
-              'auto',
-              'auto',
-              'auto',
-              145,
-              'auto',
-              'auto',
-              'auto',
-              'auto'
-            ],
-            body: [
-              [
-                { text: 'Company Name', style: 'tableHeader' },
-                { text: 'Position', style: 'tableHeader' },
-                { text: 'Owner', style: 'tableHeader' },
-                { text: 'Email', style: 'tableHeader' },
-                { text: 'Phone', style: 'tableHeader' },
-                { text: 'Pathway', style: 'tableHeader' },
-                { text: 'Availability', style: 'tableHeader' },
-                { text: 'Start Date', style: 'tableHeader' },
-                { text: 'End Date', style: 'tableHeader' }
-              ],
-              ...partnersList.map((partner) => [
-                { text: partner.companyName, style: 'tableCell' },
-                { text: partner.position, style: 'tableCell' },
-                { text: partner.owner, style: 'tableCell' },
-                { text: partner.email, style: 'tableCell' },
-                { text: partner.phone, style: 'tableCell' },
-                { text: partner.pathway, style: 'tableCell' },
-                { text: partner.timeOfDay, style: 'tableCell' },
-                { text: partner.firstDayAvailable, style: 'tableCell' },
-                { text: partner.lastDayAvailable, style: 'tableCell' }
-              ])
-            ]
+    if (search) {
+      if (searchResults.length <= 0) {
+        toast.warn('No Search Results To Convert To PDF', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
+      } else {
+        const documentDefinition = {
+          headerRows: 1,
+          layout: 'lightHorizontalLines',
+          pageOrientation: 'landscape',
+          pageMargins: [10, 10, 10, 10],
+          content: [
+            { text: 'Partnership Tracker Partners', style: 'header' },
+            {
+              table: {
+                widths: [
+                  'auto',
+                  'auto',
+                  'auto',
+                  'auto',
+                  160,
+                  'auto',
+                  'auto',
+                  'auto',
+                  'auto'
+                ],
+                heights: 60,
+                body: [
+                  [
+                    { text: 'Company Name', style: 'tableHeader' },
+                    { text: 'Position', style: 'tableHeader' },
+                    { text: 'Owner', style: 'tableHeader' },
+                    { text: 'Email', style: 'tableHeader' },
+                    { text: 'Phone', style: 'tableHeader' },
+                    { text: 'Pathway', style: 'tableHeader' },
+                    { text: 'Availability', style: 'tableHeader' },
+                    { text: 'Start Date', style: 'tableHeader' },
+                    { text: 'End Date', style: 'tableHeader' }
+                  ],
+                  ...searchResults.map((result) => [
+                    { text: result.companyName, style: 'tableCell' },
+                    { text: result.position, style: 'tableCell' },
+                    { text: result.owner, style: 'tableCell' },
+                    { text: result.email, style: 'tableCell' },
+                    { text: result.phone, style: 'tableCell' },
+                    { text: result.pathway, style: 'tableCell' },
+                    { text: result.timeOfDay, style: 'tableCell' },
+                    { text: result.firstDayAvailable, style: 'tableCell' },
+                    { text: result.lastDayAvailable, style: 'tableCell' }
+                  ])
+                ]
+              }
+            }
+          ],
+          pageSize: 'A1',
+          styles: {
+            header: {
+              bold: true,
+              alignment: 'center',
+              margin: [0, 0, 0, 20],
+              fontSize: 36
+            },
+            tableHeader: {
+              bold: true,
+              alignment: 'center',
+              fontSize: 26
+            },
+            tableCell: {
+              fontSize: 23,
+              alignment: 'center',
+              margin: 5
+            }
           }
         }
-      ],
-      pageSize: 'A1',
-      styles: {
-        header: {
-          bold: true,
-          alignment: 'center',
-          margin: [0, 0, 0, 20],
-          fontSize: 36
-        },
-        tableHeader: {
-          bold: true,
-          alignment: 'center',
-          fontSize: 26
-        },
-        tableCell: {
-          fontSize: 23,
-          alignment: 'center'
+
+        pdfMake.createPdf(documentDefinition).download('Search_Results.pdf')
+      }
+      if (!search) {
+        const documentDefinition = {
+          headerRows: 1,
+          layout: 'lightHorizontalLines',
+          pageOrientation: 'landscape',
+          pageMargins: [10, 10, 10, 10],
+          content: [
+            { text: 'Partnership Tracker Partners', style: 'header' },
+            {
+              table: {
+                widths: [
+                  'auto',
+                  'auto',
+                  'auto',
+                  'auto',
+                  160,
+                  'auto',
+                  'auto',
+                  'auto',
+                  'auto'
+                ],
+                heights: 60,
+                body: [
+                  [
+                    { text: 'Company Name', style: 'tableHeader' },
+                    { text: 'Position', style: 'tableHeader' },
+                    { text: 'Owner', style: 'tableHeader' },
+                    { text: 'Email', style: 'tableHeader' },
+                    { text: 'Phone', style: 'tableHeader' },
+                    { text: 'Pathway', style: 'tableHeader' },
+                    { text: 'Availability', style: 'tableHeader' },
+                    { text: 'Start Date', style: 'tableHeader' },
+                    { text: 'End Date', style: 'tableHeader' }
+                  ],
+                  ...partnersList.map((partner) => [
+                    { text: partner.companyName, style: 'tableCell' },
+                    { text: partner.position, style: 'tableCell' },
+                    { text: partner.owner, style: 'tableCell' },
+                    { text: partner.email, style: 'tableCell' },
+                    { text: partner.phone, style: 'tableCell' },
+                    { text: partner.pathway, style: 'tableCell' },
+                    { text: partner.timeOfDay, style: 'tableCell' },
+                    { text: partner.firstDayAvailable, style: 'tableCell' },
+                    { text: partner.lastDayAvailable, style: 'tableCell' }
+                  ])
+                ]
+              }
+            }
+          ],
+          pageSize: 'A1',
+          styles: {
+            header: {
+              bold: true,
+              alignment: 'center',
+              margin: [0, 0, 0, 20],
+              fontSize: 36
+            },
+            tableHeader: {
+              bold: true,
+              alignment: 'center',
+              fontSize: 26
+            },
+            tableCell: {
+              fontSize: 23,
+              alignment: 'center',
+              margin: 5
+            }
+          }
         }
+
+        pdfMake.createPdf(documentDefinition).download('All_Partners_List.pdf')
       }
     }
-
-    pdfMake.createPdf(documentDefinition).download('partners_report.pdf')
-
-    console.log(documentDefinition)
-    pdfMake.createPdf(documentDefinition).download('partners_report.pdf')
   }
 
   return (

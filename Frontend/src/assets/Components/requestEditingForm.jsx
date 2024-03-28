@@ -1,120 +1,200 @@
-import { React, useState, useEffect } from "react";
-import { IoCloseSharp } from "react-icons/io5";
-import "../CSS/editingForm.css";
-import axios from "axios";
+import { React, useState, useEffect } from 'react'
+import { IoCloseSharp } from 'react-icons/io5'
+import '../CSS/editingForm.css'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function RequestEditingForm({ isOpen, onClose, rowdata }) {
-  const [selectedPathway, setSelectedPathway] = useState(rowdata.pathway);
-  const [selectedTime, setSelectedTime] = useState(rowdata.timeOfDay);
+  const [selectedPathway, setSelectedPathway] = useState(rowdata.pathway)
+  const [selectedTime, setSelectedTime] = useState(rowdata.timeOfDay)
 
   useEffect(() => {
-    setSelectedPathway(rowdata.pathway || "");
-    setSelectedTime(rowdata.timeOfDay || "");
-  }, [rowdata]);
+    setSelectedPathway(rowdata.pathway || '')
+    setSelectedTime(rowdata.timeOfDay || '')
+  }, [rowdata])
 
   const modalClasses = isOpen
-    ? "fixed inset-0 flex items-center justify-center backdrop-blur-xs"
-    : "hidden";
+    ? 'fixed inset-0 flex items-center justify-center backdrop-blur-xs'
+    : 'hidden'
   const contentClasses = isOpen
-    ? "bg-[#383d41f0] text-gray-50  p-6 rounded-lg w-9/12"
-    : "hidden";
+    ? 'bg-[#383d41f0] text-gray-50  p-6 rounded-lg w-9/12'
+    : 'hidden'
 
   const updateRequestData = async (id, updatedRequestData) => {
     try {
       const response = await axios.put(
         `http://localhost:5555/requests/edit/${id}`,
         updatedRequestData
-      );
+      )
 
       if (response.status === 200) {
-        console.log("Successful Edit");
+        console.log('Successful Edit')
+        toast.success('Successfully Edited Request', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       }
     } catch (error) {
-      console.error("Error Updating Request Data", error);
+      console.error('Error Updating Request Data', error)
+      toast.error('Error Updating Request Data. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
-  };
+  }
 
   const deleteRequests = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/requests/delete/${deletionID}`;
+      const url = `http://localhost:5555/requests/delete/${deletionID}`
 
-      const response = await axios.delete(url);
+      const response = await axios.delete(url)
 
       if (response.status === 200) {
-        console.log("Request Deleted Successfully");
+        console.log('Request Deleted Successfully')
+        toast.success('Successfully Deleted Request', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       }
     } catch (error) {
-      console.log("Error Deleting Request");
-      console.log("Error: ", error);
+      console.log('Error Deleting Request', error)
+      toast.error('Error Deleting Request. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
-  };
+  }
 
   const handleSubmitForm = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.target);
-    const editDataObject = {};
+    const formData = new FormData(e.target)
+    const editDataObject = {}
 
     formData.forEach((value, key) => {
-      editDataObject[key] = value;
-    });
-
-    console.log("Form Data:", editDataObject);
+      editDataObject[key] = value
+    })
 
     try {
-      await updateRequestData(rowdata._id, editDataObject);
-      onClose();
+      await updateRequestData(rowdata._id, editDataObject)
+      onClose()
     } catch (error) {
-      console.error("Error Updating Request Data", error);
+      console.error('Error Updating Request Data', error)
+      toast.error('Error Updating Request Data. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
-  };
+  }
 
   const handleEditAndAccept = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const form = e.target.closest("form");
-    const formData = new FormData(form);
+    const form = e.target.closest('form')
+    const formData = new FormData(form)
 
-    const editDataObject = {};
+    const editDataObject = {}
     formData.forEach((value, key) => {
-      editDataObject[key] = value;
-    });
+      editDataObject[key] = value
+    })
 
     try {
       const response = await axios.post(
         `http://localhost:5555/partners/create`,
         editDataObject
-      );
+      )
 
       if (response.status === 200) {
-        console.log("Successfully Created Partner");
-        await deleteRequests(rowdata._id);
-        alert("Completed Adding New Partner");
+        console.log('Successfully Created Partner')
+        await deleteRequests(rowdata._id)
+        toast.success('Successfully Created Partner', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       } else {
-        alert("Unexpected result when creating new psrtner!");
-        console.log("Unexpected result when creating new psrtner!");
+        console.log('Unexpected result when creating new partner!')
+        toast.error(
+          'Unexpected Result When Creating New Partner. Check Console For More Info.',
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light'
+          }
+        )
       }
 
-      onClose();
+      onClose()
     } catch (error) {
-      console.error("Error Creating New Partner", error);
+      console.error('Error Creating New Partner', error)
+      toast.error('Error Creating New Partner. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
-  };
+  }
 
   return (
     <div className={modalClasses}>
       <div className={contentClasses}>
-        <div className="flex flex-col content-center">
-          <div className="flex justify-end items-center gap-11">
-            <button className="cursor-pointer" onClick={onClose}>
-              <IoCloseSharp size="2em" />
+        <div className='flex flex-col content-center'>
+          <div className='flex justify-end items-center gap-11'>
+            <button className='cursor-pointer' onClick={onClose}>
+              <IoCloseSharp size='2em' />
             </button>
           </div>
-          <h1 className="flex text-2xl justify-center py-9">
+          <h1 className='flex text-2xl justify-center py-9'>
             Editing Request Data
           </h1>
           <form
-            className="grid grid-cols-3 gap-6 px-7 pb-6 text-center"
+            className='grid grid-cols-3 gap-6 px-7 pb-6 text-center'
             onSubmit={handleSubmitForm}
           >
             <label>Company Name</label>
@@ -122,20 +202,20 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
             <label>Owner</label>
             <input
               required
-              name="companyName"
-              type="text"
+              name='companyName'
+              type='text'
               defaultValue={rowdata.companyName}
             />
             <input
               required
-              name="position"
-              type="text"
+              name='position'
+              type='text'
               defaultValue={rowdata.position}
             />
             <input
               required
-              name="owner"
-              type="text"
+              name='owner'
+              type='text'
               defaultValue={rowdata.owner}
             />
             <label>Email</label>
@@ -143,33 +223,33 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
             <label>Pathway</label>
             <input
               required
-              name="email"
-              type="email"
+              name='email'
+              type='email'
               defaultValue={rowdata.email}
             />
             <input
               required
-              name="phone"
-              type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              name='phone'
+              type='tel'
+              pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
               defaultValue={rowdata.phone}
             />
             <select
               required
-              name="pathway"
+              name='pathway'
               value={selectedPathway}
               onChange={(e) => setSelectedPathway(e.target.value)}
             >
-              <option value="Health">Health</option>
-              <option value="STEAM">STEAM</option>
-              <option value="Arts, Hospitality, & Education">
+              <option value='Health'>Health</option>
+              <option value='STEAM'>STEAM</option>
+              <option value='Arts, Hospitality, & Education'>
                 Arts, Hospitality, & Education
               </option>
-              <option value="Skilled Trades, Security, And Industry">
+              <option value='Skilled Trades, Security, And Industry'>
                 Skilled Trades, Security, And Industry
               </option>
-              <option value="TOP">Tiger Open Pathway</option>
-              <option value="PTECH">
+              <option value='TOP'>Tiger Open Pathway</option>
+              <option value='PTECH'>
                 Pathways in Technology Early College High School (PTECH)
               </option>
             </select>
@@ -178,42 +258,42 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
             <label>Last Day Available</label>
             <select
               required
-              name="timeOfDay"
+              name='timeOfDay'
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
             >
-              <option value="Morning">Morning</option>
-              <option value="Afternoon">Afternoon</option>
-              <option value="Evening">Evening</option>
+              <option value='Morning'>Morning</option>
+              <option value='Afternoon'>Afternoon</option>
+              <option value='Evening'>Evening</option>
             </select>
             <input
               required
-              name="firstDayAvailable"
-              type="date"
+              name='firstDayAvailable'
+              type='date'
               defaultValue={rowdata.firstDayAvailable}
             />
             <input
               required
-              name="lastDayAvailable"
-              type="date"
+              name='lastDayAvailable'
+              type='date'
               defaultValue={rowdata.lastDayAvailable}
             />
             <input
-              className="col-span-1 cursor-pointer text-white"
-              type="button"
+              className='col-span-1 cursor-pointer text-white'
+              type='button'
               onClick={handleEditAndAccept}
-              value={"Edit And Add To Database"}
+              value={'Edit And Add To Database'}
             />
             <br></br>
             <input
-              className=" col-span-1 cursor-pointer text-white"
-              type="submit"
+              className=' col-span-1 cursor-pointer text-white'
+              type='submit'
             />
           </form>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default RequestEditingForm;
+export default RequestEditingForm

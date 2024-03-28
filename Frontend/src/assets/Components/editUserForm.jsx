@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { IoCloseSharp } from 'react-icons/io5'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const editUserForm = ({ onClose, rowdata, isOpen }) => {
   const modalClasses = isOpen
@@ -19,9 +21,29 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
       if (response.status === 200) {
         console.log('Successfully Edited User')
         onClose()
+        toast.success('Successfully Edited User', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       }
     } catch (error) {
       console.error('Error Editing User: ', error)
+      toast.error('Error Editing User. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
   }
 
@@ -42,22 +64,46 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
             return false
           } else {
             console.log('Something Went Wrong When Checking Email. ')
-            alert(
-              'Error Checking New Email Against Database. Check Console For More Info.'
-            )
+            toast.error('Error Checking Email. Check Console For More Info.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            })
           }
         } catch (error) {
           console.error('Error Checking New Email Against Database.', error)
-          alert(
-            'Error Checking New Email Against Database. Check Console For More Info.'
+          toast.error(
+            'Error Checking New Email. Check Console For More Info.',
+            {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            }
           )
         }
       }
     } catch (error) {
       console.error('Error Checking New Email Against Database.', error)
-      alert(
-        'Error Checking New Email Against Database. Check Console For More Info.'
-      )
+      toast.error('Error Checking New Email. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
   }
 
@@ -70,20 +116,50 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
       editedDataObject[key] = value
     })
     editedDataObject['newUser'] = true
-    console.log(editedDataObject)
     try {
       const emailCheckValue = await emailCheck(editedDataObject.email)
       if (emailCheckValue === true) {
         console.log('Email Already In Use.')
-        alert('Email Already In Use. Try Again With Different Email.')
+        toast.warn('Email Already In Use', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
       } else if (emailCheckValue === false) {
         await editUser(rowdata.email, editedDataObject)
       } else {
         console.log('Unexpected Output of Email Check')
-        alert('Error Checking Email. Check Console For More Info.')
+        toast.error(
+          'Unexpected Outpot of Email Check. Check Console For More Info.',
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light'
+          }
+        )
       }
     } catch (error) {
       console.error('There was a error Editing User ', error)
+      toast.error('Error Editing User. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
     }
   }
 
