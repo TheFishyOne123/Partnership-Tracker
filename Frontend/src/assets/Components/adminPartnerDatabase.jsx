@@ -308,9 +308,8 @@ function AdminPartnerDatabase({ search }) {
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
-          {
-            setEditingForm(false), selected.shift()
-          }
+            setEditingForm(false)
+            selected.shift()
         }}
         rowdata={tempUserData}
       />

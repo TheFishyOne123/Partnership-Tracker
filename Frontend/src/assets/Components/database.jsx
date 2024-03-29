@@ -127,20 +127,18 @@ function Database({ search }) {
         })
       } else {
         const xlsData = searchResults.map(({ _id, __v, ...xlsData }) => xlsData)
-        const exportType = exportFromJSON.types.xls
         exportFromJSON({
           data: xlsData,
           fileName: 'SearchReport',
-          exportType: exportType
+          exportType: "xls"
         })
       }
     } else if (!search) {
       const xlsData = partnersList.map(({ _id, __v, ...xlsData }) => xlsData)
-      const exportType = exportFromJSON.types.xls
       exportFromJSON({
         data: xlsData,
         fileName: 'AllPartnersReport',
-        exportType: exportType
+        exportType: "xls"
       })
     } else {
       console.log('Unexpected Result While Exporting As Xls')

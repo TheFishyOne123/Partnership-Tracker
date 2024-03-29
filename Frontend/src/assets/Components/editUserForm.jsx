@@ -115,7 +115,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
     formData.forEach((value, key) => {
       editedDataObject[key] = value
     })
-    editedDataObject['newUser'] = true
+    editedDataObject.newUser = true
     try {
       const emailCheckValue = await emailCheck(editedDataObject.email)
       if (emailCheckValue === true) {

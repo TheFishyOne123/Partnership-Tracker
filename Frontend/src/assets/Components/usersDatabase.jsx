@@ -75,7 +75,7 @@ function usersDatabase() {
     }
     if (selected.length > 0) {
       console.log('Users To Delete ' + selected.length)
-      for (let email of selected) {
+      for (const email of selected) {
         await deleteUser(email)
       }
       if (selected.length > 1) {
@@ -216,7 +216,8 @@ function usersDatabase() {
         isOpen={editStatus}
         rowdata={tempUserData}
         onClose={() => {
-          setEditStatus(false), setCurrentIndex((prevIndex) => (prevIndex += 1))
+          setEditStatus(false)
+          setCurrentIndex((prevIndex) => (prevIndex += 1))
         }}
       />
 

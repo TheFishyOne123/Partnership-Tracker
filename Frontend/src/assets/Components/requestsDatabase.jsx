@@ -126,7 +126,7 @@ const RequestsDatabase = () => {
       }
     }
 
-    for (let request of requestIDs) {
+    for (const request of requestIDs) {
       setCreationStatus(true)
       try {
         const requestData = await findRequest(request)
@@ -237,7 +237,9 @@ const RequestsDatabase = () => {
       <RequestEditingForm
         isOpen={editingPopUp}
         onClose={() => {
-          setEditingPopup(false), selected.shift(), handleEditing()
+          setEditingPopup(false)
+          selected.shift()
+          handleEditing()
         }}
         rowdata={tempUserData}
       />

@@ -96,7 +96,7 @@ const newUserForm = ({ onClose }) => {
     formData.forEach((value, key) => {
       creationDataObject[key] = value
     })
-    creationDataObject['newUser'] = true
+    creationDataObject.newUser = true
     console.log(creationDataObject)
 
     try {
