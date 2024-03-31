@@ -2,7 +2,7 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
 import { jwtDecode } from 'jwt-decode'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, React } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../index.css'
 import { ToastContainer, toast } from 'react-toastify'
@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 const LoginPage = () => {
   // Variables
   const navigate = useNavigate()
-  let [AuthInfo, setAuthInfo] = useState(null)
+  const [AuthInfo, setAuthInfo] = useState(null)
 
   // Authencation Check On Log On
   useEffect(() => {

@@ -18,7 +18,7 @@ function requestNewPartnersDiv({ creationFormStatus }) {
     <div>
       {isFormOpen && <RequestNewPartnersForm onClose={handleCloseForm} />}
       <h1 className='text-white text-xl font-bold mb-2'>
-        Not What You're Looking For?
+        Not What You&apos;re Looking For?
       </h1>
       <button
         className='bg-gray-500 text-white font-bold py-2 text-base px-4 rounded'

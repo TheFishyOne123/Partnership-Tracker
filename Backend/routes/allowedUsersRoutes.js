@@ -47,7 +47,7 @@ router.delete('/delete/:email', async (request, response) => {
     console.log('New Deletion Request!')
     console.log('Deletion Email: ', email)
 
-    const user = await User.findOneAndDelete({ email: email })
+    const user = await User.findOneAndDelete({ email })
 
     if (!user) {
       return response.status(404).json({ message: 'User Not Found' })
