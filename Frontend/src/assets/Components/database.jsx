@@ -73,7 +73,7 @@ function Database({ search }) {
         fileName: 'AllPartnersReport',
         exportType: 'csv'
       })
-    } else if (search) {
+    } else {
       if (searchResults.length <= 0) {
         toast.warn('No Search Results To Convert To CSV', {
           position: 'top-right',
@@ -93,21 +93,6 @@ function Database({ search }) {
           exportType: 'csv'
         })
       }
-    } else {
-      console.log('Unexpected Result While Exporting As Csv')
-      toast.error(
-        'Unexpected Result While Exporting As CSV. Check Console For More Info.',
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light'
-        }
-      )
     }
   }
 
@@ -119,7 +104,7 @@ function Database({ search }) {
         fileName: 'AllPartnersReport',
         exportType: 'xls'
       })
-    } else if (search) {
+    } else {
       if (searchResults.length <= 0) {
         toast.warn('No Search Results To Convert To XLS', {
           position: 'top-right',
@@ -139,21 +124,6 @@ function Database({ search }) {
           exportType: 'xls'
         })
       }
-    } else {
-      console.log('Unexpected Result While Exporting As Xls')
-      toast.error(
-        'Unexpected Result While Exporting As XLS. Check Console For More Info.',
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light'
-        }
-      )
     }
   }
 
