@@ -28,14 +28,32 @@ const HomePage = () => {
   }
 
   const checkUser = async (userData) => {
-    await axios.get(`http://localhost:5555/users/user?user=${userData[0][1]}`)
+    try {
+      const response = await axios.get(
+        `http://localhost:5555/users/${userData}`
+      )
+      return response.data.data.newUser
+    } catch (error) {
+      console.error('Error checking user', error)
+      toast.error('Error Checking User. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
+      return false
+    }
   }
 
   // Function Updates New User State in Database To False
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/user?user=${userData[0][1]}`
+        `http://localhost:5555/users/${userData[0][1]}`
       )
 
       response.data.data.newUser = false
@@ -63,21 +81,16 @@ const HomePage = () => {
 
   // Checks Guide Status To Decide Whether To Deploy Guide Or Not / Also Checks Authentication State
   useEffect(() => {
-    const fetchData = async () => {
+    const checkUserAndSetGuide = async () => {
       if (forwardedState && forwardedState[2] === true) {
-        try {
-          await checkUser(forwardedState[0][1])
-          setGuideStatus(true)
-        } catch (error) {
-          setGuideStatus(false)
-          console.log('No Guide Needed')
-        }
+        const isNewUser = await checkUser(forwardedState[0][1])
+        setGuideStatus(isNewUser)
       } else {
-        console.log('Guide Turned Off')
+        console.log('No Guide Needed')
       }
     }
 
-    fetchData()
+    checkUserAndSetGuide()
   }, [forwardedState])
 
   if (!forwardedState) {

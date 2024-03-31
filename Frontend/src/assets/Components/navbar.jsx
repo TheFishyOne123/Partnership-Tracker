@@ -17,7 +17,7 @@ function Navbar(forwardedState) {
   }
 
   return (
-    <div className='text-gray-50 w-screen bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-50'>
+    <div className='text-gray-50 w-screen bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-0'>
       <img className='w-20' src={Logo} alt='Logo' />
       <p className='font-normal'>Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
