@@ -1,6 +1,6 @@
 ![Banner (1)](https://github.com/TheFishyOne123/Partnership-Tracker/assets/81216766/9c7c938a-3fb5-4ef3-91c1-5eb9a759cc2a)
 
-# Partnership Tracker [![DeepScan grade](https://deepscan.io/api/teams/23258/projects/26524/branches/845969/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=23258&pid=26524&bid=845969)
+# Partnership Tracker [![DeepScan grade](https://deepscan.io/api/teams/23258/projects/26524/branches/854977/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=23258&pid=26524&bid=854977)
 This program is being developed for the FBLA coding and programming event 2023-2024
 
 ## Installing / Getting started
