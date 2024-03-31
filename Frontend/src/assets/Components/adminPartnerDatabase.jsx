@@ -365,31 +365,58 @@ function AdminPartnerDatabase({ search }, forwardedState) {
                       className='form-checkbox h-5 w-5 align-middle'
                     />
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden'>
+                  <td
+                    title={partner.companyName}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden'
+                  >
                     {partner.companyName}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden '>
+                  <td
+                    title={partner.position}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden '
+                  >
                     {partner.position}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'>
+                  <td
+                    title={partner.owner}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
+                  >
                     {partner.owner}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden '>
+                  <td
+                    title={partner.email}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden '
+                  >
                     {partner.email}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'>
+                  <td
+                    title={partner.phone}
+                    className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
+                  >
                     {partner.phone}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden '>
+                  <td
+                    title={partner.pathway}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden '
+                  >
                     {partner.pathway}
                   </td>
-                  <td className='bg-gray-500 p-1.5 sm:p-0'>
+                  <td
+                    title={partner.timeOfDay}
+                    className='bg-gray-500 p-1.5 sm:p-0'
+                  >
                     {partner.timeOfDay}
                   </td>
-                  <td className='bg-gray-500 p-.5 sm:p-0'>
+                  <td
+                    title={partner.firstDayAvailable}
+                    className='bg-gray-500 p-.5 sm:p-0'
+                  >
                     {partner.firstDayAvailable}
                   </td>
-                  <td className='bg-gray-500 p-.5 sm:p-0'>
+                  <td
+                    title={partner.lastDayAvailable}
+                    className='bg-gray-500 p-.5 sm:p-0'
+                  >
                     {partner.lastDayAvailable}
                   </td>
                 </tr>
@@ -406,29 +433,55 @@ function AdminPartnerDatabase({ search }, forwardedState) {
                     className='form-checkbox h-5 w-5 align-middle'
                   />
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden'>
+                <td
+                  title={result.companyName}
+                  className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden'
+                >
                   {result.companyName}
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden '>
+                <td
+                  title={result.position}
+                  className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] tst:max-w-[6rem] lg:max-w-[20rem] overflow-hidden '
+                >
                   {result.position}
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'>
+                <td
+                  title={result.owner}
+                  className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
+                >
                   {result.owner}
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden '>
+                <td
+                  title={result.email}
+                  className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[8rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden '
+                >
                   {result.email}
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'>
+                <td
+                  title={result.phone}
+                  className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
+                >
                   {result.phone}
                 </td>
-                <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden '>
+                <td
+                  title={result.pathway}
+                  className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[11rem] tst:max-w-[5rem] lg:max-w-[20rem] overflow-hidden '
+                >
                   {result.pathway}
                 </td>
-                <td className='bg-gray-500 p-1.5 sm:p-0'>{result.timeOfDay}</td>
+                <td
+                  title={result.firstDayAvailable}
+                  className='bg-gray-500 p-1.5 sm:p-0'
+                >
+                  {result.timeOfDay}
+                </td>
                 <td className='bg-gray-500 p-.5 sm:p-0'>
                   {result.firstDayAvailable}
                 </td>
-                <td className='bg-gray-500 p-.5 sm:p-0'>
+                <td
+                  title={result.lastDayAvailable}
+                  className='bg-gray-500 p-.5 sm:p-0'
+                >
                   {result.lastDayAvailable}
                 </td>
               </tr>

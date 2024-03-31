@@ -295,31 +295,58 @@ const RequestsDatabase = () => {
                       className='form-checkbox h-5 w-5 align-middle'
                     />
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'>
+                  <td
+                    title={request.companyName}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                  >
                     {request.companyName}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'>
+                  <td
+                    title={request.position}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                  >
                     {request.position}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'>
+                  <td
+                    title={request.owner}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
+                  >
                     {request.owner}
                   </td>
-                  <td className='bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'>
+                  <td
+                    title={request.email}
+                    className='bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                  >
                     {request.email}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'>
+                  <td
+                    title={request.phone}
+                    className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
+                  >
                     {request.phone}
                   </td>
-                  <td className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'>
+                  <td
+                    title={request.pathway}
+                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                  >
                     {request.pathway}
                   </td>
-                  <td className='bg-gray-500 p-1.5 sm:p-0'>
+                  <td
+                    title={request.timeOfDay}
+                    className='bg-gray-500 p-1.5 sm:p-0'
+                  >
                     {request.timeOfDay}
                   </td>
-                  <td className='bg-gray-500 p-1.5 sm:p-0'>
+                  <td
+                    title={request.firstDayAvailable}
+                    className='bg-gray-500 p-1.5 sm:p-0'
+                  >
                     {request.firstDayAvailable}
                   </td>
-                  <td className='bg-gray-500 p-1.5 sm:p-0'>
+                  <td
+                    title={request.lastDayAvailable}
+                    className='bg-gray-500 p-1.5 sm:p-0'
+                  >
                     {request.lastDayAvailable}
                   </td>
                 </tr>
