@@ -92,6 +92,18 @@ const RequestsDatabase = () => {
   }
 
   const handleCreatePartner = async (requestIDs) => {
+    if (selected.length <= 0) {
+      toast.warn('No Requests Selected. Please Select Requests To Accept.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
+    }
     const createPartners = async (newPartner) => {
       try {
         const response = await axios.post(
@@ -165,7 +177,20 @@ const RequestsDatabase = () => {
   }
 
   const handleDelete = () => {
-    setDeletionPopup(true)
+    if (selected.length <= 0) {
+      toast.warn('No Requests Selected. Please Select Requests To Deny.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
+    } else {
+      setDeletionPopup(true)
+    }
   }
 
   const handleSelected = (email) => {
@@ -193,9 +218,7 @@ const RequestsDatabase = () => {
 
   const handleEditing = async () => {
     if (selected.length <= 0) {
-      console.log('End Of Requests To Edit')
-      setSelected([])
-      toast.success('Successfully Edited Requests', {
+      toast.warn('No Requests Selected. Please Select Requests To Edit.', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: true,
@@ -205,6 +228,41 @@ const RequestsDatabase = () => {
         progress: undefined,
         theme: 'light'
       })
+    } else if (selected.length > 0) {
+      const searchResults = await findRequest(selected.slice(-1)[0])
+      setTempUserData(searchResults)
+      setEditingPopup(true)
+    } else {
+      console.log('Error Editing Request ', selected.slice((-1)[0]))
+      toast.error('Error Editing Request. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
+    }
+  }
+
+  const handleEditingRepeat = async () => {
+    if (selected.length <= 0) {
+      console.log('End Of Requests To Edit')
+      if (selected.length > 1) {
+        toast.success('Successfully Edited All Requests', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        })
+      }
+      setSelected([])
     } else if (selected.length > 0) {
       const searchResults = await findRequest(selected.slice(-1)[0])
       setTempUserData(searchResults)
@@ -239,7 +297,7 @@ const RequestsDatabase = () => {
         onClose={() => {
           setEditingPopup(false)
           selected.shift()
-          handleEditing()
+          handleEditingRepeat()
         }}
         rowdata={tempUserData}
       />
