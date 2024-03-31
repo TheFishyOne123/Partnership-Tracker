@@ -1,9 +1,8 @@
 // Imports
 import React, { useState } from 'react'
 import AdminNavbar from '../assets/Components/adminNavbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../assets/CSS/admin.css'
-import { useNavigate } from 'react-router-dom'
 import AdminPartnerDatabase from '../assets/Components/adminPartnerDatabase'
 import UserGuideAdmin from '../assets/Components/userGuideAdmin'
 import axios from 'axios'

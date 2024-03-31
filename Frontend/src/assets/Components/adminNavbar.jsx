@@ -4,36 +4,40 @@ import { useNavigate } from 'react-router-dom'
 import Searchbar from './searchbar'
 import Logo from '../images/Logo2.png'
 
-const AdminNavbar = (props) => {
+const AdminNavbar = (forwardedState) => {
   const navigate = useNavigate()
-  const info = props.forwardedState
+  const info = forwardedState
 
   function handleLogout() {
-    navigate('/', { state: { AuthInfo: false } })
+    navigate('/', { state: { info: false } })
   }
 
   const handleSearchUpdate = (value) => {
-    props.onSearchChange(value)
+    info.onSearchChange(value)
   }
 
   const handleUsers = () => {
-    navigate('/admin/users', { state: { forwardedState: info } })
+    navigate('/admin/users', { state: { forwardedState: info.forwardedState } })
   }
 
   const handlePartners = () => {
-    navigate('/admin/partners', { state: { forwardedState: info } })
+    navigate('/admin/partners', {
+      state: { forwardedState: info.forwardedState }
+    })
   }
 
   const handleRequests = () => {
-    navigate('/admin/requests', { state: { forwardedState: info } })
+    navigate('/admin/requests', {
+      state: { forwardedState: info.forwardedState }
+    })
   }
 
   const handleHome = () => {
-    navigate('/admin', { state: { forwardedState: info } })
+    navigate('/admin', { state: { forwardedState: info.forwardedState } })
   }
 
   return (
-    <div className='text-gray-50	w-screen bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-1'>
+    <div className='text-gray-50	w-screen bg-gray-500 h-16 flex items-center font-normal fixed top-0 z-0'>
       <img className='w-20' src={Logo} alt='Logo' />
       <p className=' text-2xl'>Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
@@ -71,11 +75,11 @@ const AdminNavbar = (props) => {
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
           >
-            {info[0][0]}
+            {info.forwardedState[0][0]}
           </Dropdown.Toggle>
           <Dropdown.Menu className='dropdown-menu-left'>
             <Dropdown.Item
-              onClick={() => props.setGuideStatus(true)}
+              onClick={() => info.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide

@@ -4,6 +4,7 @@ import '../CSS/editingForm.css'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
 
 function RequestEditingForm({ isOpen, onClose, rowdata }) {
   const [selectedPathway, setSelectedPathway] = useState(rowdata.pathway)
@@ -294,6 +295,12 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
       </div>
     </div>
   )
+}
+
+RequestEditingForm.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  rowdata: PropTypes.object
 }
 
 export default RequestEditingForm

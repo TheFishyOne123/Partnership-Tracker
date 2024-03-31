@@ -3,9 +3,9 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../images/Logo2.png'
 
-const AdminNavbarRequests = (props) => {
+const AdminNavbarRequests = (forwardedState) => {
   const navigate = useNavigate()
-  const info = props.forwardedState
+  const info = forwardedState.forwardedState
 
   function handleLogout() {
     navigate('/', { state: { AuthInfo: false } })
@@ -69,7 +69,7 @@ const AdminNavbarRequests = (props) => {
           </Dropdown.Toggle>
           <Dropdown.Menu className='dropdown-menu-left'>
             <Dropdown.Item
-              onClick={() => props.setGuideStatus(true)}
+              onClick={() => forwardedState.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide

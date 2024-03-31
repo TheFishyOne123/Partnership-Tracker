@@ -1,8 +1,7 @@
 // Imports
 import { React, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../assets/CSS/admin.css'
-import { useNavigate } from 'react-router-dom'
 import AdminNavbarRequests from '../assets/Components/adminNavbarNoSearchbar'
 import RequestsDatabase from '../assets/Components/requestsDatabase'
 import UserGuideAdmin from '../assets/Components/userGuideAdmin'

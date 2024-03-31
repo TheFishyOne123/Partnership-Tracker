@@ -6,10 +6,11 @@ import video1 from '../images/Search_Video.mp4'
 import video2 from '../images/Create_Request.mp4'
 import video3 from '../images/Signout.mp4'
 import video4 from '../images/Open_Guide.mp4'
+import PropTypes from 'prop-types'
 
 function UserGuide({ isOpen, onClose }) {
   const modalClasses = isOpen
-    ? 'fixed inset-0 flex items-center justify-center backdrop-blur-xs'
+    ? 'fixed inset-0 flex items-center justify-center backdrop-blur-xs z-index 0'
     : 'hidden'
   const contentClasses = isOpen
     ? 'bg-[#383d41f0] text-gray-50 p-6 rounded-lg w-9/12'
@@ -70,6 +71,11 @@ function UserGuide({ isOpen, onClose }) {
       </div>
     </div>
   )
+}
+
+UserGuide.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func
 }
 
 export default UserGuide

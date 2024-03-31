@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import Searchbar from './searchbar'
 import Logo from '../images/Logo2.png'
 
-function Navbar(props) {
-  const name = props.forwardedState
+function Navbar(forwardedState) {
+  const name = forwardedState.forwardedState
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -13,7 +13,7 @@ function Navbar(props) {
   }
 
   const handleSearchUpdate = (value) => {
-    props.onSearchChange(value)
+    forwardedState.onSearchChange(value)
   }
 
   return (
@@ -32,7 +32,7 @@ function Navbar(props) {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item
-              onClick={() => props.setGuideStatus(true)}
+              onClick={() => forwardedState.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide

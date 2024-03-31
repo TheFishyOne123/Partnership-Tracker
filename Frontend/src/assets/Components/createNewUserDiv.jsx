@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NewUserForm from './newUserForm'
+import PropTypes from 'prop-types'
 
 function CreateNewUserDiv({ creationFormStatus }) {
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -25,6 +26,10 @@ function CreateNewUserDiv({ creationFormStatus }) {
       </button>
     </div>
   )
+}
+
+CreateNewUserDiv.propTypes = {
+  creationFormStatus: PropTypes.func
 }
 
 export default CreateNewUserDiv

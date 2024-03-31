@@ -7,8 +7,9 @@ import UserGuideAdmin from './userGuideAdmin.jsx'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
 
-function AdminPartnerDatabase({ search }) {
+function AdminPartnerDatabase({ search }, forwardedState) {
   const [partnersList, setPartnersList] = useState([])
   const [searchResults, setSearchResults] = useState([])
   const [editingForm, setEditingForm] = useState(false)
@@ -74,7 +75,7 @@ function AdminPartnerDatabase({ search }) {
       try {
         const response = await axios.get(
           'http://localhost:5555/partners/search',
-          { params: { search: search } }
+          { params: { search } }
         )
         setSearchResults(response.data)
       } catch (error) {
@@ -240,7 +241,7 @@ function AdminPartnerDatabase({ search }) {
 
   useEffect(() => {
     if (editingForm === true) {
-      //Pass
+      // Pass
     } else {
       if (selected.length >= 1) {
         console.log('Next User')
@@ -269,7 +270,7 @@ function AdminPartnerDatabase({ search }) {
 
   useEffect(() => {
     if (duplicationStatus === true) {
-      //Pass
+      // Pass
     } else {
       if (selected.length >= 1) {
         console.log('Next User')
@@ -308,8 +309,8 @@ function AdminPartnerDatabase({ search }) {
       <EditingForm
         isOpen={editingForm}
         onClose={() => {
-            setEditingForm(false)
-            selected.shift()
+          setEditingForm(false)
+          selected.shift()
         }}
         rowdata={tempUserData}
       />
@@ -442,6 +443,10 @@ function AdminPartnerDatabase({ search }) {
       </table>
     </div>
   )
+}
+
+AdminPartnerDatabase.propTypes = {
+  search: PropTypes.string
 }
 
 export default AdminPartnerDatabase

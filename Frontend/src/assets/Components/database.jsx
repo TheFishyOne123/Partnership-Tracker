@@ -7,6 +7,7 @@ import pdfMake from 'pdfmake/build/pdfmake.js'
 import pdfFonts from 'pdfmake/build/vfs_fonts.js'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
 
 function Database({ search }) {
   const [partnersList, setPartnersList] = useState([])
@@ -39,7 +40,7 @@ function Database({ search }) {
       try {
         const response = await axios.get(
           'http://localhost:5555/partners/search',
-          { params: { search: search } }
+          { params: { search } }
         )
         setSearchResults(response.data)
       } catch (error) {
@@ -79,20 +80,18 @@ function Database({ search }) {
         })
       } else {
         const csvData = searchResults.map(({ _id, __v, ...csvData }) => csvData)
-        const exportType = exportFromJSON.types.csv
         exportFromJSON({
           data: csvData,
           fileName: 'SearchReport',
-          exportType: exportType
+          exportType: 'csv'
         })
       }
     } else if (!search) {
       const csvData = partnersList.map(({ _id, __v, ...csvData }) => csvData)
-      const exportType = exportFromJSON.types.csv
       exportFromJSON({
         data: csvData,
         fileName: 'AllPartnersReport',
-        exportType: exportType
+        exportType: 'csv'
       })
     } else {
       console.log('Unexpected Result While Exporting As Csv')
@@ -130,7 +129,7 @@ function Database({ search }) {
         exportFromJSON({
           data: xlsData,
           fileName: 'SearchReport',
-          exportType: "xls"
+          exportType: 'xls'
         })
       }
     } else if (!search) {
@@ -138,7 +137,7 @@ function Database({ search }) {
       exportFromJSON({
         data: xlsData,
         fileName: 'AllPartnersReport',
-        exportType: "xls"
+        exportType: 'xls'
       })
     } else {
       console.log('Unexpected Result While Exporting As Xls')
@@ -160,7 +159,78 @@ function Database({ search }) {
 
   const exportAsPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs
+    if (!search) {
+      const documentDefinition = {
+        headerRows: 1,
+        layout: 'lightHorizontalLines',
+        pageOrientation: 'landscape',
+        pageMargins: [10, 10, 10, 10],
+        content: [
+          { text: 'Partnership Tracker Partners', style: 'header' },
+          {
+            table: {
+              widths: [
+                'auto',
+                'auto',
+                'auto',
+                'auto',
+                160,
+                'auto',
+                'auto',
+                'auto',
+                'auto'
+              ],
+              heights: 60,
+              body: [
+                [
+                  { text: 'Company Name', style: 'tableHeader' },
+                  { text: 'Position', style: 'tableHeader' },
+                  { text: 'Owner', style: 'tableHeader' },
+                  { text: 'Email', style: 'tableHeader' },
+                  { text: 'Phone', style: 'tableHeader' },
+                  { text: 'Pathway', style: 'tableHeader' },
+                  { text: 'Availability', style: 'tableHeader' },
+                  { text: 'Start Date', style: 'tableHeader' },
+                  { text: 'End Date', style: 'tableHeader' }
+                ],
+                ...partnersList.map((partner) => [
+                  { text: partner.companyName, style: 'tableCell' },
+                  { text: partner.position, style: 'tableCell' },
+                  { text: partner.owner, style: 'tableCell' },
+                  { text: partner.email, style: 'tableCell' },
+                  { text: partner.phone, style: 'tableCell' },
+                  { text: partner.pathway, style: 'tableCell' },
+                  { text: partner.timeOfDay, style: 'tableCell' },
+                  { text: partner.firstDayAvailable, style: 'tableCell' },
+                  { text: partner.lastDayAvailable, style: 'tableCell' }
+                ])
+              ]
+            }
+          }
+        ],
+        pageSize: 'A1',
+        styles: {
+          header: {
+            bold: true,
+            alignment: 'center',
+            margin: [0, 0, 0, 20],
+            fontSize: 36
+          },
+          tableHeader: {
+            bold: true,
+            alignment: 'center',
+            fontSize: 26
+          },
+          tableCell: {
+            fontSize: 23,
+            alignment: 'center',
+            margin: 5
+          }
+        }
+      }
 
+      pdfMake.createPdf(documentDefinition).download('All_Partners_List.pdf')
+    }
     if (search) {
       if (searchResults.length <= 0) {
         toast.warn('No Search Results To Convert To PDF', {
@@ -244,78 +314,6 @@ function Database({ search }) {
         }
 
         pdfMake.createPdf(documentDefinition).download('Search_Results.pdf')
-      }
-      if (!search) {
-        const documentDefinition = {
-          headerRows: 1,
-          layout: 'lightHorizontalLines',
-          pageOrientation: 'landscape',
-          pageMargins: [10, 10, 10, 10],
-          content: [
-            { text: 'Partnership Tracker Partners', style: 'header' },
-            {
-              table: {
-                widths: [
-                  'auto',
-                  'auto',
-                  'auto',
-                  'auto',
-                  160,
-                  'auto',
-                  'auto',
-                  'auto',
-                  'auto'
-                ],
-                heights: 60,
-                body: [
-                  [
-                    { text: 'Company Name', style: 'tableHeader' },
-                    { text: 'Position', style: 'tableHeader' },
-                    { text: 'Owner', style: 'tableHeader' },
-                    { text: 'Email', style: 'tableHeader' },
-                    { text: 'Phone', style: 'tableHeader' },
-                    { text: 'Pathway', style: 'tableHeader' },
-                    { text: 'Availability', style: 'tableHeader' },
-                    { text: 'Start Date', style: 'tableHeader' },
-                    { text: 'End Date', style: 'tableHeader' }
-                  ],
-                  ...partnersList.map((partner) => [
-                    { text: partner.companyName, style: 'tableCell' },
-                    { text: partner.position, style: 'tableCell' },
-                    { text: partner.owner, style: 'tableCell' },
-                    { text: partner.email, style: 'tableCell' },
-                    { text: partner.phone, style: 'tableCell' },
-                    { text: partner.pathway, style: 'tableCell' },
-                    { text: partner.timeOfDay, style: 'tableCell' },
-                    { text: partner.firstDayAvailable, style: 'tableCell' },
-                    { text: partner.lastDayAvailable, style: 'tableCell' }
-                  ])
-                ]
-              }
-            }
-          ],
-          pageSize: 'A1',
-          styles: {
-            header: {
-              bold: true,
-              alignment: 'center',
-              margin: [0, 0, 0, 20],
-              fontSize: 36
-            },
-            tableHeader: {
-              bold: true,
-              alignment: 'center',
-              fontSize: 26
-            },
-            tableCell: {
-              fontSize: 23,
-              alignment: 'center',
-              margin: 5
-            }
-          }
-        }
-
-        pdfMake.createPdf(documentDefinition).download('All_Partners_List.pdf')
       }
     }
   }
@@ -462,6 +460,10 @@ function Database({ search }) {
       </div>
     </div>
   )
+}
+
+Database.propTypes = {
+  search: PropTypes.string
 }
 
 export default Database

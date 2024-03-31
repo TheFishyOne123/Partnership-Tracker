@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../assets/CSS/admin.css'
-import { useNavigate } from 'react-router-dom'
 import AdminNavbarNoSearchBar from '../assets/Components/adminNavbarNoSearchbar'
 import UsersDatabase from '../assets/Components/usersDatabase'
 import UserGuideAdmin from '../assets/Components/userGuideAdmin'

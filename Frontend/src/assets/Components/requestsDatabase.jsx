@@ -12,7 +12,7 @@ const RequestsDatabase = () => {
   const [selected, setSelected] = useState([])
   const [deletionPopUp, setDeletionPopup] = useState(false)
   const [editingPopUp, setEditingPopup] = useState(false)
-  const [tempUserData, setTempUserData] = useState([])
+  const [tempUserData, setTempUserData] = useState({})
 
   useEffect(() => {
     axios

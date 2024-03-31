@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
 
 function RequestDeletionPopUp({ isOpen, onClose, deletionIDs }) {
   const modalClasses = isOpen
@@ -78,6 +79,12 @@ function RequestDeletionPopUp({ isOpen, onClose, deletionIDs }) {
       </div>
     </div>
   )
+}
+
+RequestDeletionPopUp.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  deletionIDs: PropTypes.array
 }
 
 export default RequestDeletionPopUp

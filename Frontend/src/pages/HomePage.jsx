@@ -1,10 +1,9 @@
 // Imports
 import React, { useState, useEffect } from 'react'
 import Navbar from '../assets/Components/navbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../index.css'
 import Database from '../assets/Components/database'
-import { useNavigate } from 'react-router-dom'
 import UserGuide from '../assets/Components/userGuide'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'

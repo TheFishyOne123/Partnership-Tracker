@@ -3,6 +3,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
 
 function AddNewPartnersForm({ onClose }) {
   const modalClasses =
@@ -144,6 +145,10 @@ function AddNewPartnersForm({ onClose }) {
       </div>
     </div>
   )
+}
+
+AddNewPartnersForm.propTypes = {
+  onClose: PropTypes.func
 }
 
 export default AddNewPartnersForm
