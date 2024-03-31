@@ -66,7 +66,14 @@ function Database({ search }) {
   }, [search])
 
   const exportAsCsv = () => {
-    if (search) {
+    if (!search) {
+      const csvData = partnersList.map(({ _id, __v, ...csvData }) => csvData)
+      exportFromJSON({
+        data: csvData,
+        fileName: 'AllPartnersReport',
+        exportType: 'csv'
+      })
+    } else if (search) {
       if (searchResults.length <= 0) {
         toast.warn('No Search Results To Convert To CSV', {
           position: 'top-right',
@@ -86,13 +93,6 @@ function Database({ search }) {
           exportType: 'csv'
         })
       }
-    } else if (!search) {
-      const csvData = partnersList.map(({ _id, __v, ...csvData }) => csvData)
-      exportFromJSON({
-        data: csvData,
-        fileName: 'AllPartnersReport',
-        exportType: 'csv'
-      })
     } else {
       console.log('Unexpected Result While Exporting As Csv')
       toast.error(
@@ -112,7 +112,14 @@ function Database({ search }) {
   }
 
   const exportAsXls = () => {
-    if (search) {
+    if (!search) {
+      const xlsData = partnersList.map(({ _id, __v, ...xlsData }) => xlsData)
+      exportFromJSON({
+        data: xlsData,
+        fileName: 'AllPartnersReport',
+        exportType: 'xls'
+      })
+    } else if (search) {
       if (searchResults.length <= 0) {
         toast.warn('No Search Results To Convert To XLS', {
           position: 'top-right',
@@ -132,13 +139,6 @@ function Database({ search }) {
           exportType: 'xls'
         })
       }
-    } else if (!search) {
-      const xlsData = partnersList.map(({ _id, __v, ...xlsData }) => xlsData)
-      exportFromJSON({
-        data: xlsData,
-        fileName: 'AllPartnersReport',
-        exportType: 'xls'
-      })
     } else {
       console.log('Unexpected Result While Exporting As Xls')
       toast.error(
