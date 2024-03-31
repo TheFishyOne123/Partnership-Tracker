@@ -5,6 +5,7 @@ import CreateNewUserDiv from './createNewUserDiv'
 import EditUserForm from './editUserForm'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import UserDeletionPopUp from './userDeletionPopUp.jsx'
 
 function usersDatabase() {
   const [usersList, setUsersList] = useState([])
@@ -37,64 +38,8 @@ function usersDatabase() {
   }, [creationFormStatus, deletionStatus, editStatus, selected])
 
   const handleDelete = async () => {
-    setDeletionStatus(false)
-    const deleteUser = async (email) => {
-      try {
-        const response = await axios.delete(
-          `http://localhost:5555/users/delete/${email}`
-        )
-
-        if (response.status === 200) {
-          console.log('User Deleted Successfully')
-          if (selected.length < 5) {
-            toast.success('Successfully Deleted User', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light'
-            })
-          }
-        }
-      } catch (error) {
-        console.log('Error Deleting User ', error)
-        toast.error('Error Deleting User. Check Console For More Info.', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light'
-        })
-      }
-    }
-    if (selected.length > 0) {
-      console.log('Users To Delete ' + selected.length)
-      for (const email of selected) {
-        await deleteUser(email)
-      }
-      if (selected.length > 1) {
-        toast.success('Successfully Deleted Users', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light'
-        })
-      }
-      setSelected([])
-      setDeletionStatus(true)
-    } else if (selected.length <= 0) {
-      console.log('No Users Selected')
-      toast.warn('No Partners Selected. Please Select Partners To Delete.', {
+    if (selected.length <= 0) {
+      toast.warn('No Users Selected. Please Select Users To Delete.', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: true,
@@ -105,18 +50,7 @@ function usersDatabase() {
         theme: 'light'
       })
     } else {
-      console.log(selected)
-      console.log('Error Deleting Users')
-      toast.error('Error Deleting Users. Check Console For More Info.', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light'
-      })
+      setDeletionStatus(true)
     }
   }
 
@@ -219,6 +153,14 @@ function usersDatabase() {
           setEditStatus(false)
           setCurrentIndex((prevIndex) => (prevIndex += 1))
         }}
+      />
+
+      <UserDeletionPopUp
+        isOpen={deletionStatus}
+        onClose={() => {
+          setDeletionStatus(false)
+        }}
+        deletionIDs={selected}
       />
 
       <div className='flex justify-end'>
