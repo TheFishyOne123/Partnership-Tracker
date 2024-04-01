@@ -489,7 +489,9 @@ function AdminPartnerDatabase({ search }, forwardedState) {
           )}
           <tr>
             <td colSpan={10}>
-              <AddNewPartnersDiv creationFormStatus={setCreationFormStatus} />
+              <AddNewPartnersDiv
+                setCreationFormStatus={setCreationFormStatus}
+              />
             </td>
           </tr>
         </tbody>

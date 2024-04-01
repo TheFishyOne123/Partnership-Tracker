@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import AddNewPartnersForm from './addNewPartnersForm'
 import PropTypes from 'prop-types'
 
-function AddNewPartnersDiv({ creationFormStatus }) {
+function AddNewPartnersDiv({ setCreationFormStatus }) {
   const [isFormOpen, setIsFormOpen] = useState(false)
 
   const handleOpenForm = () => {
     setIsFormOpen(true)
-    creationFormStatus(true)
+    setCreationFormStatus(true)
   }
 
   const handleCloseForm = () => {
     setIsFormOpen(false)
-    creationFormStatus(false)
+    setCreationFormStatus(false)
   }
 
   return (
@@ -32,7 +32,7 @@ function AddNewPartnersDiv({ creationFormStatus }) {
 }
 
 AddNewPartnersDiv.propTypes = {
-  creationFormStatus: PropTypes.func
+  setCreationFormStatus: PropTypes.func
 }
 
 export default AddNewPartnersDiv
