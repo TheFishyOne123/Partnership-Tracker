@@ -19,14 +19,17 @@ const HomePage = () => {
   const [guideStatus, setGuideStatus] = useState(false)
 
   // Functions
+  // Handles Searchbar Use
   const handleSearchUpdate = (value) => {
     setSearch(value)
   }
 
+  // Used to Relogin When Authentication Fails
   const relogin = () => {
     navigate('/')
   }
 
+  // Used to Check If User Is New To Open Guide
   const checkUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -49,7 +52,7 @@ const HomePage = () => {
     }
   }
 
-  // Function Updates New User State in Database To False
+  // Used to Update Users from New Users to Regular Users
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -120,7 +123,7 @@ const HomePage = () => {
     )
   }
 
-  // Frontend Return Statement
+  // Frontend Page View Return
   return (
     <>
       <UserGuide

@@ -19,14 +19,18 @@ const AdminPage = () => {
   const [guideStatus, setGuideStatus] = useState(false)
 
   // Functions
+
+  // Handles Searching
   const handleSearchUpdate = (value) => {
     setSearch(value)
   }
 
+  // Intiates Relogin When Authentication Fails
   const relogin = () => {
     navigate('/')
   }
 
+  // Checks If User Is A New User For Guide
   const checkUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -50,6 +54,7 @@ const AdminPage = () => {
     }
   }
 
+  // Updates Users to Users From Newusers
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
@@ -129,6 +134,7 @@ const AdminPage = () => {
       </div>
     )
   } else {
+    // Logged Our Statement And View
     console.log('Unsuccessful Authentication')
     toast.warn('Unsuccessful Authentication', {
       position: 'top-right',

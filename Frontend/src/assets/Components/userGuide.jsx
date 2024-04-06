@@ -2,10 +2,11 @@ import React from 'react'
 import { IoCloseSharp } from 'react-icons/io5'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import video1 from '../images/Search_Video.mp4'
-import video2 from '../images/Create_Request.mp4'
-import video3 from '../images/Signout.mp4'
-import video4 from '../images/Open_Guide.mp4'
+import video1 from '../videos/users/searching.mov'
+import video2 from '../videos/users/Createnewpartner.mov'
+import video3 from '../videos/users/signout.mov'
+import video4 from '../videos/users/Exporting.mov'
+import video5 from '../videos/users/Open_Guide.mp4'
 import PropTypes from 'prop-types'
 
 function UserGuide({ isOpen, onClose }) {
@@ -60,9 +61,16 @@ function UserGuide({ isOpen, onClose }) {
               </video>
             </div>
             <div>
-              <p>How To Return To This Guide</p>
+              <p>How To Export as Reports</p>
               <video autoPlay loop muted className=' w-9/12 m-auto'>
                 <source src={video4} type='video/mp4' />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p>How To Return To This Guide</p>
+              <video autoPlay loop muted className=' w-9/12 m-auto'>
+                <source src={video5} type='video/mp4' />
                 Your browser does not support the video tag.
               </video>
             </div>
