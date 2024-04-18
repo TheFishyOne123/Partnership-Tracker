@@ -24,6 +24,7 @@ function Navbar(forwardedState) {
       <div className='flex ml-auto pr-8'>
         <Dropdown className='d-inline mx-2' autoClose='outside'>
           <Dropdown.Toggle
+          title='Click Here For Guide & Logout'
             variant='secondary'
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
@@ -32,12 +33,14 @@ function Navbar(forwardedState) {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item
+            title='Click To Open User Guide'
               onClick={() => forwardedState.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide
             </Dropdown.Item>
             <Dropdown.Item
+              title='Click To Return To Sign In'
               onClick={handleLogout}
               className='active:bg-gray-400'
             >

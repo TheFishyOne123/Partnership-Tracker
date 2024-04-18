@@ -1,6 +1,7 @@
 // Variables
 import express from 'express'
 import { Partner } from '../models/partnerModel.js'
+import escapeStringRegexp from 'escape-string-regexp'
 
 // Intializing Router Variable For Use In Routes
 const router = express.Router()
@@ -21,7 +22,8 @@ router.get('/all', async (req, res) => {
 // Search Partners
 router.get('/search', async (req, res) => {
   try {
-    const search = req.query.search.toString
+    let search = req.query.search
+    search = escapeStringRegexp(search)
     const searchResults = await Partner.find({
       $or: [
         { companyName: { $regex: `^${search}`, $options: 'i' } },
