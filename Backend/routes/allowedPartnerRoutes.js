@@ -24,7 +24,6 @@ router.get('/search', async (req, res) => {
   try {
     let search = req.query.search
     search = escapeStringRegexp(search)
-    console.log(search)
     const searchResults = await Partner.find({
       $or: [
         { companyName: { $regex: `^${search}`, $options: 'i' } },
