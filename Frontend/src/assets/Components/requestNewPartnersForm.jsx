@@ -63,7 +63,11 @@ function requestNewPartnersForm({ onClose }) {
       <div className={contentClasses}>
         <div>
           <div className='flex justify-end items-center gap-11'>
-            <button className='cursor-pointer' onClick={onClose}>
+            <button
+              className='cursor-pointer'
+              onClick={onClose}
+              title='Click Here To Close This Pop Up'
+            >
               <IoCloseSharp size='2em' />
             </button>
           </div>
@@ -79,18 +83,21 @@ function requestNewPartnersForm({ onClose }) {
             <label>Owner</label>
             <input
               required
+              title='Input Company Name'
               name='companyName'
               type='text'
               placeholder='Ex: Walmart'
             />
             <input
               required
+              title='Input Position Available'
               name='position'
               type='text'
               placeholder='Ex: Manager'
             />
             <input
               required
+              title='Input Company Owners Name'
               name='owner'
               type='text'
               placeholder='Ex: John Doe'
@@ -100,18 +107,24 @@ function requestNewPartnersForm({ onClose }) {
             <label>Pathway</label>
             <input
               required
+              title='Input Email Of Internship Manager Or Owner'
               name='email'
               type='email'
               placeholder='Ex: johndoe@gmail.com'
             />
             <input
               required
+              title='Input Phone Of Internship Manager Or Owner'
               name='phone'
               type='tel'
               pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
               placeholder='Ex: 111-111-111'
             />
-            <select required name='pathway'>
+            <select
+              required
+              name='pathway'
+              title='Select Pathway This Internship Belongs To'
+            >
               <option value='Health'>Health</option>
               <option value='STEAM'>STEAM</option>
               <option value='Arts, Hospitality, & Education'>
@@ -128,14 +141,29 @@ function requestNewPartnersForm({ onClose }) {
             <label>Availability</label>
             <label>First Day Available</label>
             <label>Last Day Available</label>
-            <select required name='timeOfDay'>
+            <select
+              required
+              name='timeOfDay'
+              title='Select Time Internship Is Available'
+            >
               <option value='Morning'>Morning</option>
               <option value='Afternoon'>Afternoon</option>
               <option value='Evening'>Evening</option>
             </select>
-            <input required name='firstDayAvailable' type='date' />
-            <input required name='lastDayAvailable' type='date' />
             <input
+              title='Select Date In Which Interns Are Able To Start Working'
+              required
+              name='firstDayAvailable'
+              type='date'
+            />
+            <input
+              title='Select Last Day Interns Will Be Able To Work'
+              required
+              name='lastDayAvailable'
+              type='date'
+            />
+            <input
+              title='Click Here To Submit Partner Request For Admins To Review'
               className=' col-span-3 cursor-pointer text-white pt-3'
               type='submit'
             />

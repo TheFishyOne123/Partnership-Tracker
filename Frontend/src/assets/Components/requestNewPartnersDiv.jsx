@@ -23,6 +23,7 @@ function requestNewPartnersDiv({ creationFormStatus }) {
       <button
         className='bg-gray-500 text-white font-bold py-2 text-base px-4 rounded'
         onClick={handleOpenForm}
+        title='Click Here To Begin Submiting New Partner Request To Admins'
       >
         Request A New Partner Here
       </button>

@@ -38,21 +38,35 @@ const AdminNavbarRequests = (forwardedState) => {
           autoClose='outside'
         >
           <button
+            title='Click Here To Return To Main Page'
             className='text-lg align-middle py-1 pl-1'
             onClick={handleHome}
           >
             Admin
           </button>
           <Dropdown.Toggle
+            title='Click To Show Pages Available'
             split
             variant='secondary'
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
           ></Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={handleUsers}>Users</Dropdown.Item>
-            <Dropdown.Item onClick={handlePartners}>Partners</Dropdown.Item>
-            <Dropdown.Item onClick={handleRequests}>Requests</Dropdown.Item>
+            <Dropdown.Item title='Click For Users Page' onClick={handleUsers}>
+              Users
+            </Dropdown.Item>
+            <Dropdown.Item
+              title='Click For Admin Partner Database'
+              onClick={handlePartners}
+            >
+              Partners
+            </Dropdown.Item>
+            <Dropdown.Item
+              title='Click For Requests Page'
+              onClick={handleRequests}
+            >
+              Requests
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown
@@ -61,6 +75,7 @@ const AdminNavbarRequests = (forwardedState) => {
           autoClose='outside'
         >
           <Dropdown.Toggle
+            title='Click For Guide & Logout'
             variant='secondary'
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
@@ -69,12 +84,14 @@ const AdminNavbarRequests = (forwardedState) => {
           </Dropdown.Toggle>
           <Dropdown.Menu className='dropdown-menu-left'>
             <Dropdown.Item
+              title='Click For Admin Guide'
               onClick={() => forwardedState.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide
             </Dropdown.Item>
             <Dropdown.Item
+              title='Click To Return To Sign On Page'
               onClick={handleLogout}
               className='active:bg-gray-400'
             >

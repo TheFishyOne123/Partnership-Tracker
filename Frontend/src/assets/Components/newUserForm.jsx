@@ -140,7 +140,11 @@ const newUserForm = ({ onClose }) => {
       <div className={contentClasses}>
         <div>
           <div className='flex justify-end items-center gap-11'>
-            <button className='cursor-pointer' onClick={onClose}>
+            <button
+              title='Click To Close Pop Up'
+              className='cursor-pointer'
+              onClick={onClose}
+            >
               <IoCloseSharp size='2em' />
             </button>
           </div>
@@ -159,23 +163,27 @@ const newUserForm = ({ onClose }) => {
               name='name'
               type='text'
               placeholder='Ex: John Doe'
+              title='Enter Name Of User'
             ></input>
             <input
               required
               name='email'
               type='email'
               placeholder='Ex: johndoe@gmail.com'
+              title="Enter User's Email"
             />
             <select
               required
               name='admin'
               value={adminStatus}
+              title='Select What The Users Status Is'
               onChange={(e) => setAdmin(e.target.value === 'true')}
             >
               <option value={false}>No</option>
               <option value={true}>Yes</option>
             </select>
             <input
+              title='Click To Create New User In Database'
               className=' col-span-3 cursor-pointer text-white pt-3'
               type='submit'
             />

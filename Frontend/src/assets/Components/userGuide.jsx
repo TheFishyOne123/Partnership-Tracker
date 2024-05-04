@@ -22,7 +22,11 @@ function UserGuide({ isOpen, onClose }) {
       <div className={contentClasses}>
         <div className='flex flex-col content-center'>
           <div className='flex justify-end items-center gap-11'>
-            <button className='cursor-pointer' onClick={onClose}>
+            <button
+              className='cursor-pointer'
+              onClick={onClose}
+              title='Click Here To Close Pop Up'
+            >
               <IoCloseSharp size='2em' />
             </button>
           </div>

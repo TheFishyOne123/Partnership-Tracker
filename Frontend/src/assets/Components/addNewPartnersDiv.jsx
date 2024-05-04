@@ -18,12 +18,12 @@ function AddNewPartnersDiv({ setCreationFormStatus }) {
   return (
     <div>
       {isFormOpen && <AddNewPartnersForm onClose={handleCloseForm} />}
-      <h1 className='text-white text-lg font-bold mb-2' title='hehe'>
+      <h1 className='text-white text-lg font-bold mb-2'>
         Not What You&apos;re Looking For?
       </h1>
       <button
         className='bg-gray-500 text-white font-bold py-2 px-4 rounded'
-        title="Click Here To Create New Partner"
+        title='Click Here To Directly Create New Partner'
         onClick={handleOpenForm}
       >
         Create A New Partner Here

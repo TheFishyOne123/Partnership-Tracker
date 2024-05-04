@@ -50,19 +50,36 @@ const AdminNavbar = (forwardedState) => {
           <button
             className='text-lg align-middle py-1 pl-1'
             onClick={handleHome}
+            title='Click Here To Return To Admin Home'
           >
             Admin
           </button>
           <Dropdown.Toggle
+            title='Click Here For A Dropdown Of Available Pages'
             split
             variant='secondary'
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
           ></Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={handleUsers}>Users</Dropdown.Item>
-            <Dropdown.Item onClick={handlePartners}>Partners</Dropdown.Item>
-            <Dropdown.Item onClick={handleRequests}>Requests</Dropdown.Item>
+            <Dropdown.Item
+              onClick={handleUsers}
+              title='Click Here For Users Page'
+            >
+              Users
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={handlePartners}
+              title='Click Here For Admin Partners Page'
+            >
+              Partners
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={handleRequests}
+              title='Click Here For Request Page'
+            >
+              Requests
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown
@@ -74,17 +91,20 @@ const AdminNavbar = (forwardedState) => {
             variant='secondary'
             className='text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
+            title='Click Here For Guide & Logout'
           >
             {info.forwardedState[0][0]}
           </Dropdown.Toggle>
           <Dropdown.Menu className='dropdown-menu-left'>
             <Dropdown.Item
+              title='Click Here For Admin Guide'
               onClick={() => info.setGuideStatus(true)}
               className='active:bg-gray-400'
             >
               Guide
             </Dropdown.Item>
             <Dropdown.Item
+              title='Click Here To Return To Sign In'
               onClick={handleLogout}
               className='active:bg-gray-400'
             >

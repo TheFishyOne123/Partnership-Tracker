@@ -19,6 +19,7 @@ function CreateNewUserDiv({ creationFormStatus }) {
     <div>
       {isFormOpen && <NewUserForm onClose={handleCloseForm} />}
       <button
+        title='Click Here To Add A New User'
         className='bg-gray-500 text-white font-bold py-2 px-4 rounded'
         onClick={handleOpenForm}
       >

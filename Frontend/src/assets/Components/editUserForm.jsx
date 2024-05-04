@@ -172,7 +172,11 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
       <div className={contentClasses}>
         <div>
           <div className='flex justify-end items-center gap-11'>
-            <button className='cursor-pointer' onClick={onClose}>
+            <button
+              className='cursor-pointer'
+              title='Click Here To Close Form'
+              onClick={onClose}
+            >
               <IoCloseSharp size='2em' />
             </button>
           </div>
@@ -188,11 +192,13 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
             <label>Admin</label>
             <input
               required
+              title='Enter Name Of User'
               name='name'
               type='text'
               defaultValue={rowdata.name}
             ></input>
             <input
+              title='Enter Email Of User'
               required
               name='email'
               type='email'
@@ -200,6 +206,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
             />
             <select
               required
+              title='Select Admin Status'
               name='admin'
               value={adminStatus}
               onChange={(e) => setAdmin(e.target.value)}
@@ -208,6 +215,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
               <option value={true}>Yes</option>
             </select>
             <input
+              title='Click To Submit User Into User Database'
               className=' col-span-3 cursor-pointer text-white pt-3'
               type='submit'
             />

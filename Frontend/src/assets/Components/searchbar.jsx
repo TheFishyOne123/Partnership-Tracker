@@ -13,6 +13,7 @@ function Searchbar({ onSearchChange }) {
   return (
     <div className='flex justify-center ml-auto w-6/12'>
       <input
+        title='Click Here To Search The Partner Database For A Partner (Fields Being Searched Are Company Name, Position, Owner, Time Of Day And Pathway)'
         type='text'
         placeholder='Type Here To Search'
         className='w-9/12 rounded-2xl h-9 text-center text-lg bg-white text-black'

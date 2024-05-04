@@ -202,7 +202,6 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
             <label>Company Postion</label>
             <label>Owner</label>
             <input
-              title='Input Company Name'
               required
               name='companyName'
               type='text'
