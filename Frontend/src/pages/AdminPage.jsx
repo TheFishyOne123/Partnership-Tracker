@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import AdminNavbar from '../assets/Components/adminNavbar'
 import { useLocation, useNavigate } from 'react-router-dom'
 import '../assets/CSS/admin.css'
-import Database from '../assets/Components/database'
+import AdminPartnerDatabase from '../assets/Components/adminPartnerDatabase'
 import UserGuideAdmin from '../assets/Components/userGuideAdmin'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
@@ -117,7 +117,7 @@ const AdminPage = () => {
           setGuideStatus={setGuideStatus}
           className='fixed top-0'
         />
-        <Database search={search} forwardedState={forwardedState} />
+        <AdminPartnerDatabase search={search} forwardedState={forwardedState} />
         <ToastContainer
           position='top-right'
           autoClose={5000}

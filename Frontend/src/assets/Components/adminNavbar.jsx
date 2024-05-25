@@ -20,12 +20,6 @@ const AdminNavbar = (forwardedState) => {
     navigate('/admin/users', { state: { forwardedState: info.forwardedState } })
   }
 
-  const handlePartners = () => {
-    navigate('/admin/partners', {
-      state: { forwardedState: info.forwardedState }
-    })
-  }
-
   const handleRequests = () => {
     navigate('/admin/requests', {
       state: { forwardedState: info.forwardedState }
@@ -67,12 +61,6 @@ const AdminNavbar = (forwardedState) => {
               title='Click Here For Users Page'
             >
               Users
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={handlePartners}
-              title='Click Here For Admin Partners Page'
-            >
-              Partners
             </Dropdown.Item>
             <Dropdown.Item
               onClick={handleRequests}
