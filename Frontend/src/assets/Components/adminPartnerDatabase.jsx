@@ -321,37 +321,40 @@ function AdminPartnerDatabase({ search }, forwardedState) {
         }}
         deletionIDs={selected}
       />
-      <div className='flex justify-end'>
-        <Dropdown drop='down-centered' className='d-inline'>
-          <Dropdown.Toggle
-            variant='secondary'
-            className='text-lg'
-            id='dropdown-autoclose-outside'
-            title='Click For Actions To Edit Database'
-          >
-            Actions
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item
-              title='Click To Edit Selected Partners'
-              onClick={handleEdit}
+      <div>
+        <div className='flex justify-end'>
+          <Dropdown drop='down-centered' className='d-inline'>
+            <Dropdown.Toggle
+              variant='secondary'
+              className='text-lg'
+              id='dropdown-autoclose-outside'
+              title='Click For Actions To Edit Database'
             >
-              Edit
-            </Dropdown.Item>
-            <Dropdown.Item
-              title='Click To Duplicated Selected Partners'
-              onClick={handleDuplicate}
-            >
-              Duplicate
-            </Dropdown.Item>
-            <Dropdown.Item
-              title='Click To Delete Selected Partners'
-              onClick={handleDelete}
-            >
-              Delete
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              Actions
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                title='Click To Edit Selected Partners'
+                onClick={handleEdit}
+              >
+                Edit
+              </Dropdown.Item>
+              <Dropdown.Item
+                title='Click To Duplicated Selected Partners'
+                onClick={handleDuplicate}
+              >
+                Duplicate
+              </Dropdown.Item>
+              <Dropdown.Item
+                title='Click To Delete Selected Partners'
+                onClick={handleDelete}
+              >
+                Delete
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <div></div>
       </div>
       <table className='mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]'>
         <thead>
