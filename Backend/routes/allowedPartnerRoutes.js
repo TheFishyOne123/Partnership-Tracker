@@ -8,13 +8,59 @@ const router = express.Router()
 
 // Get All Partners
 router.get('/all', async (req, res) => {
+  const sortType = { companyName: 1 }
   try {
-    const partners = await Partner.find({})
+    const partners = await Partner.find({}).sort(sortType)
     res.status(200).json({
       data: partners
     })
   } catch (error) {
     console.log(error.message)
+    res.status(500).send({ message: error.message })
+  }
+})
+
+router.get('/sort', async (req, res) => {
+  const sortType = parseInt(req.query.type)
+  let mySort = {}
+
+  try {
+    switch (parseInt(req.query.header)) {
+      case 1:
+        mySort = { companyName: sortType }
+        break
+      case 2:
+        mySort = { position: sortType }
+        break
+      case 3:
+        mySort = { owner: sortType }
+        break
+      case 4:
+        mySort = { email: sortType }
+        break
+      case 5:
+        mySort = { phone: sortType }
+        break
+      case 6:
+        mySort = { pathway: sortType }
+        break
+      case 7:
+        mySort = { timeOfDay: sortType }
+        break
+      case 8:
+        mySort = { firstDayAvailable: sortType }
+        break
+      case 9:
+        mySort = { lastDayAvailable: sortType }
+        break
+    }
+
+    const partners = await Partner.find({}).sort(mySort)
+    res.status(200).json({
+      data: partners
+    })
+  } catch (error) {
+    console.error(error.message)
     res.status(500).send({ message: error.message })
   }
 })

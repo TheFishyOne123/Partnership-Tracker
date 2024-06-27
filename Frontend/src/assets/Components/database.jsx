@@ -13,6 +13,7 @@ function Database({ search }) {
   const [partnersList, setPartnersList] = useState([])
   const [searchResults, setSearchResults] = useState([])
   const [creationFormStatus, setCreationFormStatus] = useState(false)
+  const [sortOrder, setSortOrder] = useState(1)
 
   useEffect(() => {
     axios
@@ -288,6 +289,37 @@ function Database({ search }) {
     }
   }
 
+  const sortBy = async (header, type) => {
+    try {
+      const response = await axios.get('http://localhost:5555/partners/sort', {
+        params: {
+          header,
+          type
+        }
+      })
+
+      setPartnersList(response.data.data)
+    } catch (error) {
+      console.error('Error With Sort:', error)
+      toast.error('Error With Sort. Check Console For More Info.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light'
+      })
+    }
+  }
+
+  const handleSort = async (header) => {
+    const newSortOrder = sortOrder === 1 ? -1 : 1
+    await sortBy(header, newSortOrder)
+    setSortOrder(newSortOrder)
+  }
+
   return (
     <div className='bg-[#336b87f9] rounded-xl text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
       <div className='flex justify-end'>
@@ -324,49 +356,49 @@ function Database({ search }) {
           <thead>
             <tr className='text-lg tst:text-sm' key='Head'>
               <th className='px-1 py-2 sm:p-0' title='Name Of Company'>
-                Company Name
+                <button onClick={() => handleSort(1)}>Company Name</button>
               </th>
               <th className='px-1 py-2 sm:p-0' title='Postion Available'>
-                Position
+                <button onClick={() => handleSort(2)}>Position</button>
               </th>
               <th className='px-1 py-2 sm:p-0' title="Company's Owners Name">
-                Owner
+                <button onClick={() => handleSort(3)}>Owner</button>
               </th>
               <th
                 className='px-1 py-2 bt:hidden sm:p-0'
                 title='Email Of Internship Manager Or Owner '
               >
-                Email
+                <button onClick={() => handleSort(4)}>Email</button>
               </th>
               <th
                 className='px-1 py-2 sm:p-0'
                 title='Phone Number Of Partnership Manager Or Owner'
               >
-                Phone
+                <button onClick={() => handleSort(5)}>Phone</button>
               </th>
               <th
                 className='px-1 py-2 sm:p-0'
                 title='Pathway This Partner Fits Into'
               >
-                Pathway
+                <button onClick={() => handleSort(6)}>Pathway</button>
               </th>
               <th
                 className='px-1 py-2 sm:p-0'
                 title='Time Of Day Interns Are Able To Work'
               >
-                Availability
+                <button onClick={() => handleSort(7)}>Availability</button>
               </th>
               <th
                 className='px-1 py-2 sm:p-0 whitespace-nowrap'
                 title='First Day Interns Are Able To Work For Partner'
               >
-                Start Date
+                <button onClick={() => handleSort(8)}>Start Date</button>
               </th>
               <th
                 className='px-1 py-2 sm:p-0 whitespace-nowrap'
                 title='Last Day Interns Are Able To Work For Partner'
               >
-                End Date
+                <button onClick={() => handleSort(9)}>End Date</button>
               </th>
             </tr>
           </thead>
