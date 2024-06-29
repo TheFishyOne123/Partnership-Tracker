@@ -23,13 +23,13 @@ function AdminPartnerDatabase({ search }, forwardedState) {
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/user?user=${userData[0][1]}`
+        `http://localhost:27017/users/user?user=${userData[0][1]}`
       )
 
       response.data.data.newUser = false
 
       await axios.put(
-        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        `http://localhost:27017/users/edit/${response.data.data.email}`,
         response.data.data
       )
 
@@ -51,7 +51,7 @@ function AdminPartnerDatabase({ search }, forwardedState) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5555/partners/all')
+      .get('http://localhost:27017/partners/all')
       .then((response) => {
         setPartnersList(response.data.data)
       })
@@ -74,7 +74,7 @@ function AdminPartnerDatabase({ search }, forwardedState) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5555/partners/search',
+          'http://localhost:27017/partners/search',
           { params: { search } }
         )
         setSearchResults(response.data)
@@ -116,7 +116,7 @@ function AdminPartnerDatabase({ search }, forwardedState) {
     } else {
       try {
         const response = await axios.get(
-          `http://localhost:5555/partners/searchByID`,
+          `http://localhost:27017/partners/searchByID`,
           { params: { id: userToEdit } }
         )
         setTempUserData(response.data)
@@ -160,11 +160,11 @@ function AdminPartnerDatabase({ search }, forwardedState) {
         console.log('Duplicating Partner')
         setDuplicationStatus(true)
         const results = await axios.get(
-          'http://localhost:5555/partners/searchByID',
+          'http://localhost:27017/partners/searchByID',
           { params: { id: selected[0] } }
         )
         const response = await axios.post(
-          `http://localhost:5555/partners/create`,
+          `http://localhost:27017/partners/create`,
           results.data
         )
         if (response.status === 200) {

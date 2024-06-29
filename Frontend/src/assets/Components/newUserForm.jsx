@@ -13,7 +13,7 @@ const newUserForm = ({ onClose }) => {
 
   const emailCheck = async (email) => {
     try {
-      const response = await axios.get(`http://localhost:5555/users/${email}`)
+      const response = await axios.get(`http://localhost:27017/users/${email}`)
       if (response.status === 200) {
         return true
       } else if (response.status === 204) {
@@ -56,7 +56,7 @@ const newUserForm = ({ onClose }) => {
   const createNewUser = async (userData) => {
     try {
       const response = await axios.post(
-        `http://localhost:5555/users/create`,
+        `http://localhost:27017/users/create`,
         userData
       )
       if (response.status === 200) {

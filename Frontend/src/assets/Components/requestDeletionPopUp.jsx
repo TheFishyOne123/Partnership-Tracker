@@ -14,7 +14,7 @@ function RequestDeletionPopUp({ isOpen, onClose, deletionIDs }) {
 
   const deleteRequests = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/requests/delete/${deletionID}`
+      const url = `http://localhost:27017/requests/delete/${deletionID}`
 
       const response = await axios.delete(url)
 

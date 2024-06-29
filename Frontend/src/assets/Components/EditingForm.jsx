@@ -24,7 +24,7 @@ function editingForm({ isOpen, onClose, rowdata }) {
   const updatePartnerData = async (id, updatedPartnerData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5555/partners/edit/${id}`,
+        `http://localhost:27017/partners/edit/${id}`,
         updatedPartnerData
       )
 

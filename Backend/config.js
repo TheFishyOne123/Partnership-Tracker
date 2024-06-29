@@ -1,5 +1,5 @@
 // Port Used For Express
-export const PORT = 5555
+export const PORT = 27017
 
 // MongoDB Database Url
 export const mongoDBURL =

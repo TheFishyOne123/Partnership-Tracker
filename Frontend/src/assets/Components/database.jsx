@@ -17,7 +17,7 @@ function Database({ search }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5555/partners/all')
+      .get('http://localhost:27017/partners/all')
       .then((response) => {
         setPartnersList(response.data.data)
       })
@@ -40,7 +40,7 @@ function Database({ search }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5555/partners/search',
+          'http://localhost:27017/partners/search',
           { params: { search } }
         )
         setSearchResults(response.data)
@@ -291,7 +291,7 @@ function Database({ search }) {
 
   const sortBy = async (header, type) => {
     try {
-      const response = await axios.get('http://localhost:5555/partners/sort', {
+      const response = await axios.get('http://localhost:27017/partners/sort', {
         params: {
           header,
           type

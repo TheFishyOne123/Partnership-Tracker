@@ -18,7 +18,7 @@ function usersDatabase() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5555/users/all')
+      .get('http://localhost:27017/users/all')
       .then((response) => {
         setUsersList(response.data.data || [])
       })
@@ -71,7 +71,7 @@ function usersDatabase() {
     } else {
       try {
         const response = await axios.get(
-          `http://localhost:5555/users/${userToEdit}`
+          `http://localhost:27017/users/${userToEdit}`
         )
         setTempUserData(response.data.data)
         setEditStatus(true)

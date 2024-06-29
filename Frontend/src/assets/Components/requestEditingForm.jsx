@@ -25,7 +25,7 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
   const updateRequestData = async (id, updatedRequestData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5555/requests/edit/${id}`,
+        `http://localhost:27017/requests/edit/${id}`,
         updatedRequestData
       )
 
@@ -59,7 +59,7 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
 
   const deleteRequests = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/requests/delete/${deletionID}`
+      const url = `http://localhost:27017/requests/delete/${deletionID}`
 
       const response = await axios.delete(url)
 
@@ -132,7 +132,7 @@ function RequestEditingForm({ isOpen, onClose, rowdata }) {
 
     try {
       const response = await axios.post(
-        `http://localhost:5555/partners/create`,
+        `http://localhost:27017/partners/create`,
         editDataObject
       )
 

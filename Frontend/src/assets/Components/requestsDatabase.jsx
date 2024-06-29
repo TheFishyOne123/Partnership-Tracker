@@ -16,7 +16,7 @@ const RequestsDatabase = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5555/requests/all')
+      .get('http://localhost:27017/requests/all')
       .then((response) => {
         setRequestsList(response.data.data)
       })
@@ -38,7 +38,7 @@ const RequestsDatabase = () => {
   const findRequest = async (requestID) => {
     try {
       const request = await axios.get(
-        'http://localhost:5555/requests/searchByID',
+        'http://localhost:27017/requests/searchByID',
         { params: { id: requestID } }
       )
       return request.data
@@ -59,7 +59,7 @@ const RequestsDatabase = () => {
 
   const deleteRequests = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/requests/delete/${deletionID}`
+      const url = `http://localhost:27017/requests/delete/${deletionID}`
 
       const response = await axios.delete(url)
 
@@ -107,7 +107,7 @@ const RequestsDatabase = () => {
     const createPartners = async (newPartner) => {
       try {
         const response = await axios.post(
-          'http://localhost:5555/partners/create',
+          'http://localhost:27017/partners/create',
           newPartner
         )
         if (response.status === 200) {

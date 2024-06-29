@@ -14,7 +14,7 @@ function UserDeletionPopUp({ isOpen, onClose, deletionIDs }) {
 
   const deleteUsers = async (deletionID) => {
     try {
-      const url = `http://localhost:5555/users/delete/${deletionID}`
+      const url = `http://localhost:27017/users/delete/${deletionID}`
 
       const response = await axios.delete(url)
 

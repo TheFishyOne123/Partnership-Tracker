@@ -13,7 +13,7 @@ function AddNewPartnersForm({ onClose }) {
   const createNewPartner = async (newPartner) => {
     try {
       const response = await axios.post(
-        `http://localhost:5555/partners/create`,
+        `http://localhost:27017/partners/create`,
         newPartner
       )
       if (response.status === 200) {

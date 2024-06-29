@@ -15,7 +15,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
   const editUser = async (userID, newUserData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5555/users/edit/${userID}`,
+        `http://localhost:27017/users/edit/${userID}`,
         newUserData
       )
       if (response.status === 200) {
@@ -55,7 +55,7 @@ const editUserForm = ({ onClose, rowdata, isOpen }) => {
       } else if (!rowdata.email === email) {
         try {
           const response = await axios.get(
-            `http://localhost:5555/users/${email}`
+            `http://localhost:27017/users/${email}`
           )
           if (response.status === 200) {
             return true

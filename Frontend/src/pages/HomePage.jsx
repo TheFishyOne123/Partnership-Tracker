@@ -33,7 +33,7 @@ const HomePage = () => {
   const checkUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/${userData}`
+        `http://localhost:27017/users/${userData}`
       )
       return response.data.data.newUser
     } catch (error) {
@@ -56,13 +56,13 @@ const HomePage = () => {
   const updateUser = async (userData) => {
     try {
       const response = await axios.get(
-        `http://localhost:5555/users/${userData[0][1]}`
+        `http://localhost:27017/users/${userData[0][1]}`
       )
 
       response.data.data.newUser = false
 
       await axios.put(
-        `http://localhost:5555/users/edit/${response.data.data.email}`,
+        `http://localhost:27017/users/edit/${response.data.data.email}`,
         response.data.data
       )
 
