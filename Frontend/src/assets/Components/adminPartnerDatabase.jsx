@@ -322,8 +322,8 @@ function AdminPartnerDatabase({ search }, forwardedState) {
         deletionIDs={selected}
       />
       <div>
-        <div className='flex justify-end'>
-          <Dropdown drop='down-centered' className='d-inline'>
+        <div className='flex justify-end z-20'>
+          <Dropdown drop='down-centered' className='d-inline z-20'>
             <Dropdown.Toggle
               variant='secondary'
               className='text-lg'

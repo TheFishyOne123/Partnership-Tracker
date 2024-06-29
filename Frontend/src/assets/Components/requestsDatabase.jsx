@@ -283,7 +283,7 @@ const RequestsDatabase = () => {
   }
 
   return (
-    <div className='bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
+    <div className='bg-[#336b87f9] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
       <RequestDeletionPopUp
         isOpen={deletionPopUp}
         onClose={() => {
@@ -355,55 +355,55 @@ const RequestsDatabase = () => {
                   </td>
                   <td
                     title={request.companyName}
-                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
                   >
                     {request.companyName}
                   </td>
                   <td
                     title={request.position}
-                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
                   >
                     {request.position}
                   </td>
                   <td
                     title={request.owner}
-                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
+                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
                   >
                     {request.owner}
                   </td>
                   <td
                     title={request.email}
-                    className='bg-gray-500 bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    className='bg-[#1f3f49] bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
                   >
                     {request.email}
                   </td>
                   <td
                     title={request.phone}
-                    className='bg-gray-500 py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
+                    className='bg-[#1f3f49] py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
                   >
                     {request.phone}
                   </td>
                   <td
                     title={request.pathway}
-                    className='bg-gray-500 py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
                   >
                     {request.pathway}
                   </td>
                   <td
                     title={request.timeOfDay}
-                    className='bg-gray-500 p-1.5 sm:p-0'
+                    className='bg-[#1f3f49] p-1.5 sm:p-0'
                   >
                     {request.timeOfDay}
                   </td>
                   <td
                     title={request.firstDayAvailable}
-                    className='bg-gray-500 p-1.5 sm:p-0'
+                    className='bg-[#1f3f49] p-1.5 sm:p-0'
                   >
                     {request.firstDayAvailable}
                   </td>
                   <td
                     title={request.lastDayAvailable}
-                    className='bg-gray-500 p-1.5 sm:p-0'
+                    className='bg-[#1f3f49] p-1.5 sm:p-0'
                   >
                     {request.lastDayAvailable}
                   </td>

@@ -145,7 +145,6 @@ function AddNewPartnersForm({ onClose }) {
             <select
               required
               name='timeOfDay'
-              x
               title='Select Time Internship Is Available'
             >
               <option value='Morning'>Morning</option>

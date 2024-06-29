@@ -145,7 +145,7 @@ function usersDatabase() {
   }
 
   return (
-    <div className='bg-[#383d41f0] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
+    <div className='bg-[#336b87f9] text-white w-11/12 mx-auto flex-grow flex-col p-6 mt-28'>
       <EditUserForm
         isOpen={editStatus}
         rowdata={tempUserData}
@@ -202,13 +202,13 @@ function usersDatabase() {
                       className='form-checkbox h-5 w-5 align-middle'
                     />
                   </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-gray-500'>
+                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
                     {user.name}
                   </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-gray-500'>
+                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
                     {user.email}
                   </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-gray-500'>
+                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
                     {user.admin ? 'Yes' : 'No'}
                   </td>
                 </tr>

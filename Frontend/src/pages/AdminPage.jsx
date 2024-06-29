@@ -115,9 +115,13 @@ const AdminPage = () => {
           forwardedState={forwardedState}
           onSearchChange={handleSearchUpdate}
           setGuideStatus={setGuideStatus}
-          className='fixed top-0'
+          className='fixed top-0 z-0'
         />
-        <AdminPartnerDatabase search={search} forwardedState={forwardedState} />
+        <AdminPartnerDatabase
+          className='z-20'
+          search={search}
+          forwardedState={forwardedState}
+        />
         <ToastContainer
           position='top-right'
           autoClose={5000}
