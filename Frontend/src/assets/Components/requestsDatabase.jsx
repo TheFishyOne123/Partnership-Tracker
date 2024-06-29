@@ -319,100 +319,102 @@ const RequestsDatabase = () => {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <table className='mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]'>
-        <thead>
-          <tr key='Head'>
-            <th className='p-2 sm:p-0'>Select</th>
-            <th className='p-2 sm:p-0'>Company Name</th>
-            <th className='p-2 sm:p-0'>Position</th>
-            <th className='p-2 sm:p-0'>Owner</th>
-            <th className='p-2 bt:hidden sm:p-0'>Email</th>
-            <th className='p-2 sm:p-0'>Phone</th>
-            <th className='p-2 sm:p-0'>Pathway</th>
-            <th className='p-2 sm:p-0'>Availability</th>
-            <th className='p-2 sm:p-0 whitespace-nowrap'>Start Day</th>
-            <th className='p-2 sm:p-0 whitespace-nowrap'>End Day</th>
-          </tr>
-        </thead>
-        <tbody key='Body'>
-          {requestsList.length === 0 ? (
-            <tr key='Empty'>
-              <td colSpan='10'>
-                <h1>Empty</h1>
-              </td>
+      <div className='w-full overflow-scroll'>
+        <table className='mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]'>
+          <thead>
+            <tr key='Head'>
+              <th className='p-2 sm:p-0'>Select</th>
+              <th className='p-2 sm:p-0'>Company Name</th>
+              <th className='p-2 sm:p-0'>Position</th>
+              <th className='p-2 sm:p-0'>Owner</th>
+              <th className='p-2 bt:hidden sm:p-0'>Email</th>
+              <th className='p-2 sm:p-0'>Phone</th>
+              <th className='p-2 sm:p-0'>Pathway</th>
+              <th className='p-2 sm:p-0'>Availability</th>
+              <th className='p-2 sm:p-0 whitespace-nowrap'>Start Day</th>
+              <th className='p-2 sm:p-0 whitespace-nowrap'>End Day</th>
             </tr>
-          ) : (
-            requestsList.map((request, index) => (
-              <Fragment key={`fragment-${request.id || index}`}>
-                <tr key={`row-${request.id}`}>
-                  <td className='py-0.5 whitespace-nowrap'>
-                    <input
-                      type='checkbox'
-                      onChange={() => handleSelected(request._id)}
-                      checked={selected.includes(request._id)}
-                      className='form-checkbox h-5 w-5 align-middle'
-                    />
-                  </td>
-                  <td
-                    title={request.companyName}
-                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
-                  >
-                    {request.companyName}
-                  </td>
-                  <td
-                    title={request.position}
-                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
-                  >
-                    {request.position}
-                  </td>
-                  <td
-                    title={request.owner}
-                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
-                  >
-                    {request.owner}
-                  </td>
-                  <td
-                    title={request.email}
-                    className='bg-[#1f3f49] bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
-                  >
-                    {request.email}
-                  </td>
-                  <td
-                    title={request.phone}
-                    className='bg-[#1f3f49] py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
-                  >
-                    {request.phone}
-                  </td>
-                  <td
-                    title={request.pathway}
-                    className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
-                  >
-                    {request.pathway}
-                  </td>
-                  <td
-                    title={request.timeOfDay}
-                    className='bg-[#1f3f49] p-1.5 sm:p-0'
-                  >
-                    {request.timeOfDay}
-                  </td>
-                  <td
-                    title={request.firstDayAvailable}
-                    className='bg-[#1f3f49] p-1.5 sm:p-0'
-                  >
-                    {request.firstDayAvailable}
-                  </td>
-                  <td
-                    title={request.lastDayAvailable}
-                    className='bg-[#1f3f49] p-1.5 sm:p-0'
-                  >
-                    {request.lastDayAvailable}
-                  </td>
-                </tr>
-              </Fragment>
-            ))
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody key='Body'>
+            {requestsList.length === 0 ? (
+              <tr key='Empty'>
+                <td colSpan='10'>
+                  <h1>Empty</h1>
+                </td>
+              </tr>
+            ) : (
+              requestsList.map((request, index) => (
+                <Fragment key={`fragment-${request.id || index}`}>
+                  <tr key={`row-${request.id}`}>
+                    <td className='py-0.5 whitespace-nowrap'>
+                      <input
+                        type='checkbox'
+                        onChange={() => handleSelected(request._id)}
+                        checked={selected.includes(request._id)}
+                        className='form-checkbox h-5 w-5 align-middle'
+                      />
+                    </td>
+                    <td
+                      title={request.companyName}
+                      className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    >
+                      {request.companyName}
+                    </td>
+                    <td
+                      title={request.position}
+                      className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[14rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    >
+                      {request.position}
+                    </td>
+                    <td
+                      title={request.owner}
+                      className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap'
+                    >
+                      {request.owner}
+                    </td>
+                    <td
+                      title={request.email}
+                      className='bg-[#1f3f49] bt:hidden py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[12rem] laptop:max-w-[5rm] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    >
+                      {request.email}
+                    </td>
+                    <td
+                      title={request.phone}
+                      className='bg-[#1f3f49] py-0.5 px-1  bt:px-.5  sm:p-0 whitespace-nowrap'
+                    >
+                      {request.phone}
+                    </td>
+                    <td
+                      title={request.pathway}
+                      className='bg-[#1f3f49] py-0.5 px-1 bt:px-.5 sm:p-0 whitespace-nowrap max-w-[10rem] bt:max-w-[8rem] sm:max-w-[15rem] lg:max-w-[20rem] overflow-hidden hover:overflow-x-visible scrollBar'
+                    >
+                      {request.pathway}
+                    </td>
+                    <td
+                      title={request.timeOfDay}
+                      className='bg-[#1f3f49] p-1.5 sm:p-0'
+                    >
+                      {request.timeOfDay}
+                    </td>
+                    <td
+                      title={request.firstDayAvailable}
+                      className='bg-[#1f3f49] p-1.5 sm:p-0'
+                    >
+                      {request.firstDayAvailable}
+                    </td>
+                    <td
+                      title={request.lastDayAvailable}
+                      className='bg-[#1f3f49] p-1.5 sm:p-0'
+                    >
+                      {request.lastDayAvailable}
+                    </td>
+                  </tr>
+                </Fragment>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

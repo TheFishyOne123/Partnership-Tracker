@@ -18,15 +18,15 @@ function Navbar(forwardedState) {
 
   return (
     <div className='text-gray-50 w-screen bg-gray-500 font-black h-16 flex items-center text-2xl fixed top-0 z-50'>
-      <img className='w-20' src={Logo} alt='Logo' />
-      <p className='font-normal'>Partnership Tracker</p>
+      <img className='w-16 md:w-1/12' src={Logo} alt='Logo' />
+      <p className='md:text-xs  text-2xl'>Partnership Tracker</p>
       <Searchbar onSearchChange={handleSearchUpdate} />
-      <div className='flex ml-auto pr-8'>
-        <Dropdown className='d-inline mx-2' autoClose='outside'>
+      <div className='flex ml-auto pr-8 md:pr-0'>
+        <Dropdown className='d-inline mx-2 md:mx-0' autoClose='outside'>
           <Dropdown.Toggle
             title='Click Here For Guide & Logout'
             variant='secondary'
-            className='text-lg bg-transparent border-transparent hover:border-transparent'
+            className='md:text-xs text-lg bg-transparent border-transparent hover:border-transparent'
             id='dropdown-autoclose-outside'
           >
             {name[0][0]}

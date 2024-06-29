@@ -351,7 +351,7 @@ function Database({ search }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <div className='overflow-hidden w-full'>
+      <div className='w-full overflow-scroll'>
         <table className=' m-auto max-w-full table-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-sm bt:text-[15px]'>
           <thead>
             <tr className='text-lg tst:text-sm' key='Head'>

@@ -180,58 +180,60 @@ function usersDatabase() {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <table className=' mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]'>
-        <thead className=' text-lg'>
-          <tr>
-            <th className='p-0.5'>Select</th>
-            <th className='p-2'>Name</th>
-            <th className='p-2'>Email</th>
-            <th className='p-2'>Admin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usersList && usersList.length > 0 ? (
-            <>
-              {usersList.map((user) => (
-                <tr key={user._id}>
-                  <td className='py-1 px-0.5 whitespace-nowrap'>
-                    <input
-                      type='checkbox'
-                      onChange={() => handleSelected(user.email)}
-                      checked={selected.includes(user.email)}
-                      className='form-checkbox h-5 w-5 align-middle'
-                    />
-                  </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
-                    {user.name}
-                  </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
-                    {user.email}
-                  </td>
-                  <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
-                    {user.admin ? 'Yes' : 'No'}
+      <div className='w-full overflow-scroll'>
+        <table className=' mx-auto border-separate border-spacing-y-4 border-spacing-x-3 lg:border-spacing-3 md:border-spacing-x-3 sm:border-spacing-x-1 text-center font-mono shadow-md border-spacing-1 md:text-xs bt:text-[12px]'>
+          <thead className=' text-lg'>
+            <tr>
+              <th className='p-0.5'>Select</th>
+              <th className='p-2'>Name</th>
+              <th className='p-2'>Email</th>
+              <th className='p-2'>Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersList && usersList.length > 0 ? (
+              <>
+                {usersList.map((user) => (
+                  <tr key={user._id}>
+                    <td className='py-1 px-0.5 whitespace-nowrap'>
+                      <input
+                        type='checkbox'
+                        onChange={() => handleSelected(user.email)}
+                        checked={selected.includes(user.email)}
+                        className='form-checkbox h-5 w-5 align-middle'
+                      />
+                    </td>
+                    <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
+                      {user.name}
+                    </td>
+                    <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
+                      {user.email}
+                    </td>
+                    <td className='py-0.5 px-2 whitespace-nowrap bg-[#1f3f49]'>
+                      {user.admin ? 'Yes' : 'No'}
+                    </td>
+                  </tr>
+                ))}
+                <tr>
+                  <td colSpan={10}>
+                    <div className='inline-block p-2'>
+                      <CreateNewUserDiv
+                        creationFormStatus={setCreationFormStatus}
+                      />
+                    </div>
                   </td>
                 </tr>
-              ))}
+              </>
+            ) : (
               <tr>
-                <td colSpan={10}>
-                  <div className='inline-block p-2'>
-                    <CreateNewUserDiv
-                      creationFormStatus={setCreationFormStatus}
-                    />
-                  </div>
+                <td colSpan='10'>
+                  <h1>Empty</h1>
                 </td>
               </tr>
-            </>
-          ) : (
-            <tr>
-              <td colSpan='10'>
-                <h1>Empty</h1>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
